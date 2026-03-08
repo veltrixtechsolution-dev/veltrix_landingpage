@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soirée Events — Luxury Event Planning</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0C0B09;
+    --bg2: #141210;
+    --gold: #C4913A;
+    --gold2: #E0AE5C;
+    --lt: #F6F0E6;
+    --dim: rgba(246,240,230,0.5);
+    --bdr: rgba(196,145,58,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--lt); overflow-x: hidden; }
+
+  nav {
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 72px;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,11,9,0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--bdr);
+  }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; letter-spacing: 0.1em; color: var(--lt); }
+  .logo em { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 48px; list-style: none; }
+  .nav-links a { font-size: 12px; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-gold {
+    padding: 11px 32px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: transparent;
+    transition: all 0.25s;
+  }
+  .btn-gold:hover { background: var(--gold); color: var(--bg); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(196,145,58,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(196,145,58,0.04) 0%, transparent 60%);
+  }
+  .hero-ornament {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid var(--bdr);
+    pointer-events: none;
+  }
+  .hero-ornament2 {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px; height: 900px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,145,58,0.08);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    position: relative; z-index: 1;
+    animation: rise 0.8s ease both;
+  }
+  @keyframes rise { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 7.5vw, 104px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: 0.04em;
+    margin-bottom: 28px;
+    position: relative; z-index: 1;
+    animation: rise 0.8s 0.12s ease both;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--dim);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    position: relative; z-index: 1;
+    animation: rise 0.8s 0.22s ease both;
+  }
+  .hero-btns {
+    display: flex; gap: 20px;
+    justify-content: center;
+    position: relative; z-index: 1;
+    animation: rise 0.8s 0.32s ease both;
+  }
+  .btn-gold-fill {
+    padding: 14px 44px;
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: filter 0.2s;
+  }
+  .btn-gold-fill:hover { filter: brightness(1.1); }
+
+  /* SERVICES */
+  #services { padding: 120px 72px; background: var(--bg2); }
+  .s-eyebrow {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .s-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 64px;
+    line-height: 1.1;
+  }
+  .s-title em { color: var(--gold); font-style: italic; }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bdr); }
+  .svc-card {
+    background: var(--bg);
+    padding: 56px 44px;
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .svc-card:hover { background: rgba(196,145,58,0.04); }
+  .svc-icon { font-size: 48px; margin-bottom: 28px; }
+  .svc-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .svc-desc { font-size: 14px; font-weight: 300; line-height: 1.8; color: var(--dim); }
+
+  /* PROCESS */
+  #process { padding: 120px 72px; }
+  .proc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 64px; }
+  .proc-step {
+    padding: 0 40px;
+    border-right: 1px solid var(--bdr);
+    text-align: center;
+  }
+  .proc-step:last-child { border-right: none; }
+  .proc-step:first-child { padding-left: 0; }
+  .ps-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: var(--gold);
+    opacity: 0.5;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .ps-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .ps-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--dim); }
+
+  /* TESTIMONIALS */
+  #testimonials { padding: 100px 72px; background: var(--bg2); }
+  .tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--bdr); margin-top: 64px; }
+  .tcard { background: var(--bg); padding: 52px 40px; }
+  .t-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    line-height: 0.6;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 20px;
+  }
+  .t-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--dim);
+    margin-bottom: 28px;
+  }
+  .t-divider { width: 32px; height: 1px; background: var(--gold); margin-bottom: 20px; }
+  .t-name { font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+  .t-event { font-size: 12px; font-weight: 300; color: var(--dim); margin-top: 4px; }
+
+  /* GALLERY */
+  #gallery { padding: 100px 72px; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 64px; }
+  .gallery-item {
+    aspect-ratio: 1;
+    background: var(--bg2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 72px;
+    border: 1px solid var(--bdr);
+    transition: all 0.3s;
+    overflow: hidden;
+  }
+  .gallery-item:first-child { grid-column: span 2; grid-row: span 2; font-size: 120px; }
+  .gallery-item:hover { border-color: var(--gold); background: rgba(196,145,58,0.05); }
+
+  /* CTA */
+  .cta {
+    padding: 100px 72px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(196,145,58,0.06), transparent);
+    border-top: 1px solid var(--bdr);
+  }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(40px, 5vw, 72px); font-weight: 300; line-height: 1.05; margin-bottom: 20px; }
+  .cta-title em { color: var(--gold); }
+  .cta-sub { font-size: 15px; font-weight: 300; color: var(--dim); margin-bottom: 44px; }
+
+  footer { padding: 40px 72px; border-top: 1px solid var(--bdr); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Soir<em>ée</em></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Weddings</a></li>
+    <li><a href="#">Corporate</a></li>
+    <li><a href="#">Gallery</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-gold">Plan Your Event</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+  <div class="hero-ornament2"></div>
+  <div class="hero-eyebrow">✦ &nbsp; Luxury Event Planning &nbsp; ✦</div>
+  <h1 class="hero-title">
+    Every Detail.<br>
+    Every <em>Dream.</em><br>
+    Perfectly Realised.
+  </h1>
+  <p class="hero-subtitle">Soirée crafts extraordinary events — from intimate gatherings to grand celebrations — with impeccable taste and flawless execution.</p>
+  <div class="hero-btns">
+    <a href="#" class="btn-gold-fill">Start Planning</a>
+    <a href="#services" class="btn-gold">Our Services</a>
+  </div>
+</section>
+
+<section id="services">
+  <div class="s-eyebrow">✦ What We Do</div>
+  <h2 class="s-title">Events We <em>Create</em></h2>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-icon">💍</div>
+      <div class="svc-name">Weddings &amp; Ceremonies</div>
+      <div class="svc-desc">Intimate elopements to grand receptions — every wedding planned with devotion to your love story.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🏢</div>
+      <div class="svc-name">Corporate Events</div>
+      <div class="svc-desc">Product launches, annual galas, conferences and team milestones elevated to memorable experiences.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎂</div>
+      <div class="svc-name">Private Celebrations</div>
+      <div class="svc-desc">Milestone birthdays, anniversaries and private parties designed around you and your guests.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🌸</div>
+      <div class="svc-name">Floral &amp; Décor</div>
+      <div class="svc-desc">Bespoke floral installations and styling that transform any space into something extraordinary.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🎵</div>
+      <div class="svc-name">Entertainment Curation</div>
+      <div class="svc-desc">From live quartets to headline DJs — we source and book talent that sets the perfect tone.</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon">🍽</div>
+      <div class="svc-name">Catering &amp; Hospitality</div>
+      <div class="svc-desc">Curated menus from our network of award-winning chefs and catering partners.</div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="s-eyebrow">Our Approach</div>
+  <h2 class="s-title" style="text-align:center;">How We <em>Work Together</em></h2>
+  <div class="proc-grid">
+    <div class="proc-step">
+      <div class="ps-num">I</div>
+      <div class="ps-title">Discovery Consultation</div>
+      <div class="ps-desc">We meet to understand your vision, preferences, budget and every detail that matters to you.</div>
+    </div>
+    <div class="proc-step">
+      <div class="ps-num">II</div>
+      <div class="ps-title">Concept &amp; Design</div>
+      <div class="ps-desc">Our team develops a tailored event concept, mood board and detailed execution plan.</div>
+    </div>
+    <div class="proc-step">
+      <div class="ps-num">III</div>
+      <div class="ps-title">Coordination &amp; Build</div>
+      <div class="ps-desc">We manage every vendor, timeline and logistic so you can be present — not stressed.</div>
+    </div>
+    <div class="proc-step">
+      <div class="ps-num">IV</div>
+      <div class="ps-title">Event Day Perfection</div>
+      <div class="ps-desc">Our team is on-site from setup to strike, ensuring every moment unfolds flawlessly.</div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="s-eyebrow">Client Stories</div>
+  <h2 class="s-title" style="text-align:center;">Voices of Our <em>Guests</em></h2>
+  <div class="tgrid">
+    <div class="tcard">
+      <div class="t-quote">"</div>
+      <div class="t-text">Soirée turned our wedding vision into something beyond what we imagined. Every detail was absolute perfection.</div>
+      <div class="t-divider"></div>
+      <div class="t-name">Isabella &amp; Marco</div>
+      <div class="t-event">Garden Wedding · Tuscany, 2025</div>
+    </div>
+    <div class="tcard">
+      <div class="t-quote">"</div>
+      <div class="t-text">Our product launch was flawless — the staging, the catering, the guests' experience was talked about for months.</div>
+      <div class="t-divider"></div>
+      <div class="t-name">Natalie Chen, CMO</div>
+      <div class="t-event">Corporate Launch Event · New York</div>
+    </div>
+    <div class="tcard">
+      <div class="t-quote">"</div>
+      <div class="t-text">My 50th birthday celebration was the most magical evening of my life. Soirée thought of everything.</div>
+      <div class="t-divider"></div>
+      <div class="t-name">Helena Frost</div>
+      <div class="t-event">Private Gala · London, 2025</div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="s-eyebrow">Our Portfolio</div>
+  <h2 class="s-title" style="text-align:center;">A Glimpse of Our <em>Work</em></h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">🌹</div>
+    <div class="gallery-item">🥂</div>
+    <div class="gallery-item">🕯</div>
+    <div class="gallery-item">💐</div>
+    <div class="gallery-item">✨</div>
+    <div class="gallery-item">🎶</div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-title">Let's Create<br>Something <em>Unforgettable</em></h2>
+  <p class="cta-sub">Enquiries welcome for events of all scales. We'd love to hear your vision.</p>
+  <a href="#" class="btn-gold-fill">Begin Your Enquiry</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;letter-spacing:0.1em;color:var(--lt);">Soir<em style="color:var(--gold)">ée</em></div>
+  <div class="footer-copy">© 2026 Soirée Events. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

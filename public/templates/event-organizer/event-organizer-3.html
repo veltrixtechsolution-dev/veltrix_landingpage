@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIVE Events — Bold. Memorable. Yours.</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,900;1,400&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F6F2;
+    --ink: #111111;
+    --red: #C0180C;
+    --warm: #EDE8E0;
+    --mid: #777770;
+    --bdr: #D8D2C8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 72px;
+    border-bottom: 2px solid var(--ink);
+    background: var(--bg);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+  }
+  .logo span { color: var(--red); }
+  .nav-links { display: flex; gap: 0; list-style: none; }
+  .nav-links a {
+    padding: 0 28px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    border-left: 1px solid var(--bdr);
+    line-height: 72px;
+    display: block;
+    transition: color 0.2s, background 0.15s;
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--warm); }
+  .btn-ink {
+    padding: 12px 32px;
+    background: var(--ink);
+    color: var(--bg);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-ink:hover { background: var(--red); }
+
+  /* HERO */
+  #hero { display: grid; grid-template-columns: 1.2fr 0.8fr; min-height: 90vh; border-bottom: 2px solid var(--ink); }
+  .hero-left {
+    padding: 80px 72px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 2px solid var(--ink);
+  }
+  .hl-top { }
+  .h-eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--red);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .h-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--red); opacity: 0.4; }
+  .h-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 9vw, 128px);
+    line-height: 0.9;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    max-width: 700px;
+  }
+  .h-title .red { color: var(--red); }
+  .h-title .italic { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.85em; }
+  .h-desc {
+    font-size: 17px; font-weight: 300; line-height: 1.75; color: var(--mid);
+    max-width: 520px; margin-bottom: 40px;
+  }
+  .h-btns { display: flex; gap: 0; }
+  .btn-big-ink {
+    padding: 18px 48px;
+    background: var(--ink); color: var(--bg);
+    font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-big-ink:hover { background: var(--red); }
+  .btn-big-outline {
+    padding: 18px 48px;
+    background: transparent; color: var(--ink);
+    border: 2px solid var(--ink); border-left: none;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s;
+  }
+  .btn-big-outline:hover { background: var(--ink); color: var(--bg); }
+  .hl-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 2px solid var(--ink); }
+  .hls { padding: 28px 0; border-right: 2px solid var(--ink); }
+  .hls:last-child { border-right: none; }
+  .hls-n { font-family: 'Bebas Neue', sans-serif; font-size: 48px; letter-spacing: 0.04em; color: var(--red); line-height: 1; }
+  .hls-l { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); margin-top: 4px; }
+
+  .hero-right { background: var(--warm); display: flex; flex-direction: column; }
+  .hr-featured { padding: 48px 44px; flex: 1; border-bottom: 2px solid var(--ink); display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
+  .hr-bg-emoji { position: absolute; font-size: 180px; opacity: 0.08; top: 20px; right: 20px; line-height: 1; }
+  .hr-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); margin-bottom: 10px; position: relative; }
+  .hr-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 900; line-height: 1.2; margin-bottom: 10px; position: relative; }
+  .hr-meta { font-size: 13px; color: var(--mid); line-height: 1.6; position: relative; }
+  .hr-contact { padding: 36px 44px; }
+  .hrc-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .hrc-fields { display: flex; flex-direction: column; gap: 12px; }
+  .hrc-input {
+    width: 100%; padding: 12px 0;
+    background: transparent; border: none; border-bottom: 2px solid var(--bdr);
+    font-family: 'Source Sans 3', sans-serif; font-size: 14px; color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+  }
+  .hrc-input:focus { border-color: var(--red); }
+  .hrc-input::placeholder { color: var(--mid); }
+  .hrc-btn {
+    width: 100%; margin-top: 16px; padding: 14px;
+    background: var(--red); color: white;
+    font-family: 'Source Sans 3', sans-serif; font-size: 14px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer;
+    transition: filter 0.2s;
+  }
+  .hrc-btn:hover { filter: brightness(1.1); }
+
+  /* WORK */
+  #work { padding: 100px 72px; }
+  .work-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 56px; border-bottom: 2px solid var(--ink); padding-bottom: 24px; }
+  .wh-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 64px); letter-spacing: 0.04em; }
+  .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--ink); }
+  .work-card {
+    background: var(--bg);
+    padding: 36px 28px;
+    transition: background 0.2s;
+  }
+  .work-card:hover { background: var(--warm); }
+  .wc-icon { font-size: 40px; margin-bottom: 20px; }
+  .wc-cat { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; }
+  .wc-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; line-height: 1.2; margin-bottom: 10px; }
+  .wc-desc { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+
+  /* PAST EVENTS */
+  #past { padding: 0; border-top: 2px solid var(--ink); }
+  .past-header { padding: 36px 72px; background: var(--ink); color: var(--bg); display: flex; justify-content: space-between; align-items: center; }
+  .past-title { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 0.06em; }
+  .past-list { }
+  .past-item {
+    display: grid; grid-template-columns: 120px 1fr 1fr 120px;
+    gap: 0; align-items: center;
+    padding: 28px 72px;
+    border-bottom: 1px solid var(--bdr);
+    transition: background 0.15s;
+  }
+  .past-item:hover { background: var(--warm); }
+  .pi-date { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+  .pi-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 900; }
+  .pi-detail { font-size: 13px; color: var(--mid); }
+  .pi-tag {
+    display: inline-block; padding: 4px 14px;
+    background: var(--ink); color: var(--bg);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    justify-self: end;
+  }
+  .pi-tag.red { background: var(--red); }
+
+  /* CTA */
+  .cta {
+    padding: 100px 72px;
+    background: var(--ink); color: var(--bg);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .cta-t { font-family: 'Bebas Neue', sans-serif; font-size: clamp(44px, 6vw, 80px); letter-spacing: 0.04em; line-height: 0.95; }
+  .cta-t span { color: var(--red); }
+  .btn-red-cta { padding: 18px 56px; background: var(--red); color: white; font-size: 15px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; flex-shrink: 0; transition: filter 0.2s; }
+  .btn-red-cta:hover { filter: brightness(1.1); }
+
+  footer { padding: 32px 72px; border-top: 2px solid var(--ink); display: flex; justify-content: space-between; align-items: center; background: var(--bg); }
+  .footer-copy { font-size: 12px; color: var(--mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">VIVE<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Weddings</a></li>
+    <li><a href="#">Corporate</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-ink">Plan Your Event</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hl-top">
+      <div class="h-eyebrow">Award-Winning Event Planners</div>
+      <h1 class="h-title">
+        <span class="red">Bold</span><br>
+        <span class="italic">Memorable</span><br>
+        Events
+      </h1>
+      <p class="h-desc">VIVE Events brings editorial precision and emotional depth to every occasion. Weddings, corporate milestones, galas and everything in between.</p>
+      <div class="h-btns">
+        <a href="#" class="btn-big-ink">Start Planning</a>
+        <a href="#work" class="btn-big-outline">Our Work</a>
+      </div>
+    </div>
+    <div class="hl-stats">
+      <div class="hls"><div class="hls-n">1,200+</div><div class="hls-l">Events</div></div>
+      <div class="hls" style="padding-left:28px;"><div class="hls-n">12yr</div><div class="hls-l">Experience</div></div>
+      <div class="hls" style="padding-left:28px;"><div class="hls-n">4.9★</div><div class="hls-l">Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hr-featured">
+      <div class="hr-bg-emoji">🌹</div>
+      <div class="hr-cat">Recent Event</div>
+      <div class="hr-title">The Montgomery Wedding — Blackwood Manor</div>
+      <div class="hr-meta">320 guests · 3 days · Fully coordinated by VIVE</div>
+    </div>
+    <div class="hr-contact">
+      <div class="hrc-title">Quick Enquiry</div>
+      <div class="hrc-fields">
+        <input class="hrc-input" type="text" placeholder="Your name">
+        <input class="hrc-input" type="email" placeholder="Email address">
+        <input class="hrc-input" type="text" placeholder="Event type &amp; date">
+        <button class="hrc-btn">Send Enquiry</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="work-header">
+    <h2 class="wh-title">What We Do</h2>
+    <a href="#" class="btn-ink" style="padding:12px 28px;text-decoration:none;">All Services →</a>
+  </div>
+  <div class="work-grid">
+    <div class="work-card"><div class="wc-icon">💍</div><div class="wc-cat">Weddings</div><div class="wc-title">Complete Wedding Planning</div><div class="wc-desc">Engagement to honeymoon — every detail coordinated with love and precision.</div></div>
+    <div class="work-card"><div class="wc-icon">🏢</div><div class="wc-cat">Corporate</div><div class="wc-title">Corporate Galas &amp; Launches</div><div class="wc-desc">High-impact corporate events that strengthen your brand and reward your team.</div></div>
+    <div class="work-card"><div class="wc-icon">🎉</div><div class="wc-cat">Celebrations</div><div class="wc-title">Milestone Celebrations</div><div class="wc-desc">Birthdays, anniversaries and life milestones — turned into lifelong memories.</div></div>
+    <div class="work-card"><div class="wc-icon">✨</div><div class="wc-cat">Styling</div><div class="wc-title">Décor &amp; Experiential Design</div><div class="wc-desc">Transformative styling, lighting and installations that stop guests in their tracks.</div></div>
+  </div>
+</section>
+
+<section id="past">
+  <div class="past-header">
+    <h2 class="past-title">Recent Events</h2>
+    <a href="#" style="color:rgba(255,255,255,0.4);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;">Full Portfolio →</a>
+  </div>
+  <div class="past-list">
+    <div class="past-item"><div class="pi-date">Mar 2026</div><div class="pi-name">The Ashworth-Delacroix Wedding</div><div class="pi-detail">Château Margaux · 240 guests</div><span class="pi-tag red">Wedding</span></div>
+    <div class="past-item"><div class="pi-date">Feb 2026</div><div class="pi-name">Nexus Capital Annual Gala</div><div class="pi-detail">The Langham Hotel · 600 guests</div><span class="pi-tag">Corporate</span></div>
+    <div class="past-item"><div class="pi-date">Jan 2026</div><div class="pi-name">Lady Helena's 60th Celebration</div><div class="pi-detail">Private Estate · 80 guests</div><span class="pi-tag red">Private</span></div>
+    <div class="past-item"><div class="pi-date">Dec 2025</div><div class="pi-name">Vantage Group Product Launch</div><div class="pi-detail">Sky Lounge NYC · 350 guests</div><span class="pi-tag">Corporate</span></div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-t">Your Event.<br><span>Our Obsession.</span></h2>
+  <a href="#" class="btn-red-cta">Start Planning Today</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.1em;color:var(--ink);">VIVE<span style="color:var(--red)">.</span></div>
+  <div class="footer-copy">© 2026 VIVE Events. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

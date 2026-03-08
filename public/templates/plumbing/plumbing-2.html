@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixRight Plumbing</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --orange:#EA580C; --light:#FFF7ED; --bg:#fff; --ink:#1C0A00; --mid:#7C5C46; --bdr:#FED7AA; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--ink); }
+
+  nav { height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; border-bottom:1px solid var(--bdr); background:white; position:sticky; top:0; z-index:100; }
+  .logo { font-size:24px; font-weight:800; color:var(--ink); }
+  .logo span { color:var(--orange); }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { font-size:14px; font-weight:500; color:var(--mid); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--orange); }
+  .nav-right { display:flex; gap:12px; align-items:center; }
+  .phone-link { font-size:16px; font-weight:800; color:var(--orange); text-decoration:none; }
+  .btn-orange { padding:10px 24px; background:var(--orange); color:white; font-size:13px; font-weight:700; border-radius:8px; text-decoration:none; }
+
+  /* HERO */
+  #hero { background:var(--light); padding:80px 64px; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+  .h-pill { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; background:white; border:1px solid var(--bdr); border-radius:100px; font-size:12px; font-weight:700; color:var(--orange); margin-bottom:24px; }
+  .h-title { font-size:clamp(40px,5vw,60px); font-weight:800; line-height:1.05; letter-spacing:-0.02em; margin-bottom:20px; }
+  .h-title span { color:var(--orange); }
+  .h-desc { font-size:16px; font-weight:300; line-height:1.8; color:var(--mid); margin-bottom:32px; }
+  .h-btns { display:flex; gap:12px; margin-bottom:36px; }
+  .btn-lg { padding:14px 32px; font-size:15px; font-weight:700; border-radius:10px; text-decoration:none; transition:filter 0.2s; }
+  .btn-orange-lg { background:var(--orange); color:white; }
+  .btn-orange-lg:hover { filter:brightness(1.05); }
+  .btn-outline-o { border:1.5px solid var(--orange); color:var(--orange); background:transparent; }
+  .btn-outline-o:hover { background:var(--orange); color:white; }
+  .trust-badges { display:flex; gap:20px; flex-wrap:wrap; }
+  .tbadge { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:var(--mid); }
+  .tbadge-icon { width:28px; height:28px; background:var(--orange); border-radius:50%; display:grid; place-items:center; color:white; font-size:12px; }
+
+  .hero-right { }
+  .contact-card { background:white; border-radius:20px; padding:36px; box-shadow:0 8px 48px rgba(234,88,12,0.1); border:1px solid var(--bdr); }
+  .cc-head { display:flex; align-items:center; gap:12px; margin-bottom:24px; }
+  .cc-icon { width:48px; height:48px; background:var(--orange); border-radius:12px; display:grid; place-items:center; font-size:22px; flex-shrink:0; }
+  .cc-head-text h3 { font-size:18px; font-weight:700; }
+  .cc-head-text p { font-size:13px; color:var(--mid); }
+  .service-list { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+  .svc-item { display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:var(--light); border-radius:8px; }
+  .svc-item-left { display:flex; align-items:center; gap:12px; }
+  .svc-item-icon { font-size:20px; }
+  .svc-item-name { font-size:14px; font-weight:600; }
+  .svc-item-price { font-size:14px; font-weight:800; color:var(--orange); }
+  .btn-contact { width:100%; padding:14px; background:var(--orange); color:white; font-family:'Poppins',sans-serif; font-size:15px; font-weight:700; border:none; border-radius:10px; cursor:pointer; }
+
+  /* SERVICES */
+  #services { padding:96px 64px; }
+  .sec-lbl { font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--orange); margin-bottom:12px; }
+  .sec-h2 { font-size:clamp(32px,3.5vw,44px); font-weight:800; letter-spacing:-0.02em; margin-bottom:48px; }
+  .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .svc-card { background:var(--light); border-radius:16px; padding:32px 28px; border:1px solid var(--bdr); transition:all 0.3s; }
+  .svc-card:hover { background:white; box-shadow:0 12px 40px rgba(234,88,12,0.1); transform:translateY(-4px); }
+  .svc-ico { width:56px; height:56px; background:var(--orange); border-radius:14px; display:grid; place-items:center; font-size:24px; margin-bottom:20px; }
+  .svc-title { font-size:18px; font-weight:700; margin-bottom:10px; }
+  .svc-desc { font-size:13px; font-weight:300; line-height:1.7; color:var(--mid); margin-bottom:16px; }
+  .svc-price { font-size:20px; font-weight:800; color:var(--orange); }
+
+  /* WHY */
+  #why { padding:80px 64px; background:var(--light); }
+  .why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:48px; }
+  .why-card { background:white; border-radius:16px; padding:28px; text-align:center; border:1px solid var(--bdr); }
+  .wc-icon { font-size:40px; margin-bottom:16px; }
+  .wc-title { font-size:17px; font-weight:700; margin-bottom:8px; }
+  .wc-desc { font-size:13px; font-weight:300; line-height:1.65; color:var(--mid); }
+
+  /* REVIEWS */
+  #reviews { padding:80px 64px; }
+  .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:48px; }
+  .review-card { background:var(--light); border-radius:16px; padding:28px; border:1px solid var(--bdr); }
+  .r-stars { color:var(--orange); font-size:16px; letter-spacing:2px; margin-bottom:14px; }
+  .r-text { font-size:14px; font-weight:300; line-height:1.7; color:var(--mid); margin-bottom:20px; }
+  .r-author { display:flex; align-items:center; gap:12px; }
+  .r-avatar { width:40px; height:40px; border-radius:50%; background:var(--orange); display:grid; place-items:center; color:white; font-weight:800; font-size:14px; flex-shrink:0; }
+  .r-name { font-size:14px; font-weight:700; }
+  .r-loc { font-size:12px; color:var(--mid); }
+
+  /* CTA */
+  .cta { padding:80px 64px; background:var(--orange); display:flex; justify-content:space-between; align-items:center; }
+  .cta-t { font-size:clamp(28px,4vw,48px); font-weight:800; color:white; letter-spacing:-0.02em; line-height:1.1; }
+  .btn-wh { padding:16px 44px; background:white; color:var(--orange); font-size:15px; font-weight:800; border-radius:10px; text-decoration:none; flex-shrink:0; }
+
+  footer { padding:32px 64px; border-top:1px solid var(--bdr); display:flex; justify-content:space-between; align-items:center; }
+  .footer-copy { font-size:12px; color:var(--mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Fix<span>Right</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:18001234567" class="phone-link">📞 1-800-FIXRIGHT</a>
+    <a href="#" class="btn-orange">Book Online</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div>
+    <div class="h-pill">⭐ 4.9 · Trusted by 10,000+ homeowners</div>
+    <h1 class="h-title">Fast Plumbing<br><span>Fixed Right,</span><br>Guaranteed</h1>
+    <p class="h-desc">Local, licensed plumbers available same-day. Upfront pricing, no hidden fees, and every job backed by a written guarantee.</p>
+    <div class="h-btns">
+      <a href="#" class="btn-lg btn-orange-lg">Book a Plumber →</a>
+      <a href="#services" class="btn-lg btn-outline-o">Our Services</a>
+    </div>
+    <div class="trust-badges">
+      <div class="tbadge"><div class="tbadge-icon">✓</div>Licensed &amp; Insured</div>
+      <div class="tbadge"><div class="tbadge-icon">⚡</div>Same-Day</div>
+      <div class="tbadge"><div class="tbadge-icon">🛡</div>Guaranteed</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="contact-card">
+      <div class="cc-head"><div class="cc-icon">🔧</div><div class="cc-head-text"><h3>Common Services</h3><p>Fixed price — no surprises</p></div></div>
+      <div class="service-list">
+        <div class="svc-item"><div class="svc-item-left"><span class="svc-item-icon">💧</span><span class="svc-item-name">Leak Repair</span></div><span class="svc-item-price">From $85</span></div>
+        <div class="svc-item"><div class="svc-item-left"><span class="svc-item-icon">🚿</span><span class="svc-item-name">Drain Unblocking</span></div><span class="svc-item-price">From $95</span></div>
+        <div class="svc-item"><div class="svc-item-left"><span class="svc-item-icon">🚽</span><span class="svc-item-name">Toilet Repair</span></div><span class="svc-item-price">From $75</span></div>
+        <div class="svc-item"><div class="svc-item-left"><span class="svc-item-icon">🔥</span><span class="svc-item-name">Hot Water Heater</span></div><span class="svc-item-price">From $150</span></div>
+      </div>
+      <button class="btn-contact">Book a Plumber Today →</button>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sec-lbl">What We Fix</div>
+  <h2 class="sec-h2">All Plumbing Services</h2>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-ico">💧</div><div class="svc-title">Leak Detection &amp; Repair</div><div class="svc-desc">Advanced leak detection for visible and hidden pipes. Same-day repair guaranteed.</div><div class="svc-price">From $85</div></div>
+    <div class="svc-card"><div class="svc-ico">🚿</div><div class="svc-title">Drain Cleaning</div><div class="svc-desc">High-pressure jetting and snake cleaning for all blocked drains.</div><div class="svc-price">From $95</div></div>
+    <div class="svc-card"><div class="svc-ico">🔥</div><div class="svc-title">Water Heater</div><div class="svc-desc">Installation, repair and emergency replacement of all water heater types.</div><div class="svc-price">From $150</div></div>
+    <div class="svc-card"><div class="svc-ico">🏗</div><div class="svc-title">Pipe Replacement</div><div class="svc-desc">Old or damaged pipes replaced using modern materials and methods.</div><div class="svc-price">From $200</div></div>
+    <div class="svc-card"><div class="svc-ico">🚽</div><div class="svc-title">Bathroom Fitting</div><div class="svc-desc">Full bathroom plumbing installation and fixture replacement.</div><div class="svc-price">From $120</div></div>
+    <div class="svc-card"><div class="svc-ico">🚨</div><div class="svc-title">Emergency Plumbing</div><div class="svc-desc">24/7 emergency response. We're on our way within the hour.</div><div class="svc-price">$85 call-out</div></div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="sec-lbl">Why FixRight</div>
+  <h2 class="sec-h2">What Makes Us Different</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="wc-icon">⚡</div><div class="wc-title">Same-Day Service</div><div class="wc-desc">Book before noon, we're there today.</div></div>
+    <div class="why-card"><div class="wc-icon">💰</div><div class="wc-title">Upfront Pricing</div><div class="wc-desc">Fixed quotes before any work begins. Zero hidden fees.</div></div>
+    <div class="why-card"><div class="wc-icon">🛡</div><div class="wc-title">Guaranteed Work</div><div class="wc-desc">All jobs come with a 12-month written guarantee.</div></div>
+    <div class="why-card"><div class="wc-icon">⭐</div><div class="wc-title">5-Star Rated</div><div class="wc-desc">Rated 4.9 from over 3,000 verified reviews.</div></div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="sec-lbl">Reviews</div>
+  <h2 class="sec-h2">What Customers Say</h2>
+  <div class="reviews-grid">
+    <div class="review-card"><div class="r-stars">★★★★★</div><div class="r-text">"Arrived within an hour and fixed our burst pipe fast. Upfront pricing and professional throughout."</div><div class="r-author"><div class="r-avatar">AM</div><div><div class="r-name">Anna M.</div><div class="r-loc">Austin, TX</div></div></div></div>
+    <div class="review-card"><div class="r-stars">★★★★★</div><div class="r-text">"Great service. Booked online, plumber showed up on time and cleared our drain in 30 mins flat."</div><div class="r-author"><div class="r-avatar">JT</div><div><div class="r-name">James T.</div><div class="r-loc">Dallas, TX</div></div></div></div>
+    <div class="review-card"><div class="r-stars">★★★★★</div><div class="r-text">"Used FixRight for a full bathroom refit. Incredible quality, totally cleaned up after themselves."</div><div class="r-author"><div class="r-avatar">RK</div><div><div class="r-name">Rachel K.</div><div class="r-loc">Houston, TX</div></div></div></div>
+  </div>
+</section>
+
+<div class="cta">
+  <div><h2 class="cta-t">Plumbing Problem?<br>Book Now.</h2><p style="font-size:15px;color:rgba(255,255,255,0.8);margin-top:8px;">Same-day slots available in your area.</p></div>
+  <a href="#" class="btn-wh">Book a Plumber →</a>
+</div>
+
+<footer>
+  <div class="logo">Fix<span style="color:var(--orange)">Right</span></div>
+  <div class="footer-copy">© 2026 FixRight Plumbing. Licensed &amp; Insured. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

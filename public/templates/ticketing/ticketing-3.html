@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSVP.GO — Tickets & Experiences</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Barlow+Condensed:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --y:#FFE500;--b:#0D0D0D;--w:#F5F5F5;--g:#888;--bdr:3px solid #0D0D0D; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Barlow Condensed',sans-serif;background:var(--w);color:var(--b);overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:72px;border-bottom:var(--bdr);background:var(--y);}
+  .logo{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;letter-spacing:-0.03em;}
+  .logo span{background:var(--b);color:var(--y);padding:2px 8px;}
+  .nav-links{display:flex;gap:0;list-style:none;}
+  .nav-links a{padding:0 24px;font-size:14px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;border-left:var(--bdr);line-height:72px;display:block;transition:background 0.15s;}
+  .nav-links a:hover{background:var(--b);color:var(--y);}
+  .btn-bw{padding:12px 28px;background:var(--b);color:var(--y);font-family:'Space Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;border:var(--bdr);transition:all 0.15s;}
+  .btn-bw:hover{background:var(--w);color:var(--b);}
+
+  /* HERO */
+  #hero{display:grid;grid-template-columns:1.2fr 0.8fr;border-bottom:var(--bdr);}
+  .hero-main{padding:80px 56px;border-right:var(--bdr);}
+  .hero-kicker{font-family:'Space Mono',monospace;font-size:11px;font-weight:400;letter-spacing:0.15em;text-transform:uppercase;color:var(--g);margin-bottom:24px;display:flex;align-items:center;gap:12px;}
+  .hero-kicker::before{content:'';width:32px;height:2px;background:var(--b);}
+  .hero-h1{font-size:clamp(64px,9vw,120px);font-weight:900;line-height:0.9;letter-spacing:-0.02em;text-transform:uppercase;margin-bottom:32px;}
+  .hero-h1 .hl{-webkit-text-stroke:3px var(--b);color:transparent;}
+  .hero-h1 .box{background:var(--y);padding:0 12px;display:inline-block;}
+  .hero-desc{font-family:'Space Mono',monospace;font-size:13px;line-height:1.8;color:var(--g);max-width:440px;margin-bottom:40px;}
+  .hero-btns{display:flex;gap:0;}
+  .hero-btns a{padding:16px 36px;font-size:15px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:var(--bdr);}
+  .btn-fill{background:var(--b);color:var(--y);}
+  .btn-fill:hover{background:#333;}
+  .btn-empty{background:transparent;color:var(--b);border-left:none;}
+  .btn-empty:hover{background:var(--b);color:var(--y);}
+
+  .hero-sidebar{display:flex;flex-direction:column;}
+  .sidebar-card{padding:40px 36px;border-bottom:var(--bdr);flex:1;}
+  .sc-label{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--g);margin-bottom:16px;}
+  .sc-num{font-size:72px;font-weight:900;line-height:1;letter-spacing:-0.03em;}
+  .sc-num span{font-size:32px;color:var(--g);}
+  .ticker-band{background:var(--b);color:var(--y);padding:14px 0;overflow:hidden;}
+  .ticker-inner{display:flex;animation:tick 20s linear infinite;white-space:nowrap;}
+  .ticker-item{padding:0 32px;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+  @keyframes tick{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* EVENTS */
+  #events{padding:0;border-bottom:var(--bdr);}
+  .events-header{padding:32px 48px;border-bottom:var(--bdr);display:flex;justify-content:space-between;align-items:center;background:var(--y);}
+  .events-header h2{font-size:36px;font-weight:900;text-transform:uppercase;letter-spacing:-0.01em;}
+  .events-grid{display:grid;grid-template-columns:repeat(3,1fr);}
+  .event-card{border-right:var(--bdr);padding:36px 32px;transition:background 0.15s;}
+  .event-card:last-child{border-right:none;}
+  .event-card:hover{background:var(--y);}
+  .ev-num{font-family:'Space Mono',monospace;font-size:11px;color:var(--g);margin-bottom:20px;}
+  .ev-cat{display:inline-block;padding:4px 12px;background:var(--b);color:var(--y);font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+  .ev-title{font-size:28px;font-weight:900;text-transform:uppercase;line-height:1.05;letter-spacing:-0.01em;margin-bottom:12px;}
+  .ev-meta{font-family:'Space Mono',monospace;font-size:11px;color:var(--g);line-height:1.8;margin-bottom:24px;}
+  .ev-footer{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:2px solid var(--b);}
+  .ev-price{font-size:28px;font-weight:900;letter-spacing:-0.01em;}
+  .btn-sm{padding:10px 20px;background:var(--b);color:var(--y);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:var(--bdr);transition:all 0.15s;}
+  .btn-sm:hover{background:var(--w);color:var(--b);}
+
+  /* INFO STRIP */
+  .info-strip{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:var(--bdr);}
+  .info-box{padding:40px 36px;border-right:var(--bdr);}
+  .info-box:last-child{border-right:none;}
+  .ib-icon{font-size:32px;margin-bottom:16px;}
+  .ib-title{font-size:20px;font-weight:900;text-transform:uppercase;margin-bottom:8px;}
+  .ib-desc{font-family:'Space Mono',monospace;font-size:11px;color:var(--g);line-height:1.7;}
+
+  /* NEWSLETTER */
+  .nl-section{padding:64px 48px;background:var(--b);color:var(--y);display:flex;justify-content:space-between;align-items:center;gap:40px;}
+  .nl-title{font-size:48px;font-weight:900;text-transform:uppercase;letter-spacing:-0.02em;line-height:1;}
+  .nl-form{display:flex;gap:0;flex:1;max-width:500px;}
+  .nl-input{flex:1;padding:16px 20px;background:transparent;border:2px solid var(--y);color:var(--y);font-family:'Space Mono',monospace;font-size:13px;outline:none;}
+  .nl-input::placeholder{color:rgba(255,229,0,0.4);}
+  .nl-btn{padding:16px 28px;background:var(--y);color:var(--b);font-family:'Space Mono',monospace;font-size:12px;font-weight:700;text-transform:uppercase;border:2px solid var(--y);cursor:pointer;white-space:nowrap;}
+
+  footer{padding:28px 48px;border-top:var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-family:'Space Mono',monospace;font-size:11px;color:var(--g);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">RSVP<span>.GO</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Events</a></li>
+    <li><a href="#">Concerts</a></li>
+    <li><a href="#">Sports</a></li>
+    <li><a href="#">Calendar</a></li>
+  </ul>
+  <button class="btn-bw">Login</button>
+</nav>
+
+<section id="hero">
+  <div class="hero-main">
+    <div class="hero-kicker">Tickets & Live Experiences</div>
+    <h1 class="hero-h1">
+      <span class="hl">GET</span><br>
+      <span class="box">YOUR</span><br>
+      TICKETS
+    </h1>
+    <p class="hero-desc">// Direct access to concerts, sports, theater and more. No bots. No scalpers. Just real tickets at real prices.</p>
+    <div class="hero-btns">
+      <a href="#events" class="btn-fill">Browse Events</a>
+      <a href="#" class="btn-empty">Sell Tickets</a>
+    </div>
+  </div>
+  <div class="hero-sidebar">
+    <div class="sidebar-card"><div class="sc-label">Events Live Now</div><div class="sc-num">4<span>7</span></div></div>
+    <div class="sidebar-card"><div class="sc-label">Tickets Sold Today</div><div class="sc-num">1<span>,238</span></div></div>
+    <div class="sidebar-card"><div class="sc-label">Cities Covered</div><div class="sc-num">2<span>00+</span></div></div>
+  </div>
+</section>
+
+<div class="ticker-band">
+  <div class="ticker-inner">
+    <span class="ticker-item">🎸 Concerts</span><span class="ticker-item">⚽ Sports</span><span class="ticker-item">🎭 Theater</span><span class="ticker-item">😂 Comedy</span><span class="ticker-item">🎨 Arts</span><span class="ticker-item">🥊 Boxing</span><span class="ticker-item">🎻 Classical</span><span class="ticker-item">🏀 Basketball</span>
+    <span class="ticker-item">🎸 Concerts</span><span class="ticker-item">⚽ Sports</span><span class="ticker-item">🎭 Theater</span><span class="ticker-item">😂 Comedy</span><span class="ticker-item">🎨 Arts</span><span class="ticker-item">🥊 Boxing</span><span class="ticker-item">🎻 Classical</span><span class="ticker-item">🏀 Basketball</span>
+  </div>
+</div>
+
+<section id="events">
+  <div class="events-header">
+    <h2>This Week's Top Events</h2>
+    <a href="#" class="btn-sm">All Events →</a>
+  </div>
+  <div class="events-grid">
+    <div class="event-card">
+      <div class="ev-num">// EVENT_001</div>
+      <div class="ev-cat">Music</div>
+      <div class="ev-title">Voltage World Tour</div>
+      <div class="ev-meta">SAT MAR 15 / 8:00 PM<br>Madison Square Garden, NYC</div>
+      <div class="ev-footer"><div class="ev-price">$89+</div><a href="#" class="btn-sm">Buy Now</a></div>
+    </div>
+    <div class="event-card">
+      <div class="ev-num">// EVENT_002</div>
+      <div class="ev-cat">Sports</div>
+      <div class="ev-title">NBA Finals Game 3</div>
+      <div class="ev-meta">SUN MAR 16 / 6:00 PM<br>Crypto.com Arena, LA</div>
+      <div class="ev-footer"><div class="ev-price">$120+</div><a href="#" class="btn-sm">Buy Now</a></div>
+    </div>
+    <div class="event-card">
+      <div class="ev-num">// EVENT_003</div>
+      <div class="ev-cat">Theater</div>
+      <div class="ev-title">Dark Comedy Revue</div>
+      <div class="ev-meta">FRI MAR 21 / 7:30 PM<br>The Orpheum, Chicago</div>
+      <div class="ev-footer"><div class="ev-price">$55+</div><a href="#" class="btn-sm">Buy Now</a></div>
+    </div>
+  </div>
+</section>
+
+<div class="info-strip">
+  <div class="info-box"><div class="ib-icon">🔒</div><div class="ib-title">Verified Tickets</div><div class="ib-desc">Every ticket authenticated before delivery</div></div>
+  <div class="info-box"><div class="ib-icon">⚡</div><div class="ib-title">Instant Delivery</div><div class="ib-desc">E-tickets delivered to your inbox in seconds</div></div>
+  <div class="info-box"><div class="ib-icon">↩</div><div class="ib-title">Easy Refunds</div><div class="ib-desc">Refund policy if event is cancelled</div></div>
+  <div class="info-box"><div class="ib-icon">💬</div><div class="ib-title">24/7 Support</div><div class="ib-desc">Live chat available around the clock</div></div>
+</div>
+
+<div class="nl-section">
+  <div class="nl-title">NEVER<br>MISS<br>A SHOW</div>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="your@email.com">
+    <button class="nl-btn">Subscribe</button>
+  </div>
+</div>
+
+<footer>
+  <div class="logo">RSVP<span style="background:var(--b);color:var(--y);padding:2px 6px;">.GO</span></div>
+  <div class="footer-copy">// © 2026 RSVP.GO — All rights reserved.</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canopy Hotel — Urban Boutique</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Satoshi:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --coral:#FF5C3A; --sand:#FFF8F0; --ink:#1A1208; --warm:#E8DDD0; --mid:#7A6E64; --bdr:#E0D8CE; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Mulish',sans-serif; background:var(--sand); color:var(--ink); overflow-x:hidden; }
+
+  nav { height:76px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; border-bottom:1px solid var(--bdr); background:var(--sand); position:sticky; top:0; z-index:100; }
+  .logo { font-family:'DM Serif Display',serif; font-size:26px; font-weight:400; letter-spacing:0.04em; color:var(--ink); }
+  .logo span { color:var(--coral); font-style:italic; }
+  .nav-links { display:flex; gap:40px; list-style:none; }
+  .nav-links a { font-size:14px; font-weight:500; color:var(--mid); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:var(--coral); }
+  .btn-coral { padding:11px 28px; background:var(--coral); color:white; font-size:13px; font-weight:700; text-decoration:none; border-radius:4px; transition:filter 0.2s; letter-spacing:0.04em; }
+  .btn-coral:hover { filter:brightness(1.08); }
+
+  /* HERO */
+  #hero { display:grid; grid-template-columns:0.9fr 1.1fr; min-height:88vh; }
+  .hero-left { padding:80px 64px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--bdr); }
+  .h-tag { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; background:rgba(255,92,58,0.08); border:1px solid rgba(255,92,58,0.25); border-radius:100px; font-size:11px; font-weight:700; color:var(--coral); margin-bottom:28px; width:fit-content; }
+  .h-title { font-family:'DM Serif Display',serif; font-size:clamp(44px,5vw,68px); line-height:1.05; margin-bottom:24px; }
+  .h-title em { color:var(--coral); font-style:italic; }
+  .h-desc { font-size:16px; font-weight:300; line-height:1.8; color:var(--mid); margin-bottom:36px; max-width:400px; }
+  .h-btns { display:flex; gap:14px; margin-bottom:48px; }
+  .btn-outline-coral { padding:11px 28px; border:1.5px solid var(--coral); color:var(--coral); font-size:13px; font-weight:700; border-radius:4px; text-decoration:none; transition:all 0.2s; }
+  .btn-outline-coral:hover { background:var(--coral); color:white; }
+  .h-perks { display:flex; gap:24px; padding-top:36px; border-top:1px solid var(--bdr); }
+  .perk { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:500; color:var(--mid); }
+  .perk-icon { width:32px; height:32px; background:rgba(255,92,58,0.1); border-radius:50%; display:grid; place-items:center; font-size:14px; flex-shrink:0; }
+
+  .hero-right { background:var(--warm); padding:48px; display:flex; flex-direction:column; gap:20px; justify-content:center; }
+  .booking-card { background:white; border:1px solid var(--bdr); border-radius:16px; padding:36px; box-shadow:0 8px 40px rgba(0,0,0,0.06); }
+  .bc-title { font-family:'DM Serif Display',serif; font-size:22px; margin-bottom:24px; }
+  .bc-tabs { display:flex; gap:0; margin-bottom:24px; border:1px solid var(--bdr); border-radius:8px; overflow:hidden; }
+  .bc-tab { flex:1; padding:10px; text-align:center; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; color:var(--mid); }
+  .bc-tab.active { background:var(--coral); color:white; }
+  .bc-fields { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px; }
+  .bcf label { display:block; font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--mid); margin-bottom:8px; }
+  .bcf input, .bcf select { width:100%; padding:11px 14px; border:1px solid var(--bdr); border-radius:8px; font-family:'Mulish',sans-serif; font-size:14px; color:var(--ink); outline:none; transition:border-color 0.2s; }
+  .bcf input:focus, .bcf select:focus { border-color:var(--coral); }
+  .bc-btn { width:100%; padding:14px; background:var(--coral); color:white; font-family:'Mulish',sans-serif; font-size:14px; font-weight:700; border:none; border-radius:8px; cursor:pointer; transition:filter 0.2s; }
+  .bc-btn:hover { filter:brightness(1.08); }
+  .promo-card { background:var(--coral); border-radius:16px; padding:24px 28px; color:white; display:flex; justify-content:space-between; align-items:center; }
+  .promo-card h3 { font-family:'DM Serif Display',serif; font-size:20px; margin-bottom:6px; }
+  .promo-card p { font-size:13px; font-weight:300; opacity:0.85; }
+  .promo-badge { background:white; color:var(--coral); padding:8px 16px; border-radius:100px; font-size:12px; font-weight:800; white-space:nowrap; }
+
+  /* ROOMS */
+  #rooms { padding:100px 64px; }
+  .section-label { font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--coral); margin-bottom:12px; }
+  .section-h2 { font-family:'DM Serif Display',serif; font-size:clamp(32px,4vw,48px); margin-bottom:48px; line-height:1.1; }
+  .rooms-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .room-card { background:white; border:1px solid var(--bdr); border-radius:16px; overflow:hidden; transition:all 0.3s; }
+  .room-card:hover { box-shadow:0 16px 48px rgba(0,0,0,0.08); transform:translateY(-4px); }
+  .room-img { height:200px; display:flex; align-items:center; justify-content:center; font-size:80px; position:relative; }
+  .ri-1 { background:linear-gradient(135deg,#fef3ee,#fde8df); }
+  .ri-2 { background:linear-gradient(135deg,#f0f4fe,#e4ecfd); }
+  .ri-3 { background:linear-gradient(135deg,#f0fdf4,#dcfce7); }
+  .room-badge { position:absolute; top:16px; right:16px; padding:4px 12px; background:var(--coral); color:white; border-radius:100px; font-size:10px; font-weight:800; letter-spacing:0.1em; }
+  .room-body { padding:24px; }
+  .room-cat { font-size:10px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:var(--coral); margin-bottom:8px; }
+  .room-name { font-family:'DM Serif Display',serif; font-size:22px; margin-bottom:10px; }
+  .room-desc { font-size:13px; font-weight:300; line-height:1.7; color:var(--mid); margin-bottom:20px; }
+  .room-footer { display:flex; justify-content:space-between; align-items:center; padding-top:16px; border-top:1px solid var(--bdr); }
+  .room-price { font-family:'DM Serif Display',serif; font-size:26px; color:var(--coral); }
+  .room-price small { font-size:13px; font-weight:300; color:var(--mid); font-family:'Mulish',sans-serif; }
+  .btn-book-sm { padding:9px 22px; background:var(--coral); color:white; font-size:12px; font-weight:700; border-radius:6px; text-decoration:none; transition:filter 0.2s; }
+  .btn-book-sm:hover { filter:brightness(1.08); }
+
+  /* AMENITIES */
+  #amenities { padding:80px 64px; background:var(--warm); }
+  .am-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:48px; }
+  .am-card { background:white; border-radius:16px; padding:32px 24px; text-align:center; border:1px solid var(--bdr); }
+  .am-icon { font-size:40px; margin-bottom:16px; }
+  .am-title { font-family:'DM Serif Display',serif; font-size:20px; margin-bottom:8px; }
+  .am-desc { font-size:13px; font-weight:300; line-height:1.65; color:var(--mid); }
+
+  /* CTA */
+  .cta { padding:80px 64px; background:var(--ink); display:flex; justify-content:space-between; align-items:center; }
+  .cta-t { font-family:'DM Serif Display',serif; font-size:clamp(32px,4vw,52px); color:white; line-height:1.1; }
+  .cta-t em { color:var(--coral); }
+  .btn-coral-lg { padding:16px 44px; background:var(--coral); color:white; font-size:14px; font-weight:700; border-radius:6px; text-decoration:none; flex-shrink:0; }
+
+  footer { padding:32px 64px; border-top:1px solid var(--bdr); display:flex; justify-content:space-between; align-items:center; }
+  .footer-copy { font-size:12px; color:var(--mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Canopy<span> Hotel</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Rooms</a></li>
+    <li><a href="#">Dining</a></li>
+    <li><a href="#">Amenities</a></li>
+    <li><a href="#">Events</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a href="#" class="btn-coral">Book Now</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="h-tag">🌿 Rated #1 Boutique Hotel 2025</div>
+    <h1 class="h-title">Your City <em>Escape</em><br>Starts Here</h1>
+    <p class="h-desc">A vibrant boutique hotel in the heart of the city. Where design meets comfort and every stay becomes a story worth telling.</p>
+    <div class="h-btns">
+      <a href="#" class="btn-coral">Reserve a Room</a>
+      <a href="#rooms" class="btn-outline-coral">View Rooms</a>
+    </div>
+    <div class="h-perks">
+      <div class="perk"><div class="perk-icon">☕</div>Free Breakfast</div>
+      <div class="perk"><div class="perk-icon">📶</div>Fast Wi-Fi</div>
+      <div class="perk"><div class="perk-icon">🚗</div>Free Parking</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="booking-card">
+      <div class="bc-title">Book Your Stay</div>
+      <div class="bc-tabs">
+        <div class="bc-tab active">Rooms</div>
+        <div class="bc-tab">Packages</div>
+        <div class="bc-tab">Events</div>
+      </div>
+      <div class="bc-fields">
+        <div class="bcf"><label>Check-In</label><input type="date"></div>
+        <div class="bcf"><label>Check-Out</label><input type="date"></div>
+        <div class="bcf"><label>Adults</label><select><option>1 Adult</option><option>2 Adults</option><option>3 Adults</option></select></div>
+        <div class="bcf"><label>Room Type</label><select><option>Any Room</option><option>Standard</option><option>Deluxe</option><option>Suite</option></select></div>
+      </div>
+      <button class="bc-btn">Check Availability →</button>
+    </div>
+    <div class="promo-card">
+      <div><h3>🎉 Weekend Deal</h3><p>Stay 2 nights, get 20% off. Use code: CANOPY20</p></div>
+      <div class="promo-badge">Save 20%</div>
+    </div>
+  </div>
+</section>
+
+<section id="rooms">
+  <div class="section-label">Accommodations</div>
+  <h2 class="section-h2">Rooms &amp; Suites</h2>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <div class="room-img ri-1"><span>🛏</span><span class="room-badge">Best Seller</span></div>
+      <div class="room-body"><div class="room-cat">Standard</div><div class="room-name">Urban Comfort Room</div><div class="room-desc">Cosy room with city views, king bed, rain shower and premium amenities.</div><div class="room-footer"><div class="room-price">$140 <small>/night</small></div><a href="#" class="btn-book-sm">Book</a></div></div>
+    </div>
+    <div class="room-card">
+      <div class="room-img ri-2"><span>🌆</span></div>
+      <div class="room-body"><div class="room-cat">Deluxe</div><div class="room-name">Skyline Deluxe</div><div class="room-desc">Panoramic city skyline views, separate seating area and minibar.</div><div class="room-footer"><div class="room-price">$220 <small>/night</small></div><a href="#" class="btn-book-sm">Book</a></div></div>
+    </div>
+    <div class="room-card">
+      <div class="room-img ri-3"><span>🌿</span></div>
+      <div class="room-body"><div class="room-cat">Suite</div><div class="room-name">Garden Terrace Suite</div><div class="room-desc">Private terrace with garden views, living room, soaking tub and butler service.</div><div class="room-footer"><div class="room-price">$380 <small>/night</small></div><a href="#" class="btn-book-sm">Book</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="amenities">
+  <div class="section-label">Hotel Features</div>
+  <h2 class="section-h2">Everything You Need</h2>
+  <div class="am-grid">
+    <div class="am-card"><div class="am-icon">🏊</div><div class="am-title">Rooftop Pool</div><div class="am-desc">Heated pool with panoramic city views. Open year-round.</div></div>
+    <div class="am-card"><div class="am-icon">🍳</div><div class="am-title">Free Breakfast</div><div class="am-desc">Fresh hot breakfast included for all guests, daily 7–11am.</div></div>
+    <div class="am-card"><div class="am-icon">💆</div><div class="am-title">Wellness Spa</div><div class="am-desc">Full-service spa with massage, facial and wellness treatments.</div></div>
+    <div class="am-card"><div class="am-icon">🏋</div><div class="am-title">Fitness Centre</div><div class="am-desc">Modern gym open 24 hours for all guests.</div></div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-t">Your Perfect Stay<br><em>Awaits You</em></h2>
+  <a href="#" class="btn-coral-lg">Book Now — Best Rate Guaranteed</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'DM Serif Display',serif;font-size:22px;color:var(--ink);">Canopy<span style="color:var(--coral);font-style:italic;"> Hotel</span></div>
+  <div class="footer-copy">© 2026 Canopy Boutique Hotel. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

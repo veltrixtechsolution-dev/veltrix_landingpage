@@ -1,0 +1,167 @@
+{
+  "categories": [
+    {
+      "id": "aircon-cleaning",
+      "name": "Aircon Cleaning",
+      "templates": [
+        {
+          "id": "aircon-1",
+          "name": "Aircon 1",
+          "file": "aircon-1.html"
+        },
+        {
+          "id": "aircon-2",
+          "name": "Aircon 2",
+          "file": "aircon-2.html"
+        },
+        {
+          "id": "aircon-3",
+          "name": "Aircon 3",
+          "file": "aircon-3.html"
+        }
+      ]
+    },
+    {
+      "id": "construction",
+      "name": "Construction",
+      "templates": [
+        {
+          "id": "construction-1",
+          "name": "Construction 1",
+          "file": "construction-1.html"
+        },
+        {
+          "id": "construction-2",
+          "name": "Construction 2",
+          "file": "construction-2.html"
+        },
+        {
+          "id": "construction-3",
+          "name": "Construction 3",
+          "file": "construction-3.html"
+        }
+      ]
+    },
+    {
+      "id": "event-organizer",
+      "name": "Event Organizer",
+      "templates": [
+        {
+          "id": "event-organizer-1",
+          "name": "Event Organizer 1",
+          "file": "event-organizer-1.html"
+        },
+        {
+          "id": "event-organizer-2",
+          "name": "Event Organizer 2",
+          "file": "event-organizer-2.html"
+        },
+        {
+          "id": "event-organizer-3",
+          "name": "Event Organizer 3",
+          "file": "event-organizer-3.html"
+        }
+      ]
+    },
+    {
+      "id": "franchising",
+      "name": "Franchising",
+      "templates": [
+        {
+          "id": "franchising-1",
+          "name": "Franchising 1",
+          "file": "franchising-1.html"
+        },
+        {
+          "id": "franchising-2",
+          "name": "Franchising 2",
+          "file": "franchising-2.html"
+        },
+        {
+          "id": "franchising-3",
+          "name": "Franchising 3",
+          "file": "franchising-3.html"
+        }
+      ]
+    },
+    {
+      "id": "hotel",
+      "name": "Hotel",
+      "templates": [
+        {
+          "id": "hotel-1",
+          "name": "Hotel 1",
+          "file": "hotel-1.html"
+        },
+        {
+          "id": "hotel-2",
+          "name": "Hotel 2",
+          "file": "hotel-2.html"
+        },
+        {
+          "id": "hotel-3",
+          "name": "Hotel 3",
+          "file": "hotel-3.html"
+        }
+      ]
+    },
+    {
+      "id": "plumbing",
+      "name": "Plumbing",
+      "templates": [
+        {
+          "id": "plumbing-1",
+          "name": "Plumbing 1",
+          "file": "plumbing-1.html"
+        },
+        {
+          "id": "plumbing-2",
+          "name": "Plumbing 2",
+          "file": "plumbing-2.html"
+        },
+        {
+          "id": "plumbing-3",
+          "name": "Plumbing 3",
+          "file": "plumbing-3.html"
+        }
+      ]
+    },
+    {
+      "id": "real-estate",
+      "name": "Real Estate",
+      "templates": [
+        {
+          "id": "realestate-2",
+          "name": "Realestate 2",
+          "file": "realestate-2.html"
+        },
+        {
+          "id": "realestate-3",
+          "name": "Realestate 3",
+          "file": "realestate-3.html"
+        }
+      ]
+    },
+    {
+      "id": "ticketing",
+      "name": "Ticketing",
+      "templates": [
+        {
+          "id": "ticketing-1",
+          "name": "Ticketing 1",
+          "file": "ticketing-1.html"
+        },
+        {
+          "id": "ticketing-2",
+          "name": "Ticketing 2",
+          "file": "ticketing-2.html"
+        },
+        {
+          "id": "ticketing-3",
+          "name": "Ticketing 3",
+          "file": "ticketing-3.html"
+        }
+      ]
+    }
+  ]
+}

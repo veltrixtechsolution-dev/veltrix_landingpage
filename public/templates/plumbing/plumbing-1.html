@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FlowPro Plumbing Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800;900&family=Nunito+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root { --blue:#1565C0; --blue2:#1E88E5; --light:#E8F1FC; --bg:#FFFFFF; --ink:#0D1E3C; --mid:#5A6E8A; --bdr:#C5D8F5; --red:#E53935; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Nunito Sans',sans-serif; background:var(--bg); color:var(--ink); overflow-x:hidden; }
+
+  nav { height:76px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; background:var(--blue); position:sticky; top:0; z-index:100; }
+  .logo { font-family:'Exo 2',sans-serif; font-size:26px; font-weight:900; letter-spacing:0.04em; color:white; }
+  .logo span { color:#90CAF9; }
+  .nav-links { display:flex; gap:36px; list-style:none; }
+  .nav-links a { font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:rgba(255,255,255,0.7); text-decoration:none; transition:color 0.2s; }
+  .nav-links a:hover { color:white; }
+  .nav-right { display:flex; align-items:center; gap:16px; }
+  .phone-badge { display:flex; align-items:center; gap:8px; padding:8px 20px; background:var(--red); color:white; font-family:'Exo 2',sans-serif; font-size:15px; font-weight:800; letter-spacing:0.04em; border-radius:4px; text-decoration:none; }
+  .btn-wh { padding:10px 24px; background:white; color:var(--blue); font-size:13px; font-weight:800; letter-spacing:0.06em; text-decoration:none; border-radius:4px; }
+
+  /* HERO */
+  #hero { background:var(--ink); color:white; display:grid; grid-template-columns:1.2fr 0.8fr; min-height:84vh; }
+  .hl { padding:90px 64px; display:flex; flex-direction:column; justify-content:center; }
+  .h-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 18px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); font-family:'Exo 2',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#90CAF9; margin-bottom:28px; width:fit-content; }
+  .h-badge .dot { width:6px; height:6px; border-radius:50%; background:var(--red); animation:pulse 1.5s ease infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:0.3;} }
+  .h-title { font-family:'Exo 2',sans-serif; font-size:clamp(44px,5.5vw,72px); font-weight:900; line-height:1.0; letter-spacing:-0.01em; text-transform:uppercase; margin-bottom:24px; }
+  .h-title span { color:var(--blue2); }
+  .h-desc { font-size:16px; font-weight:300; line-height:1.75; color:rgba(255,255,255,0.6); max-width:460px; margin-bottom:40px; }
+  .h-btns { display:flex; gap:16px; margin-bottom:48px; }
+  .btn-red { padding:14px 36px; background:var(--red); color:white; font-family:'Exo 2',sans-serif; font-size:14px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border-radius:4px; transition:filter 0.2s; }
+  .btn-red:hover { filter:brightness(1.1); }
+  .btn-outline-w { padding:14px 36px; border:2px solid rgba(255,255,255,0.25); color:white; font-family:'Exo 2',sans-serif; font-size:14px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; text-decoration:none; border-radius:4px; transition:all 0.2s; }
+  .btn-outline-w:hover { border-color:var(--blue2); color:var(--blue2); }
+  .trust-row { display:flex; gap:24px; flex-wrap:wrap; }
+  .trust-item { display:flex; align-items:center; gap:10px; font-size:13px; font-weight:600; color:rgba(255,255,255,0.6); }
+  .trust-icon { width:32px; height:32px; background:rgba(30,136,229,0.2); border-radius:50%; display:grid; place-items:center; font-size:14px; }
+
+  .hr { background:var(--blue); display:flex; flex-direction:column; }
+  .emergency-box { padding:48px 40px; flex:1; display:flex; flex-direction:column; justify-content:center; border-bottom:1px solid rgba(255,255,255,0.15); }
+  .eb-label { font-family:'Exo 2',sans-serif; font-size:12px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:16px; }
+  .eb-title { font-family:'Exo 2',sans-serif; font-size:28px; font-weight:900; color:white; margin-bottom:12px; text-transform:uppercase; }
+  .eb-desc { font-size:14px; font-weight:300; color:rgba(255,255,255,0.7); line-height:1.65; margin-bottom:24px; }
+  .eb-phone { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:900; color:white; text-decoration:none; display:block; }
+  .stats-panel { padding:32px 40px; display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  .sp { padding:20px 0 20px 0; border-bottom:1px solid rgba(255,255,255,0.1); border-right:1px solid rgba(255,255,255,0.1); padding-right:24px; padding-left:0; }
+  .sp:nth-child(2n) { padding-left:24px; padding-right:0; border-right:none; }
+  .sp:nth-child(3),.sp:nth-child(4) { border-bottom:none; }
+  .sp-n { font-family:'Exo 2',sans-serif; font-size:36px; font-weight:900; color:#90CAF9; line-height:1; }
+  .sp-l { font-size:11px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:6px; }
+
+  /* SERVICES */
+  #services { padding:100px 64px; background:var(--light); }
+  .s-eyebrow { font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700; letter-spacing:0.24em; text-transform:uppercase; color:var(--blue); margin-bottom:12px; }
+  .s-h2 { font-family:'Exo 2',sans-serif; font-size:clamp(32px,4vw,48px); font-weight:900; text-transform:uppercase; letter-spacing:-0.01em; margin-bottom:48px; }
+  .svc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .svc-card { background:white; border:1px solid var(--bdr); padding:36px 32px; transition:all 0.3s; position:relative; overflow:hidden; }
+  .svc-card::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--blue2); transform:scaleX(0); transform-origin:left; transition:transform 0.3s; }
+  .svc-card:hover { box-shadow:0 12px 40px rgba(21,101,192,0.12); transform:translateY(-4px); }
+  .svc-card:hover::before { transform:scaleX(1); }
+  .svc-icon { width:56px; height:56px; background:var(--light); border:1px solid var(--bdr); display:grid; place-items:center; font-size:24px; margin-bottom:24px; border-radius:8px; transition:all 0.3s; }
+  .svc-card:hover .svc-icon { background:var(--blue); border-color:var(--blue); }
+  .svc-title { font-family:'Exo 2',sans-serif; font-size:20px; font-weight:800; text-transform:uppercase; letter-spacing:0.02em; margin-bottom:12px; }
+  .svc-desc { font-size:14px; font-weight:300; line-height:1.7; color:var(--mid); margin-bottom:20px; }
+  .svc-link { font-size:13px; font-weight:700; color:var(--blue); text-decoration:none; letter-spacing:0.04em; }
+  .svc-link:hover { color:var(--blue2); }
+
+  /* PROCESS */
+  #process { padding:100px 64px; }
+  .proc-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:56px; position:relative; }
+  .proc-steps::before { content:''; position:absolute; top:32px; left:calc(12.5% + 16px); right:calc(12.5% + 16px); height:2px; background:linear-gradient(90deg,var(--blue),var(--bdr)); z-index:0; }
+  .proc-step { text-align:center; padding:0 20px; }
+  .ps-num { width:64px; height:64px; border-radius:50%; background:var(--blue); color:white; font-family:'Exo 2',sans-serif; font-size:22px; font-weight:900; display:grid; place-items:center; margin:0 auto 28px; position:relative; z-index:1; transition:all 0.3s; }
+  .proc-step:hover .ps-num { background:var(--red); transform:scale(1.1); }
+  .ps-title { font-family:'Exo 2',sans-serif; font-size:17px; font-weight:800; text-transform:uppercase; margin-bottom:10px; }
+  .ps-desc { font-size:13px; font-weight:300; line-height:1.65; color:var(--mid); }
+
+  /* CTA */
+  .cta { padding:80px 64px; background:var(--blue); display:flex; justify-content:space-between; align-items:center; }
+  .cta-t { font-family:'Exo 2',sans-serif; font-size:clamp(28px,4vw,48px); font-weight:900; text-transform:uppercase; color:white; letter-spacing:-0.01em; line-height:1.05; }
+  .cta-sub { font-size:15px; font-weight:300; color:rgba(255,255,255,0.7); margin-top:8px; }
+  .cta-right { display:flex; flex-direction:column; align-items:flex-end; gap:16px; }
+
+  footer { background:var(--ink); padding:32px 64px; display:flex; justify-content:space-between; align-items:center; }
+  .footer-copy { font-size:12px; color:rgba(255,255,255,0.35); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Flow<span>Pro</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Emergency</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:18005692569" class="phone-badge">🚨 24/7 Emergency</a>
+    <a href="#" class="btn-wh">Book Online</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hl">
+    <div class="h-badge"><span class="dot"></span>Available Now · Licensed &amp; Insured</div>
+    <h1 class="h-title">Your Trusted<br><span>Plumbing</span><br>Experts</h1>
+    <p class="h-desc">Fast, reliable plumbing services for homes and businesses. From emergency repairs to full installations — we fix it right, the first time.</p>
+    <div class="h-btns">
+      <a href="#" class="btn-red">🚨 Emergency Call</a>
+      <a href="#services" class="btn-outline-w">Our Services</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><div class="trust-icon">✅</div>Licensed Plumbers</div>
+      <div class="trust-item"><div class="trust-icon">⚡</div>Same-Day Service</div>
+      <div class="trust-item"><div class="trust-icon">🛡</div>Guaranteed Work</div>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="emergency-box">
+      <div class="eb-label">🚨 24/7 Emergency Line</div>
+      <div class="eb-title">Got a Burst Pipe?</div>
+      <div class="eb-desc">We respond to plumbing emergencies within the hour. Day or night, we're always available.</div>
+      <a href="tel:18001234567" class="eb-phone">📞 1-800-FLOWPRO</a>
+    </div>
+    <div class="stats-panel">
+      <div class="sp"><div class="sp-n">15K+</div><div class="sp-l">Jobs Completed</div></div>
+      <div class="sp"><div class="sp-n">4.9★</div><div class="sp-l">Avg. Rating</div></div>
+      <div class="sp"><div class="sp-n">20yr</div><div class="sp-l">In Business</div></div>
+      <div class="sp"><div class="sp-n">100%</div><div class="sp-l">Satisfaction</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="s-eyebrow">What We Do</div>
+  <h2 class="s-h2">Our Services</h2>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-icon">💧</div><div class="svc-title">Leak Repair</div><div class="svc-desc">From hidden pipe leaks to visible drips — fast detection and permanent repair.</div><a href="#" class="svc-link">Learn More →</a></div>
+    <div class="svc-card"><div class="svc-icon">🚿</div><div class="svc-title">Drain Cleaning</div><div class="svc-desc">Blocked drains cleared fast using high-pressure jetting and snake equipment.</div><a href="#" class="svc-link">Learn More →</a></div>
+    <div class="svc-card"><div class="svc-icon">🚽</div><div class="svc-title">Toilet Repair</div><div class="svc-desc">Toilet installation, replacement and repair. All makes and models serviced.</div><a href="#" class="svc-link">Learn More →</a></div>
+    <div class="svc-card"><div class="svc-icon">🔥</div><div class="svc-title">Water Heater</div><div class="svc-desc">Water heater installation, servicing and emergency replacement.</div><a href="#" class="svc-link">Learn More →</a></div>
+    <div class="svc-card"><div class="svc-icon">🏗</div><div class="svc-title">Pipe Replacement</div><div class="svc-desc">Full pipe re-lining and replacement using trenchless technology where possible.</div><a href="#" class="svc-link">Learn More →</a></div>
+    <div class="svc-card"><div class="svc-icon">🏢</div><div class="svc-title">Commercial Plumbing</div><div class="svc-desc">Full commercial plumbing contracts for offices, restaurants and apartment blocks.</div><a href="#" class="svc-link">Learn More →</a></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="s-eyebrow">How It Works</div>
+  <h2 class="s-h2">Our Simple Process</h2>
+  <div class="proc-steps">
+    <div class="proc-step"><div class="ps-num">1</div><div class="ps-title">Call or Book</div><div class="ps-desc">Call our line or book online. We confirm same-day availability.</div></div>
+    <div class="proc-step"><div class="ps-num">2</div><div class="ps-title">We Arrive</div><div class="ps-desc">Licensed plumber arrives on time with all tools and parts.</div></div>
+    <div class="proc-step"><div class="ps-num">3</div><div class="ps-title">Diagnose & Quote</div><div class="ps-desc">Full upfront quote — no hidden fees, no surprise charges.</div></div>
+    <div class="proc-step"><div class="ps-num">4</div><div class="ps-title">Fixed & Done</div><div class="ps-desc">Work completed, cleaned up and guaranteed in writing.</div></div>
+  </div>
+</section>
+
+<div class="cta">
+  <div><h2 class="cta-t">Plumbing Problem?<br>We'll Fix It Today.</h2><p class="cta-sub">Same-day service available across the entire service area.</p></div>
+  <div class="cta-right">
+    <a href="tel:18001234567" class="btn-red" style="font-family:'Exo 2',sans-serif;font-size:18px;font-weight:900;padding:16px 40px;text-decoration:none;border-radius:4px;background:var(--red);color:white;display:inline-block;letter-spacing:0.04em;">📞 Call Us Now</a>
+    <a href="#" class="btn-wh" style="font-family:'Exo 2',sans-serif;font-size:13px;font-weight:800;padding:12px 32px;text-decoration:none;border-radius:4px;background:white;color:var(--blue);display:inline-block;letter-spacing:0.06em;text-transform:uppercase;">Book Online Instead</a>
+  </div>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Exo 2',sans-serif;font-size:22px;font-weight:900;color:white;">Flow<span style="color:#90CAF9">Pro</span></div>
+  <div class="footer-copy">© 2026 FlowPro Plumbing Services. Licensed &amp; Insured.</div>
+</footer>
+
+</body>
+</html>

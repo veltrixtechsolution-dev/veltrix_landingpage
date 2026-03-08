@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCH Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Karla:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#111111; --bg:#F5F4F0; --warm:#E8E4DC; --mid:#888; --red:#D42B2B; --bdr:#D5D1C8; }
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Karla',sans-serif; background:var(--bg); color:var(--ink); }
+  nav { height:72px; display:flex; align-items:center; justify-content:space-between; padding:0 64px; border-bottom:2px solid var(--ink); background:var(--bg); position:sticky; top:0; z-index:100; }
+  .logo { font-family:'Bebas Neue',sans-serif; font-size:32px; letter-spacing:0.08em; color:var(--ink); }
+  .logo span { color:var(--red); }
+  .nav-links { display:flex; gap:0; list-style:none; }
+  .nav-links a { padding:0 28px; font-size:13px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--mid); text-decoration:none; border-left:2px solid var(--ink); line-height:72px; display:block; transition:background 0.15s; }
+  .nav-links a:hover { background:var(--ink); color:var(--bg); }
+  .btn-ink { padding:12px 28px; background:var(--ink); color:var(--bg); font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; transition:background 0.2s; border-left:2px solid var(--ink); }
+  .btn-ink:hover { background:var(--red); }
+
+  /* HERO */
+  #hero { display:grid; grid-template-columns:1.4fr 0.6fr; min-height:90vh; border-bottom:2px solid var(--ink); }
+  .hero-main { padding:80px 64px; display:flex; flex-direction:column; justify-content:space-between; border-right:2px solid var(--ink); }
+  .hero-top { }
+  .h-eyebrow { font-size:11px; font-weight:600; letter-spacing:0.25em; text-transform:uppercase; color:var(--mid); margin-bottom:20px; display:flex; align-items:center; gap:12px; }
+  .h-eyebrow::before { content:''; width:32px; height:2px; background:var(--red); }
+  .h-title { font-family:'DM Serif Display',serif; font-size:clamp(64px,8vw,110px); line-height:0.95; letter-spacing:-0.02em; margin-bottom:32px; }
+  .h-title em { color:var(--red); font-style:italic; }
+  .h-desc { font-size:17px; font-weight:300; line-height:1.75; color:var(--mid); max-width:560px; margin-bottom:40px; }
+  .h-actions { display:flex; gap:0; }
+  .btn-big { padding:18px 44px; font-size:14px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; border:2px solid var(--ink); transition:all 0.2s; }
+  .btn-big-fill { background:var(--ink); color:var(--bg); }
+  .btn-big-fill:hover { background:var(--red); border-color:var(--red); }
+  .btn-big-empty { background:transparent; color:var(--ink); border-left:none; }
+  .btn-big-empty:hover { background:var(--ink); color:var(--bg); }
+  .hero-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:2px solid var(--ink); }
+  .hs { padding:32px 0; border-right:2px solid var(--ink); }
+  .hs:last-child { border-right:none; }
+  .hs-n { font-family:'Bebas Neue',sans-serif; font-size:52px; letter-spacing:0.02em; line-height:1; }
+  .hs-n span { color:var(--red); }
+  .hs-l { font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); margin-top:6px; }
+  .hero-sidebar { display:flex; flex-direction:column; }
+  .sb-section { padding:36px 32px; border-bottom:2px solid var(--ink); flex:1; }
+  .sb-label { font-size:10px; font-weight:700; letter-spacing:0.22em; text-transform:uppercase; color:var(--red); margin-bottom:16px; }
+  .sb-price { font-family:'DM Serif Display',serif; font-size:36px; line-height:1; margin-bottom:8px; }
+  .sb-meta { font-size:13px; color:var(--mid); line-height:1.6; }
+  .sb-search { padding:32px; display:flex; flex-direction:column; gap:14px; flex:2; justify-content:center; }
+  .sf label { display:block; font-size:10px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--mid); margin-bottom:8px; }
+  .sf input, .sf select { width:100%; padding:12px 0; background:transparent; border:none; border-bottom:2px solid var(--ink); font-family:'Karla',sans-serif; font-size:15px; color:var(--ink); outline:none; }
+  .sf select option { background:var(--bg); }
+  .btn-search-full { width:100%; padding:14px; background:var(--ink); color:var(--bg); font-family:'Karla',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; border:none; cursor:pointer; margin-top:8px; transition:background 0.2s; }
+  .btn-search-full:hover { background:var(--red); }
+
+  /* LISTINGS */
+  #listings { padding:100px 64px; }
+  .listings-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:56px; border-bottom:2px solid var(--ink); padding-bottom:24px; }
+  .lh-left .lh-count { font-size:11px; font-weight:600; letter-spacing:0.22em; text-transform:uppercase; color:var(--mid); margin-bottom:10px; }
+  .lh-left h2 { font-family:'DM Serif Display',serif; font-size:clamp(36px,4vw,52px); line-height:1; }
+  .listings-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--ink); }
+  .listing-card { background:var(--bg); padding:0; overflow:hidden; transition:background 0.2s; }
+  .listing-card:hover { background:var(--warm); }
+  .lc-img { height:220px; background:var(--warm); display:flex; align-items:center; justify-content:center; font-size:96px; position:relative; border-bottom:2px solid var(--ink); }
+  .lc-tag { position:absolute; top:0; left:0; padding:8px 16px; background:var(--ink); color:var(--bg); font-size:10px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; }
+  .lc-tag.sale { background:var(--red); }
+  .lc-body { padding:28px 28px 32px; }
+  .lc-price { font-family:'DM Serif Display',serif; font-size:28px; margin-bottom:8px; }
+  .lc-name { font-size:16px; font-weight:600; margin-bottom:6px; }
+  .lc-loc { font-size:13px; color:var(--mid); margin-bottom:16px; display:flex; align-items:center; gap:6px; }
+  .lc-specs { display:flex; gap:20px; padding-top:16px; border-top:1px solid var(--bdr); }
+  .lc-spec { font-size:12px; font-weight:500; color:var(--mid); }
+
+  /* NEIGHBORHOODS */
+  #neighborhoods { padding:0; border-top:2px solid var(--ink); }
+  .nbhd-title-bar { padding:28px 64px; background:var(--ink); color:var(--bg); display:flex; justify-content:space-between; align-items:center; }
+  .nbhd-title-bar h2 { font-family:'Bebas Neue',sans-serif; font-size:36px; letter-spacing:0.04em; }
+  .nbhd-grid { display:grid; grid-template-columns:repeat(4,1fr); border-bottom:2px solid var(--ink); }
+  .nbhd-item { padding:44px 36px; border-right:2px solid var(--ink); transition:background 0.2s; cursor:pointer; }
+  .nbhd-item:last-child { border-right:none; }
+  .nbhd-item:hover { background:var(--red); color:white; }
+  .nbhd-item:hover .nbhd-count { color:rgba(255,255,255,0.7); }
+  .nbhd-name { font-family:'DM Serif Display',serif; font-size:24px; margin-bottom:8px; }
+  .nbhd-count { font-size:12px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--mid); }
+
+  /* CTA */
+  .cta { padding:80px 64px; background:var(--ink); color:var(--bg); display:flex; justify-content:space-between; align-items:center; }
+  .cta-t { font-family:'DM Serif Display',serif; font-size:clamp(36px,4.5vw,60px); line-height:1.1; }
+  .cta-t em { color:var(--red); }
+  .btn-red-cta { padding:16px 44px; background:var(--red); color:white; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; text-decoration:none; flex-shrink:0; transition:filter 0.2s; }
+  .btn-red-cta:hover { filter:brightness(1.15); }
+
+  footer { padding:32px 64px; border-top:2px solid var(--ink); display:flex; justify-content:space-between; align-items:center; background:var(--bg); }
+  .footer-copy { font-size:12px; color:var(--mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">ARCH<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Buy</a></li>
+    <li><a href="#">Rent</a></li>
+    <li><a href="#">Sell</a></li>
+    <li><a href="#">Developments</a></li>
+    <li><a href="#">Agents</a></li>
+  </ul>
+  <a href="#" class="btn-ink">List a Property</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-main">
+    <div class="hero-top">
+      <div class="h-eyebrow">Premium Real Estate</div>
+      <h1 class="h-title">Where You<br>Live <em>Defines</em><br>How You Live</h1>
+      <p class="h-desc">ARCH connects discerning buyers and sellers with the most distinctive homes in the country's most coveted neighbourhoods.</p>
+      <div class="h-actions">
+        <a href="#listings" class="btn-big btn-big-fill">Browse Listings</a>
+        <a href="#" class="btn-big btn-big-empty">Sell Your Home</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">3<span>,</span>400<span>+</span></div><div class="hs-l">Active Listings</div></div>
+      <div class="hs" style="padding-left:32px;"><div class="hs-n">$<span>4</span>.<span>2</span>B</div><div class="hs-l">Deals Closed</div></div>
+      <div class="hs" style="padding-left:32px;"><div class="hs-n">18<span>yr</span></div><div class="hs-l">In Market</div></div>
+    </div>
+  </div>
+  <div class="hero-sidebar">
+    <div class="sb-section">
+      <div class="sb-label">Featured Today</div>
+      <div class="sb-price">$3,200,000</div>
+      <div class="sb-meta">🏡 Westlake Villa · 5 bed · 4 bath · 4,800 sqft<br>Panoramic lake views, heated pool, private dock</div>
+    </div>
+    <div class="sb-section">
+      <div class="sb-label">Just Listed</div>
+      <div class="sb-price">$890,000</div>
+      <div class="sb-meta">🏙 Downtown Penthouse · 3 bed · 2 bath · 2,100 sqft<br>Corner unit, city skyline views, concierge</div>
+    </div>
+    <div class="sb-search">
+      <div class="sb-label">Search Properties</div>
+      <div class="sf"><label>Location</label><input type="text" placeholder="City or neighbourhood"></div>
+      <div class="sf"><label>Type</label><select><option>All Types</option><option>House</option><option>Apartment</option><option>Villa</option></select></div>
+      <div class="sf"><label>Budget</label><select><option>Any Price</option><option>Under $500K</option><option>$500K – $1M</option><option>$1M+</option></select></div>
+      <button class="btn-search-full">Search Now</button>
+    </div>
+  </div>
+</section>
+
+<section id="listings">
+  <div class="listings-header">
+    <div class="lh-left">
+      <div class="lh-count">Currently Available</div>
+      <h2>Featured Listings</h2>
+    </div>
+    <a href="#" class="btn-ink" style="padding:12px 28px;font-size:12px;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;display:inline-block;">View All Listings →</a>
+  </div>
+  <div class="listings-grid">
+    <div class="listing-card">
+      <div class="lc-img">🏡<span class="lc-tag sale">For Sale</span></div>
+      <div class="lc-body">
+        <div class="lc-price">$1,850,000</div>
+        <div class="lc-name">Ridgeline Estate</div>
+        <div class="lc-loc">📍 Bel Air, Los Angeles, CA</div>
+        <div class="lc-specs"><span class="lc-spec">🛏 5 bed</span><span class="lc-spec">🚿 4 bath</span><span class="lc-spec">📐 4,200 sqft</span></div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="lc-img">🏙<span class="lc-tag">For Rent</span></div>
+      <div class="lc-body">
+        <div class="lc-price">$6,500/mo</div>
+        <div class="lc-name">The Meridian Residence</div>
+        <div class="lc-loc">📍 Tribeca, New York, NY</div>
+        <div class="lc-specs"><span class="lc-spec">🛏 3 bed</span><span class="lc-spec">🚿 2 bath</span><span class="lc-spec">📐 2,400 sqft</span></div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="lc-img">🏖<span class="lc-tag sale">For Sale</span></div>
+      <div class="lc-body">
+        <div class="lc-price">$4,100,000</div>
+        <div class="lc-name">Coastal Bluff Manor</div>
+        <div class="lc-loc">📍 Malibu, California</div>
+        <div class="lc-specs"><span class="lc-spec">🛏 6 bed</span><span class="lc-spec">🚿 5 bath</span><span class="lc-spec">📐 5,600 sqft</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="neighborhoods">
+  <div class="nbhd-title-bar">
+    <h2>Explore by Neighbourhood</h2>
+    <a href="#" style="color:rgba(255,255,255,0.5);font-size:13px;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">All Areas →</a>
+  </div>
+  <div class="nbhd-grid">
+    <div class="nbhd-item"><div class="nbhd-name">Beverly Hills</div><div class="nbhd-count">142 Properties</div></div>
+    <div class="nbhd-item"><div class="nbhd-name">Manhattan</div><div class="nbhd-count">218 Properties</div></div>
+    <div class="nbhd-item"><div class="nbhd-name">Miami Beach</div><div class="nbhd-count">96 Properties</div></div>
+    <div class="nbhd-item"><div class="nbhd-name">The Hamptons</div><div class="nbhd-count">73 Properties</div></div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-t">Ready to Find<br>Your <em>Dream Home?</em></h2>
+  <a href="#" class="btn-red-cta">Talk to an Agent Today</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:0.08em;">ARCH<span style="color:var(--red)">.</span></div>
+  <div class="footer-copy">© 2026 ARCH Real Estate. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

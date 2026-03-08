@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AirMax Pro — HVAC Cleaning</title>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700;800;900&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{--org:#ff6b00;--dk:#151515;--dk2:#1e1e1e;--lt:#f5f5f5;--mid:#888;--bdr:rgba(255,107,0,0.2);}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Exo 2',sans-serif;background:var(--dk);color:var(--lt);overflow-x:hidden;}
+
+  nav{background:var(--dk);border-bottom:2px solid var(--org);padding:0 56px;height:70px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+  .logo{font-size:24px;font-weight:900;letter-spacing:0.04em;}
+  .logo span{color:var(--org);}
+  .nav-links{display:flex;gap:0;list-style:none;}
+  .nav-links a{padding:0 22px;font-size:13px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--mid);text-decoration:none;line-height:70px;display:block;border-left:1px solid rgba(255,255,255,0.06);transition:color 0.2s;}
+  .nav-links a:hover{color:var(--org);}
+  .phone-cta{display:flex;align-items:center;gap:12px;}
+  .phone-num{font-size:16px;font-weight:800;color:var(--org);}
+  .btn-org{padding:10px 24px;background:var(--org);color:white;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:filter 0.2s;}
+  .btn-org:hover{filter:brightness(1.1);}
+
+  /* HERO */
+  #hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;padding:100px 56px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--dk) 60%,#1a0f00 100%);}
+  .hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,0,0.08) 0%,transparent 70%);right:-100px;top:50%;transform:translateY(-50%);}
+  .h-flag{background:var(--org);display:inline-flex;align-items:center;gap:8px;padding:8px 20px;font-size:12px;font-weight:800;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:28px;width:fit-content;}
+  .h-title{font-size:clamp(52px,7vw,100px);font-weight:900;line-height:0.9;letter-spacing:-0.01em;text-transform:uppercase;margin-bottom:28px;max-width:700px;}
+  .h-title .org{color:var(--org);}
+  .h-desc{font-family:'Roboto',sans-serif;font-size:16px;font-weight:300;line-height:1.75;color:var(--mid);max-width:500px;margin-bottom:44px;}
+  .h-ctas{display:flex;gap:0;}
+  .btn-big{padding:18px 40px;font-size:16px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;}
+  .btn-big-fill{background:var(--org);color:white;}
+  .btn-big-outline{background:transparent;border:2px solid rgba(255,255,255,0.2);color:var(--lt);}
+  .btn-big-outline:hover{border-color:var(--org);color:var(--org);}
+  .hero-nums{display:flex;gap:48px;margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,0.08);}
+  .hn{border-left:3px solid var(--org);padding-left:20px;}
+  .hn-n{font-size:40px;font-weight:900;color:var(--org);line-height:1;}
+  .hn-l{font-size:12px;font-weight:400;color:var(--mid);text-transform:uppercase;letter-spacing:0.1em;margin-top:4px;}
+
+  /* SERVICES */
+  #services{padding:80px 56px;background:var(--dk2);}
+  .sec-lbl{font-size:11px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:var(--org);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+  .sec-lbl::before{content:'//';color:var(--org);}
+  .sec-h2{font-size:clamp(32px,4vw,48px);font-weight:900;text-transform:uppercase;letter-spacing:0.02em;margin-bottom:48px;}
+  .svc-row{display:flex;gap:0;border:1px solid rgba(255,255,255,0.06);}
+  .svc-col{flex:1;padding:36px 28px;border-left:1px solid rgba(255,255,255,0.06);transition:background 0.2s;}
+  .svc-col:first-child{border-left:none;}
+  .svc-col:hover{background:rgba(255,107,0,0.05);}
+  .svc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;}
+  .svc-icon{font-size:32px;}
+  .svc-tag{padding:4px 10px;background:rgba(255,107,0,0.15);color:var(--org);font-size:10px;font-weight:800;letter-spacing:0.1em;}
+  .svc-title{font-size:18px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:10px;}
+  .svc-desc{font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;line-height:1.7;color:var(--mid);margin-bottom:20px;}
+  .svc-price{font-size:28px;font-weight:900;color:var(--org);}
+  .svc-price sub{font-size:14px;font-weight:400;color:var(--mid);}
+
+  /* PROCESS */
+  #process{padding:80px 56px;}
+  .proc-list{display:flex;flex-direction:column;gap:0;margin-top:48px;border-top:1px solid rgba(255,255,255,0.06);}
+  .proc-item{display:grid;grid-template-columns:80px 1fr auto;gap:32px;align-items:center;padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:padding 0.2s;}
+  .proc-item:hover{padding-left:16px;}
+  .pi-num{font-size:48px;font-weight:900;color:rgba(255,107,0,0.2);line-height:1;text-align:center;}
+  .proc-item:hover .pi-num{color:var(--org);}
+  .pi-title{font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:0.03em;margin-bottom:6px;}
+  .pi-desc{font-family:'Roboto',sans-serif;font-size:13px;font-weight:300;color:var(--mid);line-height:1.6;}
+  .pi-arrow{font-size:24px;color:var(--org);opacity:0;transition:opacity 0.2s;}
+  .proc-item:hover .pi-arrow{opacity:1;}
+
+  /* PRICING */
+  #pricing{padding:80px 56px;background:var(--dk2);}
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+  .pc{background:var(--dk);border:1px solid rgba(255,255,255,0.08);padding:36px;position:relative;overflow:hidden;transition:border-color 0.3s;}
+  .pc.hot{border-color:var(--org);}
+  .pc:hover{border-color:var(--org);}
+  .pc-hot{position:absolute;top:0;left:0;right:0;background:var(--org);text-align:center;padding:6px;font-size:10px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;}
+  .pc-name{font-size:22px;font-weight:900;text-transform:uppercase;margin-bottom:8px;margin-top:8px;}
+  .pc.hot .pc-name{margin-top:28px;}
+  .pc-price{font-size:52px;font-weight:900;color:var(--org);line-height:1;}
+  .pc-price sup{font-size:22px;}
+  .pc-unit{font-size:13px;color:var(--mid);margin-bottom:28px;}
+  .pc-list{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+  .pc-list li{font-size:13px;font-family:'Roboto',sans-serif;font-weight:300;color:var(--mid);display:flex;gap:8px;}
+  .pc-list li::before{content:'▸';color:var(--org);flex-shrink:0;}
+  .pc-cta{display:block;text-align:center;padding:13px 24px;border:2px solid rgba(255,255,255,0.15);font-size:13px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:var(--lt);transition:all 0.2s;}
+  .pc-cta:hover,.pc.hot .pc-cta{background:var(--org);border-color:var(--org);}
+
+  /* CTA */
+  .emergency{background:var(--org);padding:60px 56px;display:flex;justify-content:space-between;align-items:center;}
+  .emg-t{font-size:clamp(28px,4vw,48px);font-weight:900;text-transform:uppercase;color:white;line-height:1.05;}
+  .emg-sub{font-size:15px;color:rgba(255,255,255,0.75);margin-top:8px;}
+  .btn-dark{padding:16px 40px;background:var(--dk);color:var(--org);font-size:15px;font-weight:800;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+  .btn-dark:hover{background:white;color:var(--dk);}
+
+  footer{background:var(--dk);border-top:2px solid var(--org);padding:28px 56px;display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--mid);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">AirMax<span>PRO</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="phone-cta">
+    <span class="phone-num">📞 1-800-AIR-MAX</span>
+    <a href="#" class="btn-org">Book Now</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="h-flag">⚡ Fast · Professional · Guaranteed</div>
+  <h1 class="h-title">CLEAN AC.<br><span class="org">COOL HOME.</span><br>DONE TODAY.</h1>
+  <p class="h-desc">Professional aircon cleaning and HVAC maintenance with same-day availability. Certified technicians, guaranteed results.</p>
+  <div class="h-ctas">
+    <a href="#" class="btn-big btn-big-fill">Book a Service →</a>
+    <a href="#pricing" class="btn-big btn-big-outline">See Pricing</a>
+  </div>
+  <div class="hero-nums">
+    <div class="hn"><div class="hn-n">8,000+</div><div class="hn-l">Units Cleaned</div></div>
+    <div class="hn"><div class="hn-n">4.9★</div><div class="hn-l">Avg. Rating</div></div>
+    <div class="hn"><div class="hn-n">Same-Day</div><div class="hn-l">Availability</div></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sec-lbl">Services</div>
+  <h2 class="sec-h2">What We Offer</h2>
+  <div class="svc-row">
+    <div class="svc-col"><div class="svc-top"><span class="svc-icon">❄️</span><span class="svc-tag">Popular</span></div><div class="svc-title">Standard Clean</div><div class="svc-desc">Filter wash, coil clean, drain flush. Ideal for regular maintenance.</div><div class="svc-price">$60 <sub>per unit</sub></div></div>
+    <div class="svc-col"><div class="svc-top"><span class="svc-icon">🧽</span><span class="svc-tag">Best Value</span></div><div class="svc-title">Deep Clean</div><div class="svc-desc">Full disassembly, anti-bacterial treatment, chemical wash.</div><div class="svc-price">$99 <sub>per unit</sub></div></div>
+    <div class="svc-col"><div class="svc-top"><span class="svc-icon">🔧</span></div><div class="svc-title">Repair & Fix</div><div class="svc-desc">Diagnose and repair faults, leaks, drainage issues and more.</div><div class="svc-price">From $85</div></div>
+    <div class="svc-col"><div class="svc-top"><span class="svc-icon">🏢</span></div><div class="svc-title">Commercial</div><div class="svc-desc">Maintenance contracts for commercial premises of any size.</div><div class="svc-price">Custom</div></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="sec-lbl">Process</div>
+  <h2 class="sec-h2">How It Works</h2>
+  <div class="proc-list">
+    <div class="proc-item"><div class="pi-num">01</div><div><div class="pi-title">Book Your Service</div><div class="pi-desc">Select service type and preferred time. Online in under 60 seconds.</div></div><div class="pi-arrow">→</div></div>
+    <div class="proc-item"><div class="pi-num">02</div><div><div class="pi-title">Technician Dispatched</div><div class="pi-desc">Certified tech assigned and dispatched to your location.</div></div><div class="pi-arrow">→</div></div>
+    <div class="proc-item"><div class="pi-num">03</div><div><div class="pi-title">Professional Clean</div><div class="pi-desc">Full clean performed with commercial-grade equipment.</div></div><div class="pi-arrow">→</div></div>
+    <div class="proc-item"><div class="pi-num">04</div><div><div class="pi-title">Enjoy & Pay</div><div class="pi-desc">Cool clean air restored. Pay on completion — no upfront fees.</div></div><div class="pi-arrow">→</div></div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="sec-lbl">Pricing</div>
+  <h2 class="sec-h2">Choose Your Plan</h2>
+  <div class="price-grid">
+    <div class="pc"><div class="pc-name">Basic Clean</div><div class="pc-price"><sup>$</sup>60</div><div class="pc-unit">per unit</div><ul class="pc-list"><li>Filter clean</li><li>Coil rinse</li><li>Drain flush</li><li>Basic report</li></ul><a href="#" class="pc-cta">Book Now</a></div>
+    <div class="pc hot"><div class="pc-hot">⚡ MOST POPULAR</div><div class="pc-name">Full Service</div><div class="pc-price"><sup>$</sup>99</div><div class="pc-unit">per unit</div><ul class="pc-list"><li>Deep clean & disassembly</li><li>Anti-bacterial wash</li><li>Full drain clear</li><li>Gas pressure check</li><li>Detailed report</li></ul><a href="#" class="pc-cta">Book Now</a></div>
+    <div class="pc"><div class="pc-name">Annual Plan</div><div class="pc-price"><sup>$</sup>199</div><div class="pc-unit">per year (2 visits)</div><ul class="pc-list"><li>2x full service cleans</li><li>Priority booking</li><li>Free minor repairs</li><li>10% parts discount</li></ul><a href="#" class="pc-cta">Book Now</a></div>
+  </div>
+</section>
+
+<div class="emergency">
+  <div><h2 class="emg-t">AC Emergency?<br>We're Available 24/7</h2><p class="emg-sub">Call now and we'll dispatch a technician within the hour.</p></div>
+  <div style="display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
+    <a href="tel:18002476291" style="font-size:32px;font-weight:900;color:white;text-decoration:none;">1-800-AIR-MAX</a>
+    <a href="#" class="btn-dark">Book Online Instead</a>
+  </div>
+</div>
+
+<footer>
+  <div class="logo" style="font-size:20px;font-weight:900;color:var(--lt);">AirMax<span style="color:var(--org)">PRO</span></div>
+  <div class="footer-copy">© 2026 AirMax Pro HVAC Services. All rights reserved.</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrowthVault Franchising</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #16A34A;
+    --green2: #22C55E;
+    --dark: #0C1F10;
+    --bg: #FFFFFF;
+    --lt: #F0FDF4;
+    --mid: #4B6E55;
+    --bdr: #BBF7D0;
+    --ink: #0C1F10;
+    --yellow: #FBBF24;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Manrope', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+  /* TOP ANNOUNCEMENT */
+  .topbar {
+    background: var(--green);
+    padding: 10px 64px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.04em;
+  }
+  .topbar a { color: rgba(255,255,255,0.8); text-decoration: underline; margin-left: 8px; }
+
+  nav {
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 64px;
+    border-bottom: 1px solid var(--bdr);
+    background: white;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-size: 22px; font-weight: 800; color: var(--ink); letter-spacing: -0.01em; }
+  .logo span { color: var(--green); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .nav-right { display: flex; gap: 12px; }
+  .btn-ghost { padding: 10px 22px; border: 1px solid var(--bdr); color: var(--green); font-size: 13px; font-weight: 700; border-radius: 8px; text-decoration: none; transition: all 0.2s; }
+  .btn-ghost:hover { background: var(--lt); }
+  .btn-green { padding: 10px 24px; background: var(--green); color: white; font-size: 13px; font-weight: 700; border-radius: 8px; text-decoration: none; transition: filter 0.2s; }
+  .btn-green:hover { filter: brightness(1.08); }
+
+  /* HERO */
+  #hero {
+    background: var(--dark);
+    color: white;
+    display: grid; grid-template-columns: 1fr 1fr;
+    min-height: 90vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-left {
+    padding: 90px 72px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+    border-right: 1px solid rgba(34,197,94,0.12);
+  }
+  .hero-bg-lines {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent, transparent 60px,
+      rgba(34,197,94,0.02) 60px, rgba(34,197,94,0.02) 61px
+    );
+    pointer-events: none;
+  }
+  .hero-left .h-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 18px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25);
+    border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--green2);
+    letter-spacing: 0.04em; margin-bottom: 28px; width: fit-content;
+  }
+  .h-title {
+    font-size: clamp(48px, 5.5vw, 76px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 24px;
+  }
+  .h-title span { color: var(--green2); }
+  .h-desc {
+    font-size: 17px; font-weight: 300; line-height: 1.8;
+    color: rgba(255,255,255,0.55); max-width: 480px; margin-bottom: 40px;
+  }
+  .h-btns { display: flex; gap: 14px; margin-bottom: 56px; }
+  .btn-green-lg {
+    padding: 15px 40px; background: var(--green); color: white;
+    font-size: 15px; font-weight: 700; border-radius: 8px; text-decoration: none;
+    transition: filter 0.2s; letter-spacing: -0.01em;
+  }
+  .btn-green-lg:hover { filter: brightness(1.1); }
+  .btn-outline-w {
+    padding: 15px 40px; border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.7);
+    font-size: 15px; font-weight: 600; border-radius: 8px; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline-w:hover { border-color: var(--green2); color: var(--green2); }
+  .h-stats { display: flex; gap: 36px; padding-top: 40px; border-top: 1px solid rgba(255,255,255,0.07); }
+  .hstat { }
+  .hstat-n { font-size: 40px; font-weight: 800; color: var(--green2); line-height: 1; }
+  .hstat-l { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.4); margin-top: 4px; letter-spacing: 0.04em; }
+
+  /* RIGHT PANEL */
+  .hero-right {
+    display: flex; flex-direction: column;
+    position: relative; z-index: 2;
+    background: rgba(22,163,74,0.04);
+  }
+  .franchise-list { flex: 1; padding: 56px 56px 32px; overflow: hidden; }
+  .fl-label { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green2); margin-bottom: 24px; opacity: 0.8; }
+  .fl-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(34,197,94,0.1);
+    border-radius: 12px;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .fl-item:hover {
+    background: rgba(34,197,94,0.08);
+    border-color: rgba(34,197,94,0.3);
+    transform: translateX(4px);
+  }
+  .fli-left { display: flex; align-items: center; gap: 14px; }
+  .fli-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.2);
+    display: grid; place-items: center; font-size: 20px; flex-shrink: 0;
+  }
+  .fli-sector { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green2); opacity: 0.8; margin-bottom: 2px; }
+  .fli-name { font-size: 15px; font-weight: 700; color: white; }
+  .fli-right { text-align: right; flex-shrink: 0; }
+  .fli-invest { font-size: 16px; font-weight: 800; color: var(--green2); }
+  .fli-label { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+
+  .hero-cta-strip {
+    padding: 24px 56px 40px;
+    border-top: 1px solid rgba(34,197,94,0.12);
+  }
+  .hcs-title { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); margin-bottom: 12px; }
+  .btn-strip {
+    display: block; text-align: center;
+    padding: 13px; background: var(--green); color: white;
+    font-size: 14px; font-weight: 700; border-radius: 8px; text-decoration: none;
+    letter-spacing: -0.01em; transition: filter 0.2s;
+  }
+  .btn-strip:hover { filter: brightness(1.1); }
+
+  /* INDUSTRIES */
+  #industries { padding: 100px 64px; background: var(--lt); }
+  .sec-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); margin-bottom: 12px; }
+  .sec-h2 { font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -0.025em; margin-bottom: 48px; }
+  .ind-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ind-card {
+    background: white; border-radius: 16px; padding: 32px 24px;
+    border: 1px solid var(--bdr); text-align: center;
+    transition: all 0.3s; cursor: pointer;
+  }
+  .ind-card:hover { background: var(--green); color: white; border-color: var(--green); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(22,163,74,0.2); }
+  .ind-card:hover .ind-sub { color: rgba(255,255,255,0.7); }
+  .ind-icon { font-size: 40px; margin-bottom: 16px; }
+  .ind-name { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+  .ind-sub { font-size: 13px; font-weight: 400; color: var(--mid); transition: color 0.3s; }
+
+  /* WHY */
+  #why { padding: 100px 64px; }
+  .why-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-top: 56px; }
+  .why-left { }
+  .why-list { display: flex; flex-direction: column; gap: 28px; }
+  .why-item { display: flex; gap: 20px; }
+  .wi-icon {
+    width: 52px; height: 52px; border-radius: 12px; background: var(--lt); border: 1px solid var(--bdr);
+    display: grid; place-items: center; font-size: 22px; flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  .why-item:hover .wi-icon { background: var(--green); border-color: var(--green); }
+  .wi-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+  .wi-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: var(--mid); }
+
+  .why-right { background: var(--dark); color: white; border-radius: 24px; padding: 52px 44px; position: relative; overflow: hidden; }
+  .wr-bg { position: absolute; inset: 0; background: radial-gradient(circle at 80% 20%, rgba(34,197,94,0.1) 0%, transparent 60%); pointer-events: none; }
+  .wr-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green2); margin-bottom: 20px; position: relative; }
+  .wr-stat { margin-bottom: 32px; position: relative; }
+  .wr-n { font-size: 64px; font-weight: 800; color: var(--green2); line-height: 1; letter-spacing: -0.02em; }
+  .wr-desc { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.7; margin-top: 6px; }
+  .wr-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 28px 0; }
+  .wr-testimonial { position: relative; }
+  .wt-text { font-size: 16px; font-weight: 300; font-style: italic; line-height: 1.7; color: rgba(255,255,255,0.65); margin-bottom: 20px; }
+  .wt-author { font-size: 13px; font-weight: 700; color: var(--green2); }
+
+  /* HOW */
+  #how { padding: 100px 64px; background: var(--lt); }
+  .how-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; margin-top: 56px; position: relative; }
+  .how-steps::before {
+    content: '';
+    position: absolute; top: 28px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--green), var(--bdr));
+    z-index: 0;
+  }
+  .how-step { text-align: center; padding: 0 16px; }
+  .hs-circle {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--green); color: white;
+    font-size: 18px; font-weight: 800;
+    display: grid; place-items: center; margin: 0 auto 20px;
+    position: relative; z-index: 1;
+    transition: all 0.3s;
+  }
+  .how-step:hover .hs-circle { background: var(--dark); transform: scale(1.1); }
+  .hs-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .hs-desc { font-size: 12px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+
+  /* PACKAGES */
+  #packages { padding: 100px 64px; }
+  .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .pkg-card {
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--bdr);
+    transition: all 0.3s;
+  }
+  .pkg-card:hover { box-shadow: 0 16px 56px rgba(22,163,74,0.1); transform: translateY(-4px); }
+  .pkg-card.featured { border-color: var(--green); box-shadow: 0 0 0 1px var(--green); }
+  .pkg-head { padding: 32px 36px; background: var(--lt); }
+  .pkg-card.featured .pkg-head { background: var(--green); color: white; }
+  .pkg-tier { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+  .pkg-card.featured .pkg-tier { color: rgba(255,255,255,0.75); }
+  .pkg-name { font-size: 26px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .pkg-tagline { font-size: 13px; font-weight: 400; color: var(--mid); }
+  .pkg-card.featured .pkg-tagline { color: rgba(255,255,255,0.8); }
+  .pkg-body { padding: 32px 36px; }
+  .pkg-invest { font-size: 32px; font-weight: 800; color: var(--green); margin-bottom: 4px; letter-spacing: -0.02em; }
+  .pkg-invest-label { font-size: 13px; color: var(--mid); margin-bottom: 24px; }
+  .pkg-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .pf { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; font-weight: 400; }
+  .pf::before { content: '✓'; color: var(--green); font-weight: 800; flex-shrink: 0; margin-top: 1px; }
+  .btn-pkg {
+    display: block; text-align: center; padding: 13px; border-radius: 10px;
+    font-size: 14px; font-weight: 700; letter-spacing: -0.01em; text-decoration: none; transition: all 0.2s;
+    border: 1.5px solid var(--bdr); color: var(--green);
+  }
+  .btn-pkg:hover { background: var(--green); color: white; border-color: var(--green); }
+  .pkg-card.featured .btn-pkg { background: var(--green); color: white; border-color: var(--green); }
+  .pkg-card.featured .btn-pkg:hover { filter: brightness(1.1); }
+
+  /* CTA */
+  .cta {
+    padding: 90px 64px;
+    background: var(--dark); color: white;
+    display: flex; justify-content: space-between; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-glow {
+    position: absolute;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
+    top: -200px; right: -100px; pointer-events: none;
+  }
+  .cta-t { font-size: clamp(36px, 5vw, 60px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.0; position: relative; z-index: 1; }
+  .cta-t span { color: var(--green2); }
+  .cta-sub { font-size: 15px; font-weight: 300; color: rgba(255,255,255,0.5); margin-top: 10px; position: relative; z-index: 1; }
+  .btn-green-cta { padding: 18px 52px; background: var(--green); color: white; font-size: 15px; font-weight: 700; border-radius: 8px; text-decoration: none; flex-shrink: 0; position: relative; z-index: 1; letter-spacing: -0.01em; transition: filter 0.2s; }
+  .btn-green-cta:hover { filter: brightness(1.1); }
+
+  footer { padding: 32px 64px; border-top: 1px solid var(--bdr); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--mid); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  🌱 New franchise opportunities added weekly — <a href="#">Browse the latest additions</a>
+</div>
+
+<nav>
+  <div class="logo">Growth<span>Vault</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Opportunities</a></li>
+    <li><a href="#">Industries</a></li>
+    <li><a href="#">How It Works</a></li>
+    <li><a href="#">Why Franchise</a></li>
+    <li><a href="#">Resources</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="btn-ghost">Sign In</a>
+    <a href="#" class="btn-green">Get Started Free</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg-lines"></div>
+  <div class="hero-left">
+    <div class="h-tag">🌿 Trusted by 600+ franchise owners</div>
+    <h1 class="h-title">Grow Wealth.<br><span>Own Your</span><br>Business.</h1>
+    <p class="h-desc">GrowthVault is the smart way to find, evaluate and launch a franchise. Transparent data, real support and brands built for long-term success.</p>
+    <div class="h-btns">
+      <a href="#packages" class="btn-green-lg">Explore Franchises</a>
+      <a href="#how" class="btn-outline-w">How It Works</a>
+    </div>
+    <div class="h-stats">
+      <div class="hstat"><div class="hstat-n">50+</div><div class="hstat-l">Brands Listed</div></div>
+      <div class="hstat"><div class="hstat-n">600+</div><div class="hstat-l">Franchise Owners</div></div>
+      <div class="hstat"><div class="hstat-n">97%</div><div class="hstat-l">Year-3 Retention</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="franchise-list">
+      <div class="fl-label">🔥 Trending Opportunities</div>
+      <div class="fl-item">
+        <div class="fli-left"><div class="fli-icon">☕</div><div><div class="fli-sector">Food &amp; Beverage</div><div class="fli-name">Brew Society Café</div></div></div>
+        <div class="fli-right"><div class="fli-invest">$85K+</div><div class="fli-label">Investment from</div></div>
+      </div>
+      <div class="fl-item">
+        <div class="fli-left"><div class="fli-icon">🏋</div><div><div class="fli-sector">Health &amp; Fitness</div><div class="fli-name">PulseZone Gym</div></div></div>
+        <div class="fli-right"><div class="fli-invest">$120K+</div><div class="fli-label">Investment from</div></div>
+      </div>
+      <div class="fl-item">
+        <div class="fli-left"><div class="fli-icon">🧒</div><div><div class="fli-sector">Education</div><div class="fli-name">BrainSpark Tutoring</div></div></div>
+        <div class="fli-right"><div class="fli-invest">$35K+</div><div class="fli-label">Investment from</div></div>
+      </div>
+      <div class="fl-item">
+        <div class="fli-left"><div class="fli-icon">🧹</div><div><div class="fli-sector">Home Services</div><div class="fli-name">CleanCo Residential</div></div></div>
+        <div class="fli-right"><div class="fli-invest">$25K+</div><div class="fli-label">Investment from</div></div>
+      </div>
+    </div>
+    <div class="hero-cta-strip">
+      <div class="hcs-title">Ready to take the next step?</div>
+      <a href="#packages" class="btn-strip">View All 50+ Franchise Opportunities →</a>
+    </div>
+  </div>
+</section>
+
+<section id="industries">
+  <div class="sec-lbl">Browse by Sector</div>
+  <h2 class="sec-h2">Franchise Industries</h2>
+  <div class="ind-grid">
+    <div class="ind-card"><div class="ind-icon">☕</div><div class="ind-name">Food &amp; Drink</div><div class="ind-sub">12 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">🏋</div><div class="ind-name">Health &amp; Fitness</div><div class="ind-sub">8 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">🧒</div><div class="ind-name">Education</div><div class="ind-sub">6 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">🏠</div><div class="ind-name">Home Services</div><div class="ind-sub">9 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">🐾</div><div class="ind-name">Pet Services</div><div class="ind-sub">4 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">💆</div><div class="ind-name">Beauty &amp; Wellness</div><div class="ind-sub">5 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">📦</div><div class="ind-name">Logistics</div><div class="ind-sub">3 opportunities</div></div>
+    <div class="ind-card"><div class="ind-icon">🛒</div><div class="ind-name">Retail</div><div class="ind-sub">7 opportunities</div></div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="sec-lbl">The Franchise Advantage</div>
+  <h2 class="sec-h2">Why Franchising Works</h2>
+  <div class="why-layout">
+    <div class="why-left">
+      <div class="why-list">
+        <div class="why-item"><div class="wi-icon">📋</div><div><div class="wi-title">Proven Business Model</div><div class="wi-desc">Skip the trial-and-error of starting from scratch. Franchises come with an operating playbook refined over years of real-world results.</div></div></div>
+        <div class="why-item"><div class="wi-icon">🏷</div><div><div class="wi-title">Established Brand Recognition</div><div class="wi-desc">Open your doors with a name customers already trust — and marketing assets that cost nothing extra.</div></div></div>
+        <div class="why-item"><div class="wi-icon">🎓</div><div><div class="wi-title">Training &amp; Ongoing Support</div><div class="wi-desc">Comprehensive onboarding, operational manuals and a dedicated support team from Day 1 through Year 10.</div></div></div>
+        <div class="why-item"><div class="wi-icon">📍</div><div><div class="wi-title">Protected Territory Rights</div><div class="wi-desc">Your exclusive zone means no internal competition — only market-growth in your hands.</div></div></div>
+      </div>
+    </div>
+    <div class="why-right">
+      <div class="wr-bg"></div>
+      <div class="wr-label">By the numbers</div>
+      <div class="wr-stat">
+        <div class="wr-n">97%</div>
+        <div class="wr-desc">of GrowthVault franchisees are still operating and profitable after three years — compared to just 50% for independent startups.</div>
+      </div>
+      <div class="wr-divider"></div>
+      <div class="wr-testimonial">
+        <div class="wt-text">"Joining GrowthVault was the smartest financial decision I ever made. I was profitable by month nine and opened my second location in year two."</div>
+        <div class="wt-author">— Marcus T., PulseZone franchisee · Chicago</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="sec-lbl">Getting Started</div>
+  <h2 class="sec-h2">From Curious to Operational in 5 Steps</h2>
+  <div class="how-steps">
+    <div class="how-step"><div class="hs-circle">1</div><div class="hs-title">Browse &amp; Match</div><div class="hs-desc">Explore brands by industry, budget and location fit.</div></div>
+    <div class="how-step"><div class="hs-circle">2</div><div class="hs-title">Free Consultation</div><div class="hs-desc">Speak with a GrowthVault advisor to narrow your options.</div></div>
+    <div class="how-step"><div class="hs-circle">3</div><div class="hs-title">Review FDD</div><div class="hs-desc">Receive and review the full Franchise Disclosure Document.</div></div>
+    <div class="how-step"><div class="hs-circle">4</div><div class="hs-title">Sign &amp; Train</div><div class="hs-desc">Complete your onboarding and training programme.</div></div>
+    <div class="how-step"><div class="hs-circle">5</div><div class="hs-title">Open for Business</div><div class="hs-desc">Launch day with full support from the GrowthVault team.</div></div>
+  </div>
+</section>
+
+<section id="packages">
+  <div class="sec-lbl">Featured Opportunities</div>
+  <h2 class="sec-h2">Choose Your Tier</h2>
+  <div class="pkg-grid">
+    <div class="pkg-card">
+      <div class="pkg-head"><div class="pkg-tier">Entry Level</div><div class="pkg-name">Starter Franchise</div><div class="pkg-tagline">Perfect for first-time franchise owners</div></div>
+      <div class="pkg-body">
+        <div class="pkg-invest">$25K–$60K</div>
+        <div class="pkg-invest-label">Total investment range</div>
+        <div class="pkg-features">
+          <div class="pf">Low startup capital required</div>
+          <div class="pf">2-week onboarding programme</div>
+          <div class="pf">Exclusive territory rights</div>
+          <div class="pf">Ongoing field support</div>
+          <div class="pf">Avg. payback: 12–18 months</div>
+        </div>
+        <a href="#" class="btn-pkg">Explore Starter Brands</a>
+      </div>
+    </div>
+    <div class="pkg-card featured">
+      <div class="pkg-head"><div class="pkg-tier">⭐ Most Popular</div><div class="pkg-name">Growth Franchise</div><div class="pkg-tagline">Best ROI &amp; scalability potential</div></div>
+      <div class="pkg-body">
+        <div class="pkg-invest">$80K–$200K</div>
+        <div class="pkg-invest-label">Total investment range</div>
+        <div class="pkg-features">
+          <div class="pf">High-growth industry sectors</div>
+          <div class="pf">4–6 week full training programme</div>
+          <div class="pf">Protected multi-unit rights</div>
+          <div class="pf">National marketing support</div>
+          <div class="pf">Dedicated franchise business coach</div>
+          <div class="pf">Avg. payback: 18–30 months</div>
+        </div>
+        <a href="#" class="btn-pkg">Explore Growth Brands</a>
+      </div>
+    </div>
+    <div class="pkg-card">
+      <div class="pkg-head"><div class="pkg-tier">Premium</div><div class="pkg-name">Enterprise Franchise</div><div class="pkg-tagline">For experienced multi-unit operators</div></div>
+      <div class="pkg-body">
+        <div class="pkg-invest">$200K–$500K+</div>
+        <div class="pkg-invest-label">Total investment range</div>
+        <div class="pkg-features">
+          <div class="pf">Premium brand portfolio access</div>
+          <div class="pf">Master franchisee opportunities</div>
+          <div class="pf">Regional territory rights</div>
+          <div class="pf">White-glove concierge support</div>
+          <div class="pf">Avg. payback: 24–48 months</div>
+        </div>
+        <a href="#" class="btn-pkg">Explore Enterprise Brands</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div class="cta-glow"></div>
+  <div>
+    <h2 class="cta-t">Start Building<br><span>Your Future Today</span></h2>
+    <p class="cta-sub">Free consultation · No obligation · Results guaranteed</p>
+  </div>
+  <a href="#" class="btn-green-cta">Book a Free Discovery Call →</a>
+</div>
+
+<footer>
+  <div class="logo">Growth<span style="color:var(--green)">Vault</span></div>
+  <div class="footer-copy">© 2026 GrowthVault Franchising. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

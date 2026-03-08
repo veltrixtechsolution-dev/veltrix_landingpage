@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FranchiseForward — Own Your Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1A3E;
+    --navy2: #0F2255;
+    --blue: #2563EB;
+    --gold: #F59E0B;
+    --lt: #F4F7FF;
+    --bg: #FFFFFF;
+    --mid: #5A6A8A;
+    --bdr: #D4DCF0;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--navy); overflow-x: hidden; }
+
+  nav {
+    height: 76px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 72px;
+    background: var(--navy);
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: white; letter-spacing: 0.02em; }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 13px; font-weight: 500; letter-spacing: 0.05em; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .btn-gold { padding: 11px 28px; background: var(--gold); color: var(--navy); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-decoration: none; transition: filter 0.2s; }
+  .btn-gold:hover { filter: brightness(1.08); }
+
+  /* HERO */
+  #hero {
+    background: var(--navy);
+    color: white;
+    padding: 100px 72px 0;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 80px;
+    align-items: end;
+    min-height: 88vh;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-glow {
+    position: absolute;
+    width: 800px; height: 800px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    pointer-events: none;
+  }
+  .hero-left { padding-bottom: 80px; position: relative; z-index: 2; }
+  .h-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 16px; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.3);
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 28px;
+  }
+  .h-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(48px, 5.5vw, 76px);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  .h-title span { color: var(--gold); }
+  .h-desc { font-size: 17px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.6); max-width: 500px; margin-bottom: 40px; }
+  .h-btns { display: flex; gap: 16px; margin-bottom: 56px; }
+  .btn-gold-lg { padding: 14px 40px; background: var(--gold); color: var(--navy); font-size: 14px; font-weight: 700; text-decoration: none; transition: filter 0.2s; }
+  .btn-gold-lg:hover { filter: brightness(1.08); }
+  .btn-outline-gold { padding: 14px 40px; border: 1px solid rgba(245,158,11,0.4); color: var(--gold); font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+  .btn-outline-gold:hover { background: rgba(245,158,11,0.1); }
+  .trust-row { display: flex; gap: 28px; flex-wrap: wrap; }
+  .trust-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.5); }
+  .ti-icon { width: 28px; height: 28px; border-radius: 50%; background: rgba(37,99,235,0.3); display: grid; place-items: center; font-size: 12px; }
+
+  .hero-right { position: relative; z-index: 2; }
+  .brand-cards { display: flex; flex-direction: column; gap: 0; }
+  .brand-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all 0.25s;
+    cursor: pointer;
+  }
+  .brand-card:hover { background: rgba(37,99,235,0.12); border-color: rgba(37,99,235,0.4); transform: translateX(6px); }
+  .bc-left { display: flex; align-items: center; gap: 16px; }
+  .bc-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); display: grid; place-items: center; font-size: 24px; flex-shrink: 0; }
+  .bc-cat { font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .bc-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: white; }
+  .bc-right { text-align: right; }
+  .bc-invest { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--gold); }
+  .bc-label { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .see-all {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 16px; border: 1px dashed rgba(255,255,255,0.15); color: rgba(255,255,255,0.4);
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s;
+  }
+  .see-all:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* WHY FRANCHISE */
+  #why { padding: 120px 72px; }
+  .sec-eyebrow { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+  .sec-h2 { font-family: 'Syne', sans-serif; font-size: clamp(32px, 4vw, 52px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 56px; }
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .why-card {
+    background: var(--lt);
+    padding: 44px 36px;
+    border: 1px solid var(--bdr);
+    position: relative;
+    transition: all 0.3s;
+  }
+  .why-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--gold));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+  }
+  .why-card:hover { box-shadow: 0 12px 40px rgba(37,99,235,0.1); transform: translateY(-4px); }
+  .why-card:hover::before { transform: scaleX(1); }
+  .wc-ico { width: 56px; height: 56px; background: white; border: 1px solid var(--bdr); display: grid; place-items: center; font-size: 24px; margin-bottom: 24px; }
+  .wc-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .wc-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--mid); }
+
+  /* HOW TO JOIN */
+  #howtojoin { padding: 100px 72px; background: var(--navy); color: white; }
+  .join-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 60px; }
+  .js { padding: 0 44px; border-left: 1px solid rgba(255,255,255,0.08); }
+  .js:first-child { padding-left: 0; border-left: none; }
+  .js-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 56px; font-weight: 800;
+    color: var(--gold); opacity: 0.4;
+    line-height: 1; margin-bottom: 20px;
+  }
+  .js-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .js-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+  /* INVESTMENTS */
+  #investments { padding: 100px 72px; }
+  .invest-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .invest-card {
+    border: 1px solid var(--bdr);
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .invest-card:hover { box-shadow: 0 12px 48px rgba(37,99,235,0.12); transform: translateY(-4px); }
+  .invest-card.featured { border-color: var(--blue); }
+  .ic-header { padding: 28px 32px; background: var(--navy); color: white; position: relative; }
+  .invest-card.featured .ic-header { background: var(--blue); }
+  .ic-cat { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+  .ic-name { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: white; }
+  .ic-badge { position: absolute; top: 16px; right: 16px; padding: 4px 12px; background: var(--gold); color: var(--navy); font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+  .ic-body { padding: 28px 32px; }
+  .ic-invest { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--bdr); }
+  .ic-invest-label { font-size: 12px; color: var(--mid); }
+  .ic-invest-amount { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--navy); }
+  .ic-features { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .ic-feat { font-size: 13px; color: var(--mid); display: flex; gap: 8px; }
+  .ic-feat::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+  .invest-card.featured .ic-feat::before { color: var(--blue); }
+  .btn-invest { display: block; text-align: center; padding: 13px; border: 1px solid var(--bdr); font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; color: var(--navy); transition: all 0.2s; }
+  .btn-invest:hover, .invest-card.featured .btn-invest { background: var(--blue); color: white; border-color: var(--blue); }
+
+  /* CTA */
+  .cta { padding: 100px 72px; background: var(--gold); display: flex; justify-content: space-between; align-items: center; }
+  .cta-t { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 64px); font-weight: 800; color: var(--navy); letter-spacing: -0.02em; line-height: 1.0; }
+  .cta-sub { font-size: 16px; color: rgba(11,26,62,0.65); margin-top: 10px; }
+  .btn-navy { padding: 18px 52px; background: var(--navy); color: white; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; flex-shrink: 0; transition: background 0.2s; }
+  .btn-navy:hover { background: var(--navy2); }
+
+  footer { background: var(--navy); padding: 36px 72px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Franchise<span>Forward</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Opportunities</a></li>
+    <li><a href="#">Why Franchise</a></li>
+    <li><a href="#">Investment</a></li>
+    <li><a href="#">Support</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a href="#" class="btn-gold">Get Started</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-left">
+    <div class="h-eyebrow">🏆 300+ Active Franchisees Nationwide</div>
+    <h1 class="h-title">Own a Proven<br><span>Business.</span><br>Build Your Future.</h1>
+    <p class="h-desc">FranchiseForward connects ambitious entrepreneurs with top-tier franchise opportunities across high-growth industries — with the support to make you succeed.</p>
+    <div class="h-btns">
+      <a href="#investments" class="btn-gold-lg">Explore Opportunities</a>
+      <a href="#howtojoin" class="btn-outline-gold">How It Works</a>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><div class="ti-icon">✓</div>Proven business model</div>
+      <div class="trust-item"><div class="ti-icon">✓</div>Full training &amp; support</div>
+      <div class="trust-item"><div class="ti-icon">✓</div>Exclusive territories</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="brand-cards">
+      <div class="brand-card"><div class="bc-left"><div class="bc-icon">☕</div><div><div class="bc-cat">Food &amp; Beverage</div><div class="bc-name">Brew Society Café</div></div></div><div class="bc-right"><div class="bc-invest">$85K–$140K</div><div class="bc-label">Investment Range</div></div></div>
+      <div class="brand-card"><div class="bc-left"><div class="bc-icon">🏋</div><div><div class="bc-cat">Health &amp; Fitness</div><div class="bc-name">PulseZone Gym</div></div></div><div class="bc-right"><div class="bc-invest">$120K–$200K</div><div class="bc-label">Investment Range</div></div></div>
+      <div class="brand-card"><div class="bc-left"><div class="bc-icon">🧹</div><div><div class="bc-cat">Home Services</div><div class="bc-name">CleanCo Residential</div></div></div><div class="bc-right"><div class="bc-invest">$25K–$60K</div><div class="bc-label">Investment Range</div></div></div>
+      <div class="brand-card"><div class="bc-left"><div class="bc-icon">📦</div><div><div class="bc-cat">Logistics</div><div class="bc-name">Swiftship Couriers</div></div></div><div class="bc-right"><div class="bc-invest">$40K–$80K</div><div class="bc-label">Investment Range</div></div></div>
+      <div class="see-all">View All 40+ Franchise Brands →</div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="sec-eyebrow">Why Franchise</div>
+  <h2 class="sec-h2">Built-In Advantages</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="wc-ico">📋</div><div class="wc-title">Proven Systems</div><div class="wc-desc">Every franchise comes with a tested operations playbook, so you skip the guesswork and build on what already works.</div></div>
+    <div class="why-card"><div class="wc-ico">🎓</div><div class="wc-title">Full Training Program</div><div class="wc-desc">Comprehensive onboarding, operational training and ongoing education to keep you at peak performance.</div></div>
+    <div class="why-card"><div class="wc-ico">🏷</div><div class="wc-title">Recognised Brand</div><div class="wc-desc">Open your doors with an established name, brand identity and marketing materials already built for you.</div></div>
+    <div class="why-card"><div class="wc-ico">📍</div><div class="wc-title">Exclusive Territory</div><div class="wc-desc">Protected geographic territories ensure you're never competing with another franchisee in your market.</div></div>
+    <div class="why-card"><div class="wc-ico">📞</div><div class="wc-title">Ongoing Support</div><div class="wc-desc">Dedicated field support team, regular check-ins and a network of fellow franchisees to lean on.</div></div>
+    <div class="why-card"><div class="wc-ico">📈</div><div class="wc-title">Scale with Confidence</div><div class="wc-desc">Multi-unit franchise rights available — grow your portfolio across multiple locations as you succeed.</div></div>
+  </div>
+</section>
+
+<section id="howtojoin">
+  <div class="sec-eyebrow" style="color:rgba(255,255,255,0.5);">Getting Started</div>
+  <h2 class="sec-h2" style="color:white;">How to Become a Franchisee</h2>
+  <div class="join-steps">
+    <div class="js"><div class="js-num">01</div><div class="js-title">Discovery Call</div><div class="js-desc">Speak with a franchise advisor to explore opportunities that match your goals and budget.</div></div>
+    <div class="js"><div class="js-num">02</div><div class="js-title">Review &amp; Apply</div><div class="js-desc">Receive your Franchise Disclosure Document, review financials and submit your application.</div></div>
+    <div class="js"><div class="js-num">03</div><div class="js-title">Agreement &amp; Training</div><div class="js-desc">Sign your franchise agreement and complete your full onboarding and training program.</div></div>
+    <div class="js"><div class="js-num">04</div><div class="js-title">Grand Opening</div><div class="js-desc">Open your franchise with full support from our launch team and start building your business.</div></div>
+  </div>
+</section>
+
+<section id="investments">
+  <div class="sec-eyebrow">Opportunities</div>
+  <h2 class="sec-h2">Featured Franchise Packages</h2>
+  <div class="invest-grid">
+    <div class="invest-card">
+      <div class="ic-header"><div class="ic-cat">Food &amp; Beverage</div><div class="ic-name">Brew Society Café</div></div>
+      <div class="ic-body">
+        <div class="ic-invest"><span class="ic-invest-label">Total Investment</span><span class="ic-invest-amount">$85K–$140K</span></div>
+        <div class="ic-features">
+          <div class="ic-feat">Exclusive café territory</div>
+          <div class="ic-feat">Full equipment &amp; fit-out package</div>
+          <div class="ic-feat">4-week barista training</div>
+          <div class="ic-feat">Marketing launch support</div>
+          <div class="ic-feat">Avg. payback period 2–3 years</div>
+        </div>
+        <a href="#" class="btn-invest">Request Information</a>
+      </div>
+    </div>
+    <div class="invest-card featured">
+      <div class="ic-header"><div class="ic-cat">Health &amp; Fitness</div><div class="ic-name">PulseZone Gym</div><div class="ic-badge">High Demand</div></div>
+      <div class="ic-body">
+        <div class="ic-invest"><span class="ic-invest-label">Total Investment</span><span class="ic-invest-amount">$120K–$200K</span></div>
+        <div class="ic-features">
+          <div class="ic-feat">Protected gym territory</div>
+          <div class="ic-feat">Full gym fit-out &amp; equipment</div>
+          <div class="ic-feat">6-week operations training</div>
+          <div class="ic-feat">Membership platform included</div>
+          <div class="ic-feat">National marketing support</div>
+          <div class="ic-feat">Avg. payback period 3–4 years</div>
+        </div>
+        <a href="#" class="btn-invest">Request Information</a>
+      </div>
+    </div>
+    <div class="invest-card">
+      <div class="ic-header"><div class="ic-cat">Home Services</div><div class="ic-name">CleanCo Residential</div></div>
+      <div class="ic-body">
+        <div class="ic-invest"><span class="ic-invest-label">Total Investment</span><span class="ic-invest-amount">$25K–$60K</span></div>
+        <div class="ic-features">
+          <div class="ic-feat">Low startup cost</div>
+          <div class="ic-feat">Vehicle &amp; equipment package</div>
+          <div class="ic-feat">2-week operations training</div>
+          <div class="ic-feat">CRM &amp; booking system</div>
+          <div class="ic-feat">Avg. payback period 1–2 years</div>
+        </div>
+        <a href="#" class="btn-invest">Request Information</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <div>
+    <h2 class="cta-t">Ready to Own<br>Your Business?</h2>
+    <p class="cta-sub">Book a free discovery call with a franchise advisor today.</p>
+  </div>
+  <a href="#" class="btn-navy">Book a Free Consultation</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:white;">Franchise<span style="color:var(--gold)">Forward</span></div>
+  <div class="footer-copy">© 2026 FranchiseForward. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

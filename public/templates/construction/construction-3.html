@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex Built — Construction Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--y:#F5C800;--b:#111111;--w:#F8F8F8;--g:#555;--bdr:2px solid #111;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Nunito Sans',sans-serif;background:var(--w);color:var(--b);overflow-x:hidden;}
+
+  nav{background:var(--b);padding:0 56px;height:72px;display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Anton',sans-serif;font-size:28px;letter-spacing:0.05em;color:var(--y);}
+  .logo sub{font-family:'Nunito Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;margin-top:-6px;}
+  .nav-links{display:flex;gap:0;list-style:none;}
+  .nav-links a{padding:0 24px;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;line-height:72px;display:block;border-left:1px solid rgba(255,255,255,0.08);transition:color 0.2s;}
+  .nav-links a:hover{color:var(--y);}
+  .btn-y{padding:12px 28px;background:var(--y);color:var(--b);font-family:'Anton',sans-serif;font-size:15px;letter-spacing:0.08em;text-decoration:none;transition:filter 0.2s;}
+  .btn-y:hover{filter:brightness(1.1);}
+
+  /* HERO */
+  #hero{min-height:90vh;background:var(--b);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 56px;}
+  .hero-stripes{position:absolute;top:0;right:0;width:40%;height:100%;background:repeating-linear-gradient(45deg,transparent,transparent 30px,rgba(245,200,0,0.04) 30px,rgba(245,200,0,0.04) 60px);}
+  .hero-accent{position:absolute;top:0;left:0;right:0;height:6px;background:var(--y);}
+  .hero-content{position:relative;z-index:2;max-width:800px;}
+  .h-tag{display:inline-flex;align-items:center;gap:10px;padding:8px 20px;background:var(--y);color:var(--b);font-size:12px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:32px;}
+  .h-title{font-family:'Anton',sans-serif;font-size:clamp(64px,9vw,120px);line-height:0.92;letter-spacing:0.02em;color:white;text-transform:uppercase;margin-bottom:32px;}
+  .h-title .yel{color:var(--y);}
+  .h-desc{font-size:16px;font-weight:300;line-height:1.75;color:rgba(255,255,255,0.55);max-width:520px;margin-bottom:48px;}
+  .h-btns{display:flex;gap:16px;}
+  .btn-outline-y{padding:14px 32px;background:transparent;border:2px solid var(--y);color:var(--y);font-family:'Anton',sans-serif;font-size:15px;letter-spacing:0.08em;text-decoration:none;transition:all 0.2s;}
+  .btn-outline-y:hover{background:var(--y);color:var(--b);}
+  .hero-stats{display:flex;gap:0;position:absolute;right:56px;bottom:80px;z-index:2;}
+  .hs{padding:28px 32px;background:rgba(255,255,255,0.05);border-left:1px solid rgba(255,255,255,0.1);}
+  .hs:first-child{border-left:none;}
+  .hs-n{font-family:'Anton',sans-serif;font-size:40px;color:var(--y);}
+  .hs-l{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-top:4px;}
+
+  /* SERVICES */
+  #services{padding:0;}
+  .svc-band{background:var(--y);padding:20px 56px;display:flex;gap:0;overflow:hidden;}
+  .svc-band-item{padding:0 36px;border-left:2px solid rgba(0,0,0,0.15);font-family:'Anton',sans-serif;font-size:16px;letter-spacing:0.04em;white-space:nowrap;}
+  .svc-band-item:first-child{border-left:none;padding-left:0;}
+  .svc-main{padding:80px 56px;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#ddd;}
+  .svc-card{background:var(--w);padding:44px 40px;transition:background 0.2s;}
+  .svc-card:hover{background:var(--b);color:white;}
+  .svc-card:hover .svc-desc{color:rgba(255,255,255,0.5);}
+  .svc-num{font-family:'Anton',sans-serif;font-size:56px;color:rgba(0,0,0,0.06);line-height:1;margin-bottom:-10px;transition:color 0.2s;}
+  .svc-card:hover .svc-num{color:rgba(255,200,0,0.15);}
+  .svc-title{font-family:'Anton',sans-serif;font-size:24px;letter-spacing:0.03em;text-transform:uppercase;margin-bottom:12px;}
+  .svc-desc{font-size:14px;font-weight:400;line-height:1.7;color:var(--g);transition:color 0.2s;}
+  .svc-arrow{margin-top:20px;font-size:22px;transition:transform 0.2s;}
+  .svc-card:hover .svc-arrow{transform:translateX(8px);}
+
+  /* PROJECTS */
+  #projects{padding:80px 56px;background:var(--b);}
+  .proj-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;}
+  .sec-lbl{font-size:11px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--y);margin-bottom:8px;}
+  .sec-title{font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,52px);color:white;text-transform:uppercase;letter-spacing:0.02em;}
+  .proj-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px;}
+  .big-proj{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:48px;display:flex;flex-direction:column;justify-content:flex-end;min-height:320px;position:relative;overflow:hidden;}
+  .big-proj-icon{position:absolute;top:40px;right:40px;font-size:80px;opacity:0.1;}
+  .sm-proj{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:36px;display:flex;flex-direction:column;justify-content:flex-end;}
+  .proj-cat{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--y);margin-bottom:10px;}
+  .proj-name{font-family:'Anton',sans-serif;font-size:22px;color:white;text-transform:uppercase;margin-bottom:6px;}
+  .proj-val{font-size:13px;color:rgba(255,255,255,0.4);}
+
+  /* WHY */
+  #why{padding:80px 56px;display:flex;justify-content:space-between;gap:80px;align-items:center;}
+  .why-left{max-width:480px;}
+  .why-right{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:#ddd;flex:1;}
+  .why-box{background:var(--w);padding:36px 32px;}
+  .wb-icon{font-size:36px;margin-bottom:16px;}
+  .wb-title{font-family:'Anton',sans-serif;font-size:20px;text-transform:uppercase;margin-bottom:8px;}
+  .wb-desc{font-size:13px;color:var(--g);line-height:1.65;}
+
+  /* CTA */
+  .cta-band{background:var(--y);padding:64px 56px;display:flex;justify-content:space-between;align-items:center;}
+  .cta-t{font-family:'Anton',sans-serif;font-size:clamp(32px,4vw,56px);text-transform:uppercase;line-height:1.0;letter-spacing:0.02em;}
+
+  footer{background:var(--b);padding:32px 56px;display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">APEX BUILT<sub>Construction Group</sub></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Safety</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-y">Free Estimate</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-stripes"></div>
+  <div class="hero-accent"></div>
+  <div class="hero-content">
+    <div class="h-tag">⚠ Licensed · Insured · Certified</div>
+    <h1 class="h-title">WE BUILD<br><span class="yel">WHAT</span><br>MATTERS</h1>
+    <p class="h-desc">From foundations to finishes — Apex Built delivers construction that stands for generations. Commercial, residential, industrial.</p>
+    <div class="h-btns">
+      <a href="#" class="btn-y" style="font-family:'Anton',sans-serif;font-size:15px;letter-spacing:0.08em;padding:14px 36px;display:inline-block;">Get Free Estimate</a>
+      <a href="#projects" class="btn-outline-y">Our Projects</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hs"><div class="hs-n">900+</div><div class="hs-l">Projects</div></div>
+    <div class="hs"><div class="hs-n">35yr</div><div class="hs-l">Experience</div></div>
+    <div class="hs"><div class="hs-n">0</div><div class="hs-l">Incidents</div></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="svc-band">
+    <div class="svc-band-item">🏢 Commercial</div>
+    <div class="svc-band-item">🏠 Residential</div>
+    <div class="svc-band-item">🏭 Industrial</div>
+    <div class="svc-band-item">🛣 Civil Works</div>
+    <div class="svc-band-item">🔨 Renovation</div>
+    <div class="svc-band-item">📐 Design & Build</div>
+  </div>
+  <div class="svc-main">
+    <div class="svc-card"><div class="svc-num">01</div><div class="svc-title">Commercial Construction</div><div class="svc-desc">High-rise offices, retail centers, hospitality venues and mixed-use developments built for scale.</div><div class="svc-arrow">→</div></div>
+    <div class="svc-card"><div class="svc-num">02</div><div class="svc-title">Residential Build</div><div class="svc-desc">Custom homes, multi-unit housing and estate developments crafted with precision.</div><div class="svc-arrow">→</div></div>
+    <div class="svc-card"><div class="svc-num">03</div><div class="svc-title">Industrial Facilities</div><div class="svc-desc">Warehouses, manufacturing plants and logistics hubs engineered for heavy-duty use.</div><div class="svc-arrow">→</div></div>
+    <div class="svc-card"><div class="svc-num">04</div><div class="svc-title">Renovation & Retrofitting</div><div class="svc-desc">Structural upgrades, fit-outs and full building transformations on any scale.</div><div class="svc-arrow">→</div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="proj-header">
+    <div><div class="sec-lbl">Portfolio</div><h2 class="sec-title">Recent Projects</h2></div>
+    <a href="#" class="btn-y" style="font-family:'Anton',sans-serif;font-size:14px;letter-spacing:0.08em;padding:12px 28px;display:inline-block;text-decoration:none;">All Projects</a>
+  </div>
+  <div class="proj-grid">
+    <div class="big-proj"><div class="big-proj-icon">🏗</div><div class="proj-cat">Commercial · $240M</div><div class="proj-name">Crown Tower Phase II</div><div class="proj-val">48 floors · Downtown Houston</div></div>
+    <div class="sm-proj"><div class="proj-cat">Industrial · $55M</div><div class="proj-name">Pacific Logistics Center</div><div class="proj-val">320,000 sqft</div></div>
+    <div class="sm-proj"><div class="proj-cat">Residential · $78M</div><div class="proj-name">Maple Ridge Estates</div><div class="proj-val">180 units · Denver</div></div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="why-left">
+    <div class="sec-lbl">Why Apex</div>
+    <h2 class="sec-title" style="font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,52px);text-transform:uppercase;margin-bottom:24px;">Built On Trust &amp; Precision</h2>
+    <p style="font-size:15px;line-height:1.75;color:var(--g);">Every project we take on is backed by decades of craft, a workforce of skilled tradespeople, and an unwavering commitment to safety and quality.</p>
+  </div>
+  <div class="why-right">
+    <div class="why-box"><div class="wb-icon">🛡</div><div class="wb-title">Zero Incidents</div><div class="wb-desc">Industry-leading HSE standards across all active sites.</div></div>
+    <div class="why-box"><div class="wb-icon">📋</div><div class="wb-title">Certified QA</div><div class="wb-desc">ISO 9001 quality management on every build.</div></div>
+    <div class="why-box"><div class="wb-icon">⏰</div><div class="wb-title">On-Time Delivery</div><div class="wb-desc">98% of projects completed on schedule.</div></div>
+    <div class="why-box"><div class="wb-icon">🤝</div><div class="wb-title">Client-First</div><div class="wb-desc">Transparent communication throughout every phase.</div></div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <h2 class="cta-t">START YOUR BUILD TODAY.<br>LET'S TALK.</h2>
+  <a href="#" class="btn-y" style="font-family:'Anton',sans-serif;font-size:18px;letter-spacing:0.08em;padding:18px 48px;display:inline-block;text-decoration:none;background:var(--b);color:var(--y);">Request Estimate</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Anton',sans-serif;font-size:22px;letter-spacing:0.05em;color:var(--y);">APEX BUILT</div>
+  <div class="footer-copy">© 2026 Apex Built Construction Group. All rights reserved.</div>
+</footer>
+</body>
+</html>

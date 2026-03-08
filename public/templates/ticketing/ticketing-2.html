@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Passline — Event Ticketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f8f5f0;
+    --ink: #1a1410;
+    --rust: #c0392b;
+    --gold: #c9a84c;
+    --warm: #e8e0d5;
+    --mid: #7a6e64;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 64px; height: 72px; background: var(--cream);
+    border-bottom: 1px solid var(--warm);
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; color: var(--ink); }
+  .logo span { color: var(--rust); }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 400; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .btn-rust { padding: 10px 28px; background: var(--rust); color: white; font-size: 13px; font-weight: 500; text-decoration: none; transition: opacity 0.2s; }
+  .btn-rust:hover { opacity: 0.85; }
+
+  /* HERO */
+  #hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; }
+  .hero-left {
+    padding: 80px 64px; display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid var(--warm);
+  }
+  .hero-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--rust); margin-bottom: 24px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px, 5vw, 72px); font-weight: 900; line-height: 1.05; margin-bottom: 24px; }
+  .hero-title em { color: var(--rust); font-style: italic; }
+  .hero-sub { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--mid); max-width: 420px; margin-bottom: 40px; }
+  .hero-actions { display: flex; gap: 16px; align-items: center; }
+  .hero-link { font-size: 14px; font-weight: 500; color: var(--ink); text-decoration: underline; }
+  .hero-stats { display: flex; gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--warm); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: var(--ink); }
+  .stat-lbl { font-size: 12px; color: var(--mid); margin-top: 4px; }
+
+  .hero-right {
+    background: var(--ink);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 48px; position: relative; overflow: hidden;
+  }
+  .featured-badge {
+    position: absolute; top: 32px; left: 32px;
+    padding: 6px 14px; background: var(--rust);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: white;
+  }
+  .featured-emoji { font-size: 80px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-60%); opacity: 0.15; }
+  .featured-date { font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .featured-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 900; color: white; line-height: 1.15; margin-bottom: 12px; }
+  .featured-venue { font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
+  .featured-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .featured-price { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--gold); }
+
+  /* EVENTS LIST */
+  #events { padding: 80px 64px; }
+  .events-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 40px; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 900; }
+  .events-table { width: 100%; border-collapse: collapse; }
+  .events-table th { text-align: left; padding: 12px 0; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); border-bottom: 2px solid var(--ink); }
+  .events-table td { padding: 20px 0; border-bottom: 1px solid var(--warm); vertical-align: middle; }
+  .evt-date-cell { font-size: 12px; font-weight: 500; color: var(--mid); width: 120px; }
+  .evt-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
+  .evt-cat { display: inline-block; padding: 2px 10px; background: var(--warm); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mid); margin-left: 12px; }
+  .evt-venue { font-size: 13px; color: var(--mid); margin-top: 4px; }
+  .evt-price { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--rust); text-align: right; }
+  .btn-buy { padding: 8px 24px; background: var(--ink); color: white; font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: background 0.2s; }
+  .btn-buy:hover { background: var(--rust); }
+
+  /* HOW IT WORKS */
+  #how { padding: 80px 64px; background: var(--ink); color: white; }
+  .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 48px; }
+  .how-step { padding: 40px 32px; border-right: 1px solid rgba(255,255,255,0.08); }
+  .how-step:last-child { border-right: none; }
+  .how-num { font-family: 'Playfair Display', serif; font-size: 56px; font-weight: 900; color: var(--rust); opacity: 0.6; line-height: 1; margin-bottom: 20px; }
+  .how-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+  .how-desc { font-size: 14px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+  footer { padding: 40px 64px; border-top: 1px solid var(--warm); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 13px; color: var(--mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Pass<span>line</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Discover</a></li>
+    <li><a href="#">Concerts</a></li>
+    <li><a href="#">Theater</a></li>
+    <li><a href="#">Sports</a></li>
+    <li><a href="#">Help</a></li>
+  </ul>
+  <a href="#" class="btn-rust">Browse Tickets</a>
+</nav>
+
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">✦ Curated Live Experiences</div>
+    <h1 class="hero-title">Find Your Next <em>Great</em> Night Out</h1>
+    <p class="hero-sub">Passline connects you with the finest concerts, performances and sporting events in your city — handpicked, verified, instantly bookable.</p>
+    <div class="hero-actions">
+      <a href="#events" class="btn-rust">Explore Events</a>
+      <a href="#" class="hero-link">How it works</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">12K+</div><div class="stat-lbl">Events listed</div></div>
+      <div><div class="stat-num">98%</div><div class="stat-lbl">Customer satisfaction</div></div>
+      <div><div class="stat-num">2M+</div><div class="stat-lbl">Tickets sold</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="featured-badge">Featured Tonight</div>
+    <div class="featured-emoji">🎶</div>
+    <div class="featured-date">Friday, March 14 · 8:00 PM</div>
+    <div class="featured-title">The Royal Orchestra — Seasons Tour</div>
+    <div class="featured-venue">Carnegie Hall, New York City</div>
+    <div class="featured-footer">
+      <div class="featured-price">From $85</div>
+      <a href="#" class="btn-rust">Book Now</a>
+    </div>
+  </div>
+</section>
+
+<section id="events">
+  <div class="events-header">
+    <h2 class="section-title">Upcoming Events</h2>
+    <a href="#" style="font-size:13px;color:var(--rust);text-decoration:none;">View full calendar →</a>
+  </div>
+  <table class="events-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Location</th>
+        <th style="text-align:right">Price</th>
+        <th style="text-align:right">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="evt-date-cell">Mar 15<br>Sat 8PM</td>
+        <td><div class="evt-name">Neon Dreams Festival <span class="evt-cat">Music</span></div><div class="evt-venue">Outdoor Amphitheater</div></td>
+        <td style="font-size:13px;color:var(--mid)">Los Angeles, CA</td>
+        <td class="evt-price">$65</td>
+        <td style="text-align:right"><a href="#" class="btn-buy">Buy</a></td>
+      </tr>
+      <tr>
+        <td class="evt-date-cell">Mar 18<br>Tue 7PM</td>
+        <td><div class="evt-name">Shakespeare's Hamlet <span class="evt-cat">Theater</span></div><div class="evt-venue">Globe Theatre Revival</div></td>
+        <td style="font-size:13px;color:var(--mid)">London, UK</td>
+        <td class="evt-price">$110</td>
+        <td style="text-align:right"><a href="#" class="btn-buy">Buy</a></td>
+      </tr>
+      <tr>
+        <td class="evt-date-cell">Mar 22<br>Sat 3PM</td>
+        <td><div class="evt-name">City FC vs. United <span class="evt-cat">Sports</span></div><div class="evt-venue">Metro Arena</div></td>
+        <td style="font-size:13px;color:var(--mid)">Manchester, UK</td>
+        <td class="evt-price">$40</td>
+        <td style="text-align:right"><a href="#" class="btn-buy">Buy</a></td>
+      </tr>
+      <tr>
+        <td class="evt-date-cell">Mar 28<br>Fri 9PM</td>
+        <td><div class="evt-name">Stand-Up Comedy Night <span class="evt-cat">Comedy</span></div><div class="evt-venue">The Laugh Factory</div></td>
+        <td style="font-size:13px;color:var(--mid)">Chicago, IL</td>
+        <td class="evt-price">$35</td>
+        <td style="text-align:right"><a href="#" class="btn-buy">Buy</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="how">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="hero-tag" style="color:var(--gold)">Simple. Secure. Fast.</div>
+    <h2 class="section-title" style="font-family:'Playfair Display',serif;font-size:40px;color:white;margin-top:12px;">How Passline Works</h2>
+    <div class="how-grid">
+      <div class="how-step"><div class="how-num">01</div><div class="how-title">Search</div><div class="how-desc">Find events by city, date, artist or venue from our curated database.</div></div>
+      <div class="how-step"><div class="how-num">02</div><div class="how-title">Choose</div><div class="how-desc">Select your seats, view the venue map and compare ticket tiers.</div></div>
+      <div class="how-step"><div class="how-num">03</div><div class="how-title">Pay</div><div class="how-desc">Secure checkout with all major cards and digital wallets supported.</div></div>
+      <div class="how-step"><div class="how-num">04</div><div class="how-title">Attend</div><div class="how-desc">Receive your e-ticket instantly. Present at the door — no printing needed.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Pass<span style="color:var(--rust)">line</span></div>
+  <div class="footer-copy">© 2026 Passline Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

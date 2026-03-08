@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CoolBreeze — AC Cleaning Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--teal:#0d9488;--teal2:#14b8a6;--light:#f0fdfa;--bg:#ffffff;--ink:#0f2623;--mid:#4a7c75;--bdr:#ccf0ec;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+  nav{padding:0 64px;height:74px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:100;background:white;}
+  .logo{font-size:22px;font-weight:800;color:var(--ink);}
+  .logo span{color:var(--teal);}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{font-size:14px;font-weight:500;color:var(--mid);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--teal);}
+  .nav-right{display:flex;gap:12px;align-items:center;}
+  .btn-outline{padding:9px 22px;border:1.5px solid var(--teal);color:var(--teal);font-size:13px;font-weight:600;text-decoration:none;border-radius:8px;transition:all 0.2s;}
+  .btn-outline:hover{background:var(--teal);color:white;}
+  .btn-solid{padding:9px 22px;background:var(--teal);color:white;font-size:13px;font-weight:600;text-decoration:none;border-radius:8px;transition:filter 0.2s;}
+  .btn-solid:hover{filter:brightness(1.05);}
+
+  /* HERO */
+  #hero{padding:80px 64px;background:var(--light);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .h-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:white;border:1px solid var(--bdr);border-radius:100px;font-size:12px;font-weight:600;color:var(--teal);margin-bottom:24px;}
+  .h-title{font-size:clamp(40px,5vw,60px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:20px;}
+  .h-title span{color:var(--teal);}
+  .h-desc{font-size:16px;font-weight:400;line-height:1.75;color:var(--mid);margin-bottom:36px;}
+  .h-btns{display:flex;gap:12px;margin-bottom:40px;}
+  .btn-lg{padding:14px 32px;font-size:15px;font-weight:700;border-radius:10px;}
+  .trust-badges{display:flex;gap:20px;flex-wrap:wrap;}
+  .badge{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--mid);}
+  .badge-icon{width:28px;height:28px;background:var(--teal);border-radius:50%;display:grid;place-items:center;font-size:12px;color:white;flex-shrink:0;}
+
+  .hero-right{position:relative;}
+  .hero-card{background:white;border-radius:20px;padding:36px;box-shadow:0 20px 60px rgba(13,148,136,0.1);border:1px solid var(--bdr);}
+  .hc-title{font-size:18px;font-weight:700;margin-bottom:8px;}
+  .hc-sub{font-size:13px;color:var(--mid);margin-bottom:24px;}
+  .slot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px;}
+  .slot{padding:10px;text-align:center;border:1.5px solid var(--bdr);border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+  .slot:hover,.slot.active{background:var(--teal);color:white;border-color:var(--teal);}
+  .slot.active{background:var(--teal);}
+  .booking-cta{width:100%;padding:14px;background:var(--teal);color:white;font-size:14px;font-weight:700;border:none;border-radius:10px;cursor:pointer;transition:filter 0.2s;}
+  .booking-cta:hover{filter:brightness(1.05);}
+  .floating-chip{position:absolute;background:white;border-radius:12px;padding:12px 16px;box-shadow:0 8px 32px rgba(0,0,0,0.1);font-size:12px;font-weight:600;}
+  .fc1{top:-20px;right:20px;}
+  .fc2{bottom:-20px;left:20px;}
+
+  /* SERVICES */
+  #services{padding:96px 64px;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px;}
+  .section-h2{font-size:clamp(32px,3.5vw,44px);font-weight:800;letter-spacing:-0.02em;margin-bottom:48px;line-height:1.1;}
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .svc-card{background:var(--light);border-radius:16px;padding:36px 28px;border:1px solid var(--bdr);transition:all 0.3s;}
+  .svc-card:hover{background:white;box-shadow:0 16px 48px rgba(13,148,136,0.1);transform:translateY(-4px);}
+  .svc-ico{width:56px;height:56px;background:var(--teal);border-radius:14px;display:grid;place-items:center;font-size:24px;margin-bottom:20px;}
+  .svc-title{font-size:18px;font-weight:700;margin-bottom:10px;}
+  .svc-desc{font-size:13px;line-height:1.7;color:var(--mid);margin-bottom:16px;}
+  .svc-price{font-size:22px;font-weight:800;color:var(--teal);}
+
+  /* BEFORE/AFTER */
+  #results{padding:96px 64px;background:var(--light);}
+  .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  .ba-card{background:white;border-radius:16px;overflow:hidden;border:1px solid var(--bdr);}
+  .ba-visual{height:140px;display:flex;}
+  .before,.after{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;}
+  .before{background:#fef9f0;border-right:1px solid var(--bdr);}
+  .after{background:#f0fdfa;}
+  .ba-emoji{font-size:36px;}
+  .ba-lbl{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;}
+  .before .ba-lbl{color:#d97706;}
+  .after .ba-lbl{color:var(--teal);}
+  .ba-body{padding:20px;}
+  .ba-title{font-size:15px;font-weight:700;margin-bottom:6px;}
+  .ba-desc{font-size:12px;color:var(--mid);line-height:1.6;}
+
+  /* PROCESS */
+  #process{padding:96px 64px;}
+  .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px;}
+  .proc-card{text-align:center;}
+  .proc-num{width:56px;height:56px;background:var(--teal);border-radius:50%;display:grid;place-items:center;margin:0 auto 20px;font-size:20px;font-weight:800;color:white;}
+  .proc-title{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .proc-desc{font-size:13px;color:var(--mid);line-height:1.65;}
+
+  /* CTA */
+  .cta{padding:80px 64px;background:var(--teal);text-align:center;}
+  .cta-title{font-size:clamp(32px,4vw,52px);font-weight:800;color:white;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;}
+  .cta-sub{font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:36px;}
+  .btn-white-lg{padding:16px 44px;background:white;color:var(--teal);font-size:15px;font-weight:700;border-radius:10px;text-decoration:none;display:inline-block;transition:all 0.2s;}
+  .btn-white-lg:hover{background:var(--ink);color:white;}
+
+  footer{padding:32px 64px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--mid);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Cool<span>Breeze</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Coverage</a></li>
+    <li><a href="#">Reviews</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+1800000000" class="btn-outline">📞 Call Us</a>
+    <a href="#" class="btn-solid">Book Online</a>
+  </div>
+</nav>
+
+<section id="hero">
+  <div>
+    <div class="h-pill">🌟 4.9/5 · Over 5,000 happy customers</div>
+    <h1 class="h-title">AC Cleaning<br>Done <span>Right,</span><br>Every Time</h1>
+    <p class="h-desc">Professional aircon cleaning and maintenance by certified technicians. Book in 60 seconds — we come to you.</p>
+    <div class="h-btns">
+      <a href="#" class="btn-solid btn-lg">Book a Cleaning →</a>
+      <a href="#services" class="btn-outline btn-lg">Our Services</a>
+    </div>
+    <div class="trust-badges">
+      <div class="badge"><div class="badge-icon">✓</div>Certified Technicians</div>
+      <div class="badge"><div class="badge-icon">⚡</div>Same-Day Available</div>
+      <div class="badge"><div class="badge-icon">🛡</div>Guaranteed Results</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="floating-chip fc1">⭐ 5.0 · Just booked 2 mins ago</div>
+    <div class="hero-card">
+      <div class="hc-title">Quick Booking</div>
+      <div class="hc-sub">Pick an available time slot</div>
+      <div class="slot-grid">
+        <div class="slot">Mon 9am</div>
+        <div class="slot">Mon 1pm</div>
+        <div class="slot active">Tue 10am</div>
+        <div class="slot">Tue 2pm</div>
+        <div class="slot">Wed 9am</div>
+        <div class="slot">Wed 3pm</div>
+      </div>
+      <button class="booking-cta">Confirm Booking →</button>
+    </div>
+    <div class="floating-chip fc2">✅ 243 bookings this week</div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-label">What We Offer</div>
+  <h2 class="section-h2">Our AC Services</h2>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-ico">❄️</div><div class="svc-title">Standard Cleaning</div><div class="svc-desc">Filter, coil and drain pan cleaning. Restores airflow and efficiency in under an hour.</div><div class="svc-price">$60 / unit</div></div>
+    <div class="svc-card"><div class="svc-ico">🧽</div><div class="svc-title">Deep Clean</div><div class="svc-desc">Full disassembly clean with anti-bacterial wash. Best for units not cleaned in 6+ months.</div><div class="svc-price">$95 / unit</div></div>
+    <div class="svc-card"><div class="svc-ico">🔧</div><div class="svc-title">Maintenance Plan</div><div class="svc-desc">Twice-yearly visits to keep your AC running at peak performance all year round.</div><div class="svc-price">$180 / yr</div></div>
+    <div class="svc-card"><div class="svc-ico">🌡️</div><div class="svc-title">Gas Top-Up</div><div class="svc-desc">Refrigerant recharge to restore full cooling capacity. Includes leak check.</div><div class="svc-price">$120</div></div>
+    <div class="svc-card"><div class="svc-ico">🏢</div><div class="svc-title">Commercial</div><div class="svc-desc">Custom contracts for offices, restaurants and commercial buildings.</div><div class="svc-price">Custom</div></div>
+    <div class="svc-card"><div class="svc-ico">🚨</div><div class="svc-title">Emergency Call-Out</div><div class="svc-desc">Same-day emergency response for urgent breakdowns and AC failures.</div><div class="svc-price">$85 call-out</div></div>
+  </div>
+</section>
+
+<section id="results">
+  <div class="section-label">Results</div>
+  <h2 class="section-h2">Before & After Every Clean</h2>
+  <div class="ba-grid">
+    <div class="ba-card"><div class="ba-visual"><div class="before"><span class="ba-emoji">🦠</span><span class="ba-lbl">Before</span></div><div class="after"><span class="ba-emoji">✨</span><span class="ba-lbl">After</span></div></div><div class="ba-body"><div class="ba-title">Filter & Coil</div><div class="ba-desc">Dust and mold buildup removed. Airflow restored to factory standard.</div></div></div>
+    <div class="ba-card"><div class="ba-visual"><div class="before"><span class="ba-emoji">💧</span><span class="ba-lbl">Before</span></div><div class="after"><span class="ba-emoji">✅</span><span class="ba-lbl">After</span></div></div><div class="ba-body"><div class="ba-title">Drain Pan</div><div class="ba-desc">Blocked drains cleared. No more water leaks or overflow risk.</div></div></div>
+    <div class="ba-card"><div class="ba-visual"><div class="before"><span class="ba-emoji">😷</span><span class="ba-lbl">Before</span></div><div class="after"><span class="ba-emoji">😊</span><span class="ba-lbl">After</span></div></div><div class="ba-body"><div class="ba-title">Air Quality</div><div class="ba-desc">Bacteria and allergens removed. Clean, fresh air for your family.</div></div></div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-h2">4 Easy Steps</h2>
+  <div class="proc-grid">
+    <div class="proc-card"><div class="proc-num">1</div><div class="proc-title">Book Online</div><div class="proc-desc">Select your service, date and time. Takes under 60 seconds.</div></div>
+    <div class="proc-card"><div class="proc-num">2</div><div class="proc-title">Confirmation</div><div class="proc-desc">Get an instant booking confirmation with technician details.</div></div>
+    <div class="proc-card"><div class="proc-num">3</div><div class="proc-title">We Arrive</div><div class="proc-desc">Certified tech arrives on time with all tools and equipment.</div></div>
+    <div class="proc-card"><div class="proc-num">4</div><div class="proc-title">Enjoy Fresh Air</div><div class="proc-desc">Clean, efficient cooling restored. Payment on completion.</div></div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-title">Your AC Deserves a Clean</h2>
+  <p class="cta-sub">Book in 60 seconds. Same-day slots available.</p>
+  <a href="#" class="btn-white-lg">Book a Cleaning Now →</a>
+</div>
+
+<footer>
+  <div class="logo">Cool<span style="color:var(--teal)">Breeze</span></div>
+  <div class="footer-copy">© 2026 CoolBreeze AC Services. All rights reserved.</div>
+</footer>
+</body>
+</html>

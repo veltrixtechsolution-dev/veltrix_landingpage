@@ -33,7 +33,7 @@ export function ContactSection() {
               </div>
               <div>
                 <p className="contact-item__label">Email</p>
-                <p className="contact-item__value">hello@veltrixtech.com</p>
+                <p className="contact-item__value">veltrixtechsolution@gmail.com</p>
               </div>
             </div>
 

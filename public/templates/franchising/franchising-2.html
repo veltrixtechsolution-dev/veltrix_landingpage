@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OwnIt Franchise Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #EA580C;
+    --orange2: #FB923C;
+    --light: #FFF7ED;
+    --bg: #FFFFFF;
+    --ink: #1C0A00;
+    --mid: #7C5C46;
+    --bdr: #FED7AA;
+    --green: #16A34A;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--ink); }
+
+  nav {
+    height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 64px;
+    border-bottom: 1px solid var(--bdr);
+    background: white;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .logo { font-size: 24px; font-weight: 800; color: var(--ink); }
+  .logo span { color: var(--orange); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 14px; font-weight: 500; color: var(--mid); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--orange); }
+  .btn-orange { padding: 11px 28px; background: var(--orange); color: white; font-size: 13px; font-weight: 700; border-radius: 8px; text-decoration: none; transition: filter 0.2s; }
+  .btn-orange:hover { filter: brightness(1.05); }
+
+  /* HERO */
+  #hero { padding: 80px 64px; background: var(--light); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; min-height: 88vh; }
+  .h-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: white; border: 1px solid var(--bdr); border-radius: 100px; font-size: 12px; font-weight: 700; color: var(--orange); margin-bottom: 24px; }
+  .h-title { font-size: clamp(44px, 5.5vw, 68px); font-weight: 800; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .h-title span { color: var(--orange); }
+  .h-desc { font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--mid); margin-bottom: 36px; }
+  .h-btns { display: flex; gap: 12px; margin-bottom: 48px; }
+  .btn-lg { padding: 15px 36px; font-size: 15px; font-weight: 700; border-radius: 10px; text-decoration: none; transition: all 0.2s; }
+  .btn-orange-lg { background: var(--orange); color: white; }
+  .btn-orange-lg:hover { filter: brightness(1.05); }
+  .btn-outline-o { border: 1.5px solid var(--orange); color: var(--orange); }
+  .btn-outline-o:hover { background: var(--orange); color: white; }
+  .h-stats { display: flex; gap: 36px; padding-top: 36px; border-top: 1px solid var(--bdr); }
+  .hs { }
+  .hs-n { font-size: 38px; font-weight: 800; color: var(--orange); line-height: 1; }
+  .hs-l { font-size: 12px; font-weight: 500; color: var(--mid); margin-top: 4px; }
+
+  .hero-right { }
+  .enquiry-form { background: white; border-radius: 20px; padding: 40px; box-shadow: 0 8px 48px rgba(234,88,12,0.1); border: 1px solid var(--bdr); }
+  .ef-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .ef-sub { font-size: 14px; color: var(--mid); margin-bottom: 28px; }
+  .form-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 20px; }
+  .ff { display: flex; flex-direction: column; gap: 8px; }
+  .ff label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+  .ff input, .ff select {
+    padding: 12px 16px; border: 1px solid var(--bdr); border-radius: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: var(--ink); outline: none;
+    transition: border-color 0.2s;
+  }
+  .ff input:focus, .ff select:focus { border-color: var(--orange); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .btn-submit { width: 100%; padding: 15px; background: var(--orange); color: white; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800; border: none; border-radius: 10px; cursor: pointer; transition: filter 0.2s; }
+  .btn-submit:hover { filter: brightness(1.05); }
+  .form-note { font-size: 12px; color: var(--mid); text-align: center; margin-top: 12px; }
+
+  /* BRANDS */
+  #brands { padding: 100px 64px; }
+  .sec-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+  .sec-h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 48px; }
+  .industry-tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+  .itab { padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 600; border: 1px solid var(--bdr); cursor: pointer; transition: all 0.2s; background: white; color: var(--mid); }
+  .itab.active, .itab:hover { background: var(--orange); color: white; border-color: var(--orange); }
+  .brands-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .brand-card { background: var(--light); border-radius: 20px; padding: 36px 28px; border: 1px solid var(--bdr); transition: all 0.3s; }
+  .brand-card:hover { background: white; box-shadow: 0 12px 40px rgba(234,88,12,0.1); transform: translateY(-4px); }
+  .bc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
+  .bc-icon { width: 60px; height: 60px; background: white; border-radius: 16px; border: 1px solid var(--bdr); display: grid; place-items: center; font-size: 28px; }
+  .bc-roi { padding: 5px 12px; background: rgba(22,163,74,0.1); border-radius: 100px; font-size: 11px; font-weight: 700; color: var(--green); }
+  .bc-industry { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange); margin-bottom: 8px; }
+  .bc-name { font-size: 20px; font-weight: 800; margin-bottom: 10px; }
+  .bc-desc { font-size: 13px; font-weight: 300; line-height: 1.7; color: var(--mid); margin-bottom: 20px; }
+  .bc-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--bdr); }
+  .bc-invest { font-size: 18px; font-weight: 800; color: var(--orange); }
+  .bc-invest span { font-size: 12px; font-weight: 400; color: var(--mid); }
+  .btn-enquire { padding: 9px 20px; background: var(--orange); color: white; font-size: 12px; font-weight: 700; border-radius: 8px; text-decoration: none; transition: filter 0.2s; }
+  .btn-enquire:hover { filter: brightness(1.05); }
+
+  /* SUPPORT */
+  #support { padding: 80px 64px; background: var(--light); }
+  .support-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+  .sp-card { background: white; border-radius: 16px; padding: 32px 24px; border: 1px solid var(--bdr); text-align: center; }
+  .sp-icon { font-size: 40px; margin-bottom: 16px; }
+  .sp-title { font-size: 17px; font-weight: 700; margin-bottom: 10px; }
+  .sp-desc { font-size: 13px; font-weight: 300; line-height: 1.65; color: var(--mid); }
+
+  /* TESTIMONIALS */
+  #testimonials { padding: 80px 64px; }
+  .tgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .tcard { background: var(--light); border-radius: 20px; padding: 32px 28px; border: 1px solid var(--bdr); }
+  .t-stars { color: var(--orange); font-size: 16px; letter-spacing: 3px; margin-bottom: 16px; }
+  .t-text { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--mid); margin-bottom: 24px; }
+  .t-author { display: flex; align-items: center; gap: 14px; }
+  .t-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--orange); color: white; font-weight: 800; font-size: 16px; display: grid; place-items: center; flex-shrink: 0; }
+  .t-name { font-size: 15px; font-weight: 700; }
+  .t-brand { font-size: 12px; color: var(--mid); }
+
+  /* CTA */
+  .cta { padding: 80px 64px; background: var(--orange); display: flex; justify-content: space-between; align-items: center; }
+  .cta-t { font-size: clamp(32px, 4.5vw, 56px); font-weight: 800; color: white; letter-spacing: -0.02em; line-height: 1.05; }
+  .cta-sub { font-size: 16px; color: rgba(255,255,255,0.8); margin-top: 8px; }
+  .btn-white { padding: 17px 48px; background: white; color: var(--orange); font-size: 15px; font-weight: 800; border-radius: 10px; text-decoration: none; flex-shrink: 0; transition: all 0.2s; }
+  .btn-white:hover { background: var(--ink); color: white; }
+
+  footer { padding: 32px 64px; border-top: 1px solid var(--bdr); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 12px; color: var(--mid); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Own<span>It</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Brands</a></li>
+    <li><a href="#">Why Franchise</a></li>
+    <li><a href="#">Investment</a></li>
+    <li><a href="#">Success Stories</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a href="#" class="btn-orange">Start Your Journey</a>
+</nav>
+
+<section id="hero">
+  <div>
+    <div class="h-pill">🚀 Join 500+ successful franchisees</div>
+    <h1 class="h-title">Be Your Own Boss<br>with a <span>Proven Brand</span></h1>
+    <p class="h-desc">OwnIt connects you with franchise opportunities across 20+ industries. Proven systems, real training and a community that has your back from day one.</p>
+    <div class="h-btns">
+      <a href="#brands" class="btn-lg btn-orange-lg">View Opportunities →</a>
+      <a href="#" class="btn-lg btn-outline-o">How It Works</a>
+    </div>
+    <div class="h-stats">
+      <div class="hs"><div class="hs-n">40+</div><div class="hs-l">Franchise Brands</div></div>
+      <div class="hs"><div class="hs-n">500+</div><div class="hs-l">Active Owners</div></div>
+      <div class="hs"><div class="hs-n">98%</div><div class="hs-l">Still Trading Year 3</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="enquiry-form">
+      <div class="ef-title">Find Your Perfect Franchise</div>
+      <div class="ef-sub">Tell us a little about yourself and we'll match you with the right opportunity.</div>
+      <div class="form-fields">
+        <div class="form-row">
+          <div class="ff"><label>First Name</label><input type="text" placeholder="Your name"></div>
+          <div class="ff"><label>Last Name</label><input type="text" placeholder="Last name"></div>
+        </div>
+        <div class="ff"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+        <div class="ff"><label>Investment Budget</label>
+          <select>
+            <option>Select a range</option>
+            <option>Under $50,000</option>
+            <option>$50,000 – $100,000</option>
+            <option>$100,000 – $250,000</option>
+            <option>$250,000+</option>
+          </select>
+        </div>
+        <div class="ff"><label>Industry Interest</label>
+          <select>
+            <option>Any Industry</option>
+            <option>Food &amp; Beverage</option>
+            <option>Health &amp; Fitness</option>
+            <option>Home Services</option>
+            <option>Education</option>
+            <option>Retail</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-submit">Get Matched Now →</button>
+      <div class="form-note">🔒 No obligation. Your details are kept private.</div>
+    </div>
+  </div>
+</section>
+
+<section id="brands">
+  <div class="sec-lbl">Our Portfolio</div>
+  <h2 class="sec-h2">Available Franchise Brands</h2>
+  <div class="industry-tabs">
+    <div class="itab active">All</div>
+    <div class="itab">Food &amp; Drink</div>
+    <div class="itab">Fitness</div>
+    <div class="itab">Home Services</div>
+    <div class="itab">Education</div>
+    <div class="itab">Retail</div>
+  </div>
+  <div class="brands-grid">
+    <div class="brand-card">
+      <div class="bc-top"><div class="bc-icon">☕</div><span class="bc-roi">Est. ROI 35%</span></div>
+      <div class="bc-industry">Food &amp; Beverage</div>
+      <div class="bc-name">Brew Society Café</div>
+      <div class="bc-desc">Premium café concept with drive-through and dine-in options. High foot traffic, repeat customers.</div>
+      <div class="bc-footer"><div class="bc-invest">$85K <span>– $140K</span></div><a href="#" class="btn-enquire">Enquire</a></div>
+    </div>
+    <div class="brand-card">
+      <div class="bc-top"><div class="bc-icon">🏋</div><span class="bc-roi">Est. ROI 42%</span></div>
+      <div class="bc-industry">Health &amp; Fitness</div>
+      <div class="bc-name">PulseZone Gym</div>
+      <div class="bc-desc">24/7 membership gym with app-based access. Growing market, recurring revenue model.</div>
+      <div class="bc-footer"><div class="bc-invest">$120K <span>– $200K</span></div><a href="#" class="btn-enquire">Enquire</a></div>
+    </div>
+    <div class="brand-card">
+      <div class="bc-top"><div class="bc-icon">🧒</div><span class="bc-roi">Est. ROI 28%</span></div>
+      <div class="bc-industry">Education</div>
+      <div class="bc-name">BrainSpark Tutoring</div>
+      <div class="bc-desc">After-school tutoring centres with proven curriculum. High parent demand, low competition.</div>
+      <div class="bc-footer"><div class="bc-invest">$35K <span>– $70K</span></div><a href="#" class="btn-enquire">Enquire</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="support">
+  <div class="sec-lbl">Our Support System</div>
+  <h2 class="sec-h2">You're Never Alone</h2>
+  <div class="support-grid">
+    <div class="sp-card"><div class="sp-icon">🎓</div><div class="sp-title">Full Training</div><div class="sp-desc">2–6 week onboarding program covering operations, finance and customer service.</div></div>
+    <div class="sp-card"><div class="sp-icon">📣</div><div class="sp-title">Marketing Support</div><div class="sp-desc">National campaigns, local launch packs and a shared digital marketing budget.</div></div>
+    <div class="sp-card"><div class="sp-icon">💻</div><div class="sp-title">Tech &amp; Systems</div><div class="sp-desc">Purpose-built POS, CRM and reporting tools ready from day one.</div></div>
+    <div class="sp-card"><div class="sp-icon">🤝</div><div class="sp-title">Peer Network</div><div class="sp-desc">Connect with 500+ fellow franchisees via our private community and annual conference.</div></div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="sec-lbl">Success Stories</div>
+  <h2 class="sec-h2">Hear from Our Franchisees</h2>
+  <div class="tgrid">
+    <div class="tcard"><div class="t-stars">★★★★★</div><div class="t-text">"I opened my Brew Society in March and hit break-even in 8 months. The training was thorough and the support team is always there."</div><div class="t-author"><div class="t-avatar">DA</div><div><div class="t-name">David Anand</div><div class="t-brand">Brew Society · Austin, TX</div></div></div></div>
+    <div class="tcard"><div class="t-stars">★★★★★</div><div class="t-text">"OwnIt matched me with PulseZone and it transformed my career. Second location already under contract after just 18 months."</div><div class="t-author"><div class="t-avatar">KN</div><div><div class="t-name">Karen Ng</div><div class="t-brand">PulseZone · Seattle, WA</div></div></div></div>
+    <div class="tcard"><div class="t-stars">★★★★★</div><div class="t-text">"From teacher to franchise owner — BrainSpark gave me the system, OwnIt gave me the confidence. Best decision I've made."</div><div class="t-author"><div class="t-avatar">LR</div><div><div class="t-name">Lisa Reyes</div><div class="t-brand">BrainSpark · Miami, FL</div></div></div></div>
+  </div>
+</section>
+
+<div class="cta">
+  <div>
+    <h2 class="cta-t">Your Business.<br>Your Rules.</h2>
+    <p class="cta-sub">Free consultation — no obligation, just possibility.</p>
+  </div>
+  <a href="#" class="btn-white">Book a Free Discovery Call →</a>
+</div>
+
+<footer>
+  <div class="logo">Own<span style="color:var(--orange)">It</span></div>
+  <div class="footer-copy">© 2026 OwnIt Franchise Group. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

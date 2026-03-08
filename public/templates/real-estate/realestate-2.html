@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NestFind — Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2563eb;--light:#eff6ff;--bg:#fff;--ink:#1e293b;--mid:#64748b;--bdr:#dbeafe;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);}
+nav{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 64px;border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:100;background:white;}
+.logo{font-size:24px;font-weight:900;color:var(--ink);}
+.logo span{color:var(--blue);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:600;color:var(--mid);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--blue);}
+.btn-blue{padding:10px 24px;background:var(--blue);color:white;font-size:13px;font-weight:700;border-radius:8px;text-decoration:none;}
+#hero{padding:80px 64px;background:var(--light);display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;align-items:center;min-height:88vh;}
+.h-pill{display:inline-flex;align-items:center;gap:8px;padding:6px 16px;background:white;border:1px solid var(--bdr);border-radius:100px;font-size:12px;font-weight:700;color:var(--blue);margin-bottom:24px;}
+.h-title{font-size:clamp(42px,5vw,64px);font-weight:900;line-height:1.05;letter-spacing:-0.02em;margin-bottom:20px;}
+.h-title span{color:var(--blue);}
+.h-desc{font-size:16px;font-weight:400;line-height:1.8;color:var(--mid);margin-bottom:36px;}
+.search-card{background:white;border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(37,99,235,0.1);border:1px solid var(--bdr);}
+.sc-tabs{display:flex;gap:8px;margin-bottom:20px;}
+.sc-tab{padding:8px 20px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;border:1px solid var(--bdr);color:var(--mid);}
+.sc-tab.active{background:var(--blue);color:white;border-color:var(--blue);}
+.sc-fields{display:flex;flex-direction:column;gap:14px;}
+.sc-field label{display:block;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--mid);margin-bottom:8px;}
+.sc-field input,.sc-field select{width:100%;padding:12px 16px;border:1px solid var(--bdr);border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);outline:none;}
+.sc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.btn-search{width:100%;padding:14px;background:var(--blue);color:white;border:none;border-radius:10px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:800;cursor:pointer;margin-top:4px;}
+#listings{padding:96px 64px;}
+.sec-lbl{font-size:11px;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.sec-h2{font-size:clamp(32px,3.5vw,44px);font-weight:900;letter-spacing:-0.02em;margin-bottom:48px;}
+.filter-row{display:flex;gap:8px;margin-bottom:32px;}
+.filter-btn{padding:8px 20px;border-radius:100px;font-size:13px;font-weight:700;border:1px solid var(--bdr);cursor:pointer;transition:all 0.2s;background:white;color:var(--mid);}
+.filter-btn.active,.filter-btn:hover{background:var(--blue);color:white;border-color:var(--blue);}
+.listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.listing-card{background:white;border-radius:16px;overflow:hidden;border:1px solid var(--bdr);transition:all 0.3s;}
+.listing-card:hover{box-shadow:0 16px 48px rgba(37,99,235,0.12);transform:translateY(-4px);}
+.listing-img{height:200px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;border-bottom:1px solid var(--bdr);}
+.l-badge{position:absolute;top:16px;left:16px;padding:4px 12px;background:var(--blue);color:white;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;}
+.l-fav{position:absolute;top:16px;right:16px;width:32px;height:32px;background:white;border-radius:50%;display:grid;place-items:center;font-size:16px;cursor:pointer;}
+.l-body{padding:20px;}
+.l-price{font-size:24px;font-weight:900;color:var(--blue);margin-bottom:6px;}
+.l-name{font-size:16px;font-weight:700;margin-bottom:4px;}
+.l-loc{font-size:13px;color:var(--mid);margin-bottom:14px;}
+.l-specs{display:flex;gap:12px;}
+.l-spec{font-size:12px;font-weight:600;color:var(--mid);display:flex;align-items:center;gap:4px;}
+#agents{padding:80px 64px;background:var(--light);}
+.agents-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;}
+.agent-card{background:white;border-radius:16px;padding:28px;text-align:center;border:1px solid var(--bdr);transition:all 0.3s;}
+.agent-card:hover{box-shadow:0 8px 32px rgba(37,99,235,0.1);transform:translateY(-2px);}
+.agent-avatar{width:72px;height:72px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-size:28px;margin:0 auto 16px;}
+.agent-name{font-size:16px;font-weight:800;margin-bottom:4px;}
+.agent-role{font-size:13px;color:var(--mid);margin-bottom:12px;}
+.agent-stats{display:flex;justify-content:center;gap:20px;font-size:12px;color:var(--mid);}
+.cta{padding:80px 64px;background:var(--blue);text-align:center;}
+.cta-t{font-size:clamp(32px,4vw,52px);font-weight:900;color:white;letter-spacing:-0.02em;line-height:1.1;margin-bottom:16px;}
+.cta-sub{font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:36px;}
+.btn-white{padding:15px 44px;background:white;color:var(--blue);font-size:15px;font-weight:800;border-radius:10px;text-decoration:none;display:inline-block;}
+footer{padding:32px 64px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:var(--mid);}
+</style></head><body>
+<nav><div class="logo">Nest<span>Find</span></div><ul class="nav-links"><li><a href="#">Buy</a></li><li><a href="#">Rent</a></li><li><a href="#">Sell</a></li><li><a href="#">Agents</a></li></ul><a href="#" class="btn-blue">Post Listing</a></nav>
+<section id="hero">
+<div>
+  <div class="h-pill">🏠 Over 12,000 listings nationwide</div>
+  <h1 class="h-title">Find the Home<br><span>You'll Love</span></h1>
+  <p class="h-desc">Browse thousands of verified listings — homes, condos, apartments and investment properties — all in one place.</p>
+</div>
+<div class="search-card">
+  <div class="sc-tabs"><div class="sc-tab active">Buy</div><div class="sc-tab">Rent</div><div class="sc-tab">New Builds</div></div>
+  <div class="sc-fields">
+    <div class="sc-field"><label>Location</label><input type="text" placeholder="City, zip or address"></div>
+    <div class="sc-row"><div class="sc-field"><label>Property Type</label><select><option>Any Type</option><option>House</option><option>Condo</option><option>Apartment</option></select></div><div class="sc-field"><label>Price Range</label><select><option>Any Price</option><option>Under $300K</option><option>$300K–$600K</option><option>$600K+</option></select></div></div>
+    <div class="sc-row"><div class="sc-field"><label>Bedrooms</label><select><option>Any</option><option>1+</option><option>2+</option><option>3+</option></select></div><div class="sc-field"><label>Bathrooms</label><select><option>Any</option><option>1+</option><option>2+</option></select></div></div>
+    <button class="btn-search">Search Properties →</button>
+  </div>
+</div>
+</section>
+<section id="listings"><div class="sec-lbl">Listings</div><h2 class="sec-h2">Featured Properties</h2>
+<div class="filter-row"><div class="filter-btn active">All</div><div class="filter-btn">For Sale</div><div class="filter-btn">For Rent</div><div class="filter-btn">New Build</div></div>
+<div class="listings-grid">
+<div class="listing-card"><div class="listing-img">🏡<span class="l-badge">For Sale</span><span class="l-fav">♡</span></div><div class="l-body"><div class="l-price">$425,000</div><div class="l-name">Sunridge Family Home</div><div class="l-loc">📍 Austin, TX</div><div class="l-specs"><span class="l-spec">🛏 4 bed</span><span class="l-spec">🚿 2 bath</span><span class="l-spec">📐 2,100 sqft</span></div></div></div>
+<div class="listing-card"><div class="listing-img">🏙<span class="l-badge">For Rent</span><span class="l-fav">♡</span></div><div class="l-body"><div class="l-price">$2,200/mo</div><div class="l-name">Modern City Apartment</div><div class="l-loc">📍 Seattle, WA</div><div class="l-specs"><span class="l-spec">🛏 2 bed</span><span class="l-spec">🚿 1 bath</span><span class="l-spec">📐 900 sqft</span></div></div></div>
+<div class="listing-card"><div class="listing-img">🏘<span class="l-badge">New Build</span><span class="l-fav">♡</span></div><div class="l-body"><div class="l-price">$580,000</div><div class="l-name">Lakeview Townhouse</div><div class="l-loc">📍 Denver, CO</div><div class="l-specs"><span class="l-spec">🛏 3 bed</span><span class="l-spec">🚿 2 bath</span><span class="l-spec">📐 1,800 sqft</span></div></div></div>
+</div></section>
+<section id="agents"><div class="sec-lbl">Our Team</div><h2 class="sec-h2">Top Agents</h2>
+<div class="agents-grid">
+<div class="agent-card"><div class="agent-avatar">👩</div><div class="agent-name">Sarah Chen</div><div class="agent-role">Senior Agent</div><div class="agent-stats"><span>48 Deals</span><span>⭐ 4.9</span></div></div>
+<div class="agent-card"><div class="agent-avatar">👨</div><div class="agent-name">Marcus Lee</div><div class="agent-role">Commercial Specialist</div><div class="agent-stats"><span>62 Deals</span><span>⭐ 4.8</span></div></div>
+<div class="agent-card"><div class="agent-avatar">👩</div><div class="agent-name">Rita Patel</div><div class="agent-role">Luxury Properties</div><div class="agent-stats"><span>35 Deals</span><span>⭐ 5.0</span></div></div>
+<div class="agent-card"><div class="agent-avatar">👨</div><div class="agent-name">Tom Walsh</div><div class="agent-role">Investment Properties</div><div class="agent-stats"><span>71 Deals</span><span>⭐ 4.9</span></div></div>
+</div></section>
+<div class="cta"><h2 class="cta-t">Start Your Home Search Today</h2><p class="cta-sub">Join 50,000+ buyers who found their home on NestFind.</p><a href="#" class="btn-white">Browse All Listings →</a></div>
+<footer><div class="logo">Nest<span style="color:var(--blue)">Find</span></div><div class="footer-copy">© 2026 NestFind Real Estate. All rights reserved.</div></footer>
+</body></html>

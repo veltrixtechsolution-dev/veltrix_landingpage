@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meridian Build Co.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#ffffff;--bg2:#f4f1ec;--ink:#1a1714;--gold:#b8962e;--mid:#6b6560;--bdr:#e8e3db;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);}
+  nav{padding:0 72px;height:80px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bdr);}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;letter-spacing:0.05em;}
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:44px;list-style:none;}
+  .nav-links a{font-size:13px;font-weight:400;color:var(--mid);text-decoration:none;letter-spacing:0.04em;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .btn-gold{padding:10px 28px;background:var(--gold);color:white;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:opacity 0.2s;}
+  .btn-gold:hover{opacity:0.85;}
+
+  /* HERO */
+  #hero{display:grid;grid-template-columns:1.1fr 0.9fr;min-height:85vh;border-bottom:1px solid var(--bdr);}
+  .hl{padding:80px 72px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bdr);}
+  .ht{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5.5vw,80px);font-weight:700;line-height:1.05;letter-spacing:-0.01em;margin-bottom:28px;}
+  .ht em{color:var(--gold);font-style:italic;}
+  .hd{font-size:15px;font-weight:300;line-height:1.8;color:var(--mid);max-width:400px;margin-bottom:40px;}
+  .h-btns{display:flex;gap:16px;align-items:center;}
+  .btn-outline-g{padding:10px 28px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+  .btn-outline-g:hover{background:var(--gold);color:white;}
+  .h-awards{display:flex;gap:32px;margin-top:56px;padding-top:40px;border-top:1px solid var(--bdr);}
+  .award{font-size:12px;color:var(--mid);line-height:1.6;}
+  .award strong{display:block;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:var(--ink);}
+
+  .hr{background:var(--bg2);padding:48px;display:flex;flex-direction:column;gap:24px;justify-content:center;}
+  .stat-card{background:white;padding:32px;border:1px solid var(--bdr);}
+  .sc-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;}
+  .sc-lbl{font-size:12px;color:var(--mid);margin-top:6px;letter-spacing:0.04em;}
+
+  /* PROJECTS */
+  #projects{padding:100px 72px;background:var(--bg2);}
+  .sec-label{font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+  .sec-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:700;margin-bottom:56px;line-height:1.1;}
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .pcard{background:white;padding:0;overflow:hidden;border:1px solid var(--bdr);transition:box-shadow 0.3s;}
+  .pcard:hover{box-shadow:0 12px 48px rgba(0,0,0,0.08);}
+  .pimg{height:200px;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:72px;border-bottom:1px solid var(--bdr);}
+  .pbody{padding:28px 28px 32px;}
+  .pcat{font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .pname{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;margin-bottom:8px;line-height:1.2;}
+  .pdesc{font-size:13px;color:var(--mid);line-height:1.65;}
+
+  /* SERVICES */
+  #services{padding:100px 72px;}
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--bdr);margin-top:48px;}
+  .svc{background:var(--bg);padding:44px 40px;transition:background 0.3s;}
+  .svc:hover{background:var(--bg2);}
+  .svc-num{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);font-weight:600;margin-bottom:12px;}
+  .svc-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;margin-bottom:12px;}
+  .svc-desc{font-size:14px;color:var(--mid);line-height:1.7;}
+
+  /* PROCESS */
+  #process{padding:100px 72px;background:var(--ink);}
+  .proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;}
+  .proc-step{padding:0 40px;border-right:1px solid rgba(255,255,255,0.08);}
+  .proc-step:first-child{padding-left:0;}
+  .proc-step:last-child{border-right:none;}
+  .p-num{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;margin-bottom:16px;}
+  .p-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:white;margin-bottom:12px;}
+  .p-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;}
+
+  /* CTA */
+  .cta{padding:80px 72px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+  .cta-t{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,52px);font-weight:700;line-height:1.1;}
+  .cta-t em{color:var(--gold);}
+
+  footer{padding:32px 72px;background:var(--bg2);border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--mid);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Meridian<span> Build Co.</span></div>
+  <ul class="nav-links">
+    <li><a href="#">About</a></li>
+    <li><a href="#">Projects</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Careers</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <a href="#" class="btn-gold">Get a Quote</a>
+</nav>
+
+<section id="hero">
+  <div class="hl">
+    <div class="sec-label">Premium Construction</div>
+    <h1 class="ht">Building <em>Excellence</em> Into Every Structure</h1>
+    <p class="hd">From concept to completion, Meridian Build Co. delivers precision construction for commercial, residential and heritage projects.</p>
+    <div class="h-btns">
+      <a href="#" class="btn-gold">Start Your Project</a>
+      <a href="#projects" class="btn-outline-g">View Portfolio</a>
+    </div>
+    <div class="h-awards">
+      <div class="award"><strong>BCIA 2024</strong>Best Commercial Builder</div>
+      <div class="award"><strong>ISO 9001</strong>Quality Certified</div>
+      <div class="award"><strong>30+ Years</strong>Est. 1994</div>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="stat-card"><div class="sc-num">640+</div><div class="sc-lbl">Projects Completed</div></div>
+    <div class="stat-card"><div class="sc-num">$2.1B</div><div class="sc-lbl">Total Build Value</div></div>
+    <div class="stat-card"><div class="sc-num">99%</div><div class="sc-lbl">On-Time Delivery Rate</div></div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-label">Featured Work</div>
+  <h2 class="sec-h2">Selected Projects</h2>
+  <div class="proj-grid">
+    <div class="pcard"><div class="pimg">🏛</div><div class="pbody"><div class="pcat">Heritage Restoration</div><div class="pname">The Aldgate Exchange</div><div class="pdesc">Full structural restoration of a Grade II listed Victorian exchange building.</div></div></div>
+    <div class="pcard"><div class="pimg">🏢</div><div class="pbody"><div class="pcat">Commercial</div><div class="pname">Northgate Business Park</div><div class="pdesc">12-building mixed commercial development across 28 acres.</div></div></div>
+    <div class="pcard"><div class="pimg">🏠</div><div class="pbody"><div class="pcat">Residential</div><div class="pname">Larchwood Mews</div><div class="pdesc">32 luxury townhouses with underground parking and landscaped communal gardens.</div></div></div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="sec-label">What We Do</div>
+  <h2 class="sec-h2">Services</h2>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-num">01</div><div class="svc-title">Commercial Construction</div><div class="svc-desc">Offices, retail, hospitality and mixed-use developments delivered to the highest specification.</div></div>
+    <div class="svc"><div class="svc-num">02</div><div class="svc-title">Residential Development</div><div class="svc-desc">Bespoke homes and multi-unit developments designed for lasting value.</div></div>
+    <div class="svc"><div class="svc-num">03</div><div class="svc-title">Structural Renovation</div><div class="svc-desc">Sensitive refurbishment and upgrading of existing structures, including listed buildings.</div></div>
+    <div class="svc"><div class="svc-num">04</div><div class="svc-title">Project Management</div><div class="svc-desc">Comprehensive construction management from design stage through to handover.</div></div>
+  </div>
+</section>
+
+<section id="process">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="sec-label" style="color:var(--gold)">How We Work</div>
+    <h2 class="sec-h2" style="color:white;">Our Process</h2>
+    <div class="proc-grid">
+      <div class="proc-step"><div class="p-num">I</div><div class="p-title">Brief & Feasibility</div><div class="p-desc">We meet to understand your goals and assess feasibility, scope and budget.</div></div>
+      <div class="proc-step"><div class="p-num">II</div><div class="p-title">Design & Planning</div><div class="p-desc">Architects and engineers develop detailed plans, specs and approvals.</div></div>
+      <div class="proc-step"><div class="p-num">III</div><div class="p-title">Construction</div><div class="p-desc">Expert crews build on schedule with full site safety and quality control.</div></div>
+      <div class="proc-step"><div class="p-num">IV</div><div class="p-title">Handover</div><div class="p-desc">Full snagging, certification and documentation before formal handover.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="cta">
+  <h2 class="cta-t">Have a project in mind?<br>Let's <em>build</em> together.</h2>
+  <a href="#" class="btn-gold" style="font-size:14px;padding:14px 36px;">Contact Us Today</a>
+</div>
+
+<footer>
+  <div class="logo" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;">Meridian<span style="color:var(--gold)"> Build Co.</span></div>
+  <div class="footer-copy">© 2026 Meridian Build Co. All rights reserved.</div>
+</footer>
+</body>
+</html>

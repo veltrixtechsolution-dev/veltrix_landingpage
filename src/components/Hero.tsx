@@ -25,7 +25,7 @@ export function Hero() {
 
         <div className="hero__actions reveal">
           <a href="#services" className="btn btn--primary">
-            Explore Services →
+            View Packages →
           </a>
           <a href="#contact" className="btn btn--outline">
             Start a Project

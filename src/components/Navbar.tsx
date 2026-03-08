@@ -1,8 +1,13 @@
+import { Link, useLocation } from 'react-router-dom'
+
 export function Navbar() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
+
   return (
     <header className="site-header">
       <nav className="nav" aria-label="Main">
-        <a href="#hero" className="nav__brand">
+        <Link to="/" className="nav__brand">
           <div className="nav__logo" aria-hidden="true">
             <svg viewBox="0 0 40 40" fill="none">
               <path d="M4 10L20 28L36 10" stroke="#0c132a" strokeWidth="0" fill="none" />
@@ -17,26 +22,26 @@ export function Navbar() {
             <span className="nav__brand-title">VELTRIX</span>
             <span className="nav__brand-sub">TECH&nbsp;&nbsp;SOLUTIONS</span>
           </div>
-        </a>
+        </Link>
 
         <ul className="nav__links">
           <li>
-            <a href="#about">About</a>
+            <a href={isHome ? '#about' : '/#about'}>About</a>
           </li>
           <li>
-            <a href="#services">Services</a>
+            <a href={isHome ? '#services' : '/#services'}>Packages</a>
           </li>
           <li>
-            <a href="#process">Process</a>
+            <a href={isHome ? '#process' : '/#process'}>Process</a>
           </li>
           <li>
-            <a href="#contact">Contact</a>
+            <a href={isHome ? '#contact' : '/#contact'}>Contact</a>
           </li>
         </ul>
 
-        <a href="#contact" className="btn btn--primary nav__cta">
+        <Link to="/templates" className="btn btn--primary nav__cta">
           Get Started
-        </a>
+        </Link>
       </nav>
     </header>
   )
