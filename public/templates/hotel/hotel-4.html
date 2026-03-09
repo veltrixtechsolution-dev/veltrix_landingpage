@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PALMA RESORT — Escape Everything</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Archivo:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F8F5EE;
+    --ink: #1A1500;
+    --terracotta: #C4441A;
+    --yellow: #F5C842;
+    --leaf: #2D6A4F;
+    --leaf-lt: #52B788;
+    --coral: #E8734A;
+    --cream: #FAF7EE;
+    --bdr: #E0D8C8;
+    --stone: #8A7E68;
+    --sand: #F0E8D0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    background: var(--leaf);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: var(--yellow);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.6);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--yellow); }
+  .nav-right { display: flex; gap: .8rem; align-items: center; }
+  .btn-yellow {
+    padding: .65rem 1.8rem;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: 'Unbounded', sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .2s;
+  }
+  .btn-yellow:hover { background: #f5d050; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: white;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    min-height: 90vh;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Organic tropical shapes */
+  .hero-blob1 {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: var(--leaf);
+    border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
+    opacity: .25;
+    pointer-events: none;
+  }
+  .hero-blob2 {
+    position: absolute;
+    bottom: -10%;
+    left: 30%;
+    width: 400px;
+    height: 400px;
+    background: var(--terracotta);
+    border-radius: 40% 60% 30% 70% / 60% 40% 60% 40%;
+    opacity: .12;
+    pointer-events: none;
+  }
+  .hero-left {
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-top { }
+  .h-label {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem 1rem;
+    background: rgba(245,200,66,.12);
+    border: 1px solid rgba(245,200,66,.25);
+    border-radius: 4px;
+    font-size: .7rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .hero-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2.8rem, 5.5vw, 6rem);
+    font-weight: 900;
+    line-height: .95;
+    letter-spacing: -.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .yellow { color: var(--yellow); }
+  .hero-title .thin { font-weight: 300; font-size: .8em; }
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,.55);
+    max-width: 46ch;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; }
+  .btn-hero {
+    padding: .9rem 2.4rem;
+    background: var(--yellow);
+    color: var(--ink);
+    font-family: 'Unbounded', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .2s;
+  }
+  .btn-hero:hover { background: #f5d050; transform: translateY(-2px); }
+  .btn-outline-w {
+    padding: .9rem 2rem;
+    background: transparent;
+    color: rgba(255,255,255,.7);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 4px;
+    font-size: .82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-outline-w:hover { border-color: var(--yellow); color: var(--yellow); }
+  .hero-stats { display: flex; gap: 2.5rem; }
+  .hs-n { font-family: 'Unbounded', sans-serif; font-size: 2rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+  .hs-l { font-size: .7rem; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-top: .3rem; }
+
+  /* HERO RIGHT */
+  .hero-right {
+    border-left: 1px solid rgba(255,255,255,.08);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+  }
+  .booking-box {
+    background: var(--cream);
+    color: var(--ink);
+    padding: 2.5rem 2rem;
+    margin: 3rem;
+    border-radius: 16px;
+    flex: 1;
+  }
+  .bb-header { margin-bottom: 1.8rem; }
+  .bb-header h3 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: .3rem;
+  }
+  .bb-header p { font-size: .78rem; color: var(--stone); }
+  .bb-tabs { display: flex; margin-bottom: 1.5rem; border: 1px solid var(--bdr); border-radius: 8px; overflow: hidden; }
+  .bb-tab {
+    flex: 1;
+    padding: .6rem;
+    font-size: .75rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    font-family: 'Archivo', sans-serif;
+    color: var(--stone);
+    transition: all .2s;
+  }
+  .bb-tab.active { background: var(--leaf); color: white; }
+  .bb-fields { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem; }
+  .bb-field label { display: block; font-size: .68rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); margin-bottom: .4rem; }
+  .bb-field input, .bb-field select {
+    width: 100%;
+    padding: .75rem 1rem;
+    border: 1.5px solid var(--bdr);
+    border-radius: 10px;
+    font-family: 'Archivo', sans-serif;
+    font-size: .88rem;
+    color: var(--ink);
+    background: var(--bg);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .bb-field input:focus, .bb-field select:focus { border-color: var(--leaf); background: white; }
+  .bb-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .btn-book {
+    width: 100%;
+    padding: 1rem;
+    background: var(--terracotta);
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-book:hover { background: #b83910; box-shadow: 0 8px 24px rgba(196,68,26,.3); }
+  .award-strip {
+    padding: 0 3rem 3rem;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .award {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .5rem 1rem;
+    background: rgba(255,255,255,.06);
+    border-radius: 8px;
+    font-size: .7rem;
+    color: rgba(255,255,255,.5);
+    letter-spacing: .06em;
+  }
+  .award .star { color: var(--yellow); }
+
+  /* ROOMS */
+  .rooms { padding: 5rem 4rem; background: var(--cream); }
+  .section-tag {
+    font-family: 'Unbounded', sans-serif;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: .8rem;
+  }
+  .section-h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-weight: 900;
+    letter-spacing: -.02em;
+    color: var(--ink);
+    margin-bottom: 3rem;
+    line-height: 1.1;
+  }
+  .section-h2 span { color: var(--terracotta); }
+  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .room-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--bdr);
+    transition: all .35s;
+  }
+  .room-card:hover { transform: translateY(-6px); box-shadow: 0 24px 56px rgba(26,21,0,.12); }
+  .room-img {
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 6rem;
+    position: relative;
+  }
+  .ri-1 { background: linear-gradient(135deg, #fef9ec, #fde68a); }
+  .ri-2 { background: linear-gradient(135deg, #e8f5e9, #a5d6a7); }
+  .ri-3 { background: linear-gradient(135deg, #fce4ec, #f48fb1); }
+  .room-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: .3rem .8rem;
+    border-radius: 100px;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    background: var(--ink);
+    color: white;
+  }
+  .room-body { padding: 1.8rem; }
+  .room-type { font-size: .68rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--leaf-lt); margin-bottom: .4rem; }
+  .room-name { font-family: 'Unbounded', sans-serif; font-size: 1.1rem; font-weight: 700; line-height: 1.2; margin-bottom: .6rem; color: var(--ink); }
+  .room-desc { font-size: .82rem; color: var(--stone); line-height: 1.7; margin-bottom: 1.2rem; }
+  .room-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--bdr); }
+  .room-price { font-family: 'Unbounded', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--terracotta); }
+  .room-price small { font-family: 'Archivo', sans-serif; font-size: .72rem; font-weight: 400; color: var(--stone); }
+  .btn-room {
+    padding: .55rem 1.4rem;
+    background: var(--leaf);
+    color: white;
+    font-size: .75rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-room:hover { background: var(--ink); }
+
+  /* EXPERIENCES */
+  .experiences { padding: 5rem 4rem; background: var(--ink); color: white; }
+  .exp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(255,255,255,.06); margin-top: 3rem; }
+  .exp-card {
+    background: rgba(255,255,255,.02);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: background .25s;
+    cursor: pointer;
+  }
+  .exp-card:hover { background: rgba(245,200,66,.05); }
+  .exp-icon { font-size: 2.8rem; margin-bottom: 1.2rem; }
+  .exp-name { font-family: 'Unbounded', sans-serif; font-size: .9rem; font-weight: 700; color: var(--yellow); margin-bottom: .5rem; }
+  .exp-desc { font-size: .78rem; color: rgba(255,255,255,.45); line-height: 1.65; }
+
+  /* CTA */
+  .cta {
+    background: var(--terracotta);
+    padding: 5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+  .cta h2 {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    color: white;
+    line-height: 1.0;
+    letter-spacing: -.02em;
+  }
+  .cta h2 span { color: var(--yellow); }
+  .cta p { font-size: .95rem; color: rgba(255,255,255,.65); margin-top: .8rem; }
+  .cta-btns { display: flex; flex-direction: column; gap: .8rem; flex-shrink: 0; }
+  .btn-white {
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--terracotta);
+    font-family: 'Unbounded', sans-serif;
+    font-size: .78rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .btn-white:hover { background: var(--yellow); }
+  .btn-ghost {
+    padding: .8rem;
+    background: transparent;
+    color: rgba(255,255,255,.6);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 4px;
+    font-size: .78rem;
+    cursor: pointer;
+    text-align: center;
+    font-family: 'Archivo', sans-serif;
+    transition: all .2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); }
+
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer-logo { font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: .12em; color: var(--yellow); }
+  .footer-copy { font-size: .75rem; color: rgba(255,255,255,.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">PALMA</div>
+  <ul class="nav-links">
+    <li><a href="#">Rooms</a></li>
+    <li><a href="#">Dining</a></li>
+    <li><a href="#">Spa</a></li>
+    <li><a href="#">Experiences</a></li>
+    <li><a href="#">Weddings</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-yellow">Book Your Stay</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-left">
+    <div class="hero-top">
+      <div class="h-label">🌴 Luxury Tropical Resort · Bali</div>
+      <h1 class="hero-title">
+        Escape.<br>
+        <span class="yellow">Unwind.</span><br>
+        <span class="thin">Experience.</span>
+      </h1>
+      <p class="hero-desc">Palma Resort offers an extraordinary retreat in the heart of tropical Bali — where jungle meets sea and every detail is crafted for pure indulgence.</p>
+      <div class="hero-btns">
+        <button class="btn-hero">Reserve Your Stay</button>
+        <button class="btn-outline-w">Explore the Resort</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-n">50+</div><div class="hs-l">Villas & Suites</div></div>
+      <div><div class="hs-n">4</div><div class="hs-l">Restaurants</div></div>
+      <div><div class="hs-n">5★</div><div class="hs-l">Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="booking-box">
+      <div class="bb-header">
+        <h3>Book Your Escape</h3>
+        <p>Best rate guaranteed · Free cancellation</p>
+      </div>
+      <div class="bb-tabs">
+        <button class="bb-tab active">Rooms</button>
+        <button class="bb-tab">Packages</button>
+        <button class="bb-tab">Villas</button>
+      </div>
+      <div class="bb-fields">
+        <div class="bb-row">
+          <div class="bb-field"><label>Check In</label><input type="date"></div>
+          <div class="bb-field"><label>Check Out</label><input type="date"></div>
+        </div>
+        <div class="bb-row">
+          <div class="bb-field">
+            <label>Guests</label>
+            <select><option>2 Adults</option><option>1 Adult</option><option>3 Adults</option><option>Family</option></select>
+          </div>
+          <div class="bb-field">
+            <label>Room Type</label>
+            <select><option>Any Type</option><option>Deluxe</option><option>Suite</option><option>Villa</option></select>
+          </div>
+        </div>
+      </div>
+      <button class="btn-book">Check Availability →</button>
+    </div>
+    <div class="award-strip">
+      <div class="award"><span class="star">★</span> Condé Nast 2025</div>
+      <div class="award"><span class="star">★</span> Travel + Leisure Top 50</div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms">
+  <div class="section-tag">Accommodations</div>
+  <h2 class="section-h2">Where You'll <span>Stay</span></h2>
+  <div class="rooms-grid">
+    <div class="room-card">
+      <div class="room-img ri-1">🌿<span class="room-badge">Most Popular</span></div>
+      <div class="room-body">
+        <div class="room-type">Garden Room</div>
+        <div class="room-name">Tropical Deluxe</div>
+        <div class="room-desc">Private terrace, outdoor rain shower, surrounded by lush tropical gardens.</div>
+        <div class="room-bottom"><div class="room-price">$280 <small>/night</small></div><button class="btn-room">Reserve</button></div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img ri-2">🏊<span class="room-badge">Bestseller</span></div>
+      <div class="room-body">
+        <div class="room-type">Pool Suite</div>
+        <div class="room-name">Infinity Pool Suite</div>
+        <div class="room-desc">Private infinity pool, butler service, sea-view sundeck, full bar.</div>
+        <div class="room-bottom"><div class="room-price">$580 <small>/night</small></div><button class="btn-room">Reserve</button></div>
+      </div>
+    </div>
+    <div class="room-card">
+      <div class="room-img ri-3">🌺<span class="room-badge">Luxury</span></div>
+      <div class="room-body">
+        <div class="room-type">Private Villa</div>
+        <div class="room-name">The Palma Villa</div>
+        <div class="room-desc">3-bedroom private villa, chef, driver, pool, and complete sanctuary.</div>
+        <div class="room-bottom"><div class="room-price">$1,800 <small>/night</small></div><button class="btn-room">Reserve</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="experiences">
+  <div class="section-tag" style="color:var(--yellow)">Resort Highlights</div>
+  <h2 class="section-h2" style="color:white">Crafted <span style="color:var(--yellow)">Experiences</span></h2>
+  <div class="exp-grid">
+    <div class="exp-card"><div class="exp-icon">🧖</div><div class="exp-name">Jungle Spa</div><div class="exp-desc">Ancient Balinese healing rituals and modern therapies in an open-air jungle setting.</div></div>
+    <div class="exp-card"><div class="exp-icon">🍽</div><div class="exp-name">4 Restaurants</div><div class="exp-desc">From fresh seafood on the beach to rooftop cocktails over rice terraces.</div></div>
+    <div class="exp-card"><div class="exp-icon">🤿</div><div class="exp-name">Water Activities</div><div class="exp-desc">Diving, snorkelling, paddleboarding and private sunset sailing — all arranged for you.</div></div>
+    <div class="exp-card"><div class="exp-icon">🧘</div><div class="exp-name">Sunrise Yoga</div><div class="exp-desc">Daily sunrise yoga on our clifftop deck, overlooking the Indian Ocean.</div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div>
+    <h2>Your Perfect<br>Escape <span>Awaits</span></h2>
+    <p>Limited availability — reserve your villa or suite today.</p>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-white">Book Your Stay Now</button>
+    <button class="btn-ghost">Enquire About Packages</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">PALMA RESORT</div>
+  <div class="footer-copy">© 2026 Palma Resort Bali. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

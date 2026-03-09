@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hemma — Find Your Place</title>
+<link href="https://fonts.googleapis.com/css2?family=Canela:wght@300;400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush: #F5EEE8;
+    --rose: #E8D5CC;
+    --sage: #C8D8CC;
+    --sage-dark: #8FAF98;
+    --sage-deep: #4A7A5C;
+    --stone: #8A8278;
+    --ink: #2C2420;
+    --white: #FDFCFB;
+    --bdr: #E0D8D0;
+    --warm: #F0E8E0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Instrument Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--bdr);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.9rem;
+    font-weight: 300;
+    letter-spacing: .06em;
+    color: var(--ink);
+    font-style: italic;
+  }
+  .logo .dot { color: var(--sage-deep); font-style: normal; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: .85rem;
+    font-weight: 500;
+    color: var(--stone);
+    text-decoration: none;
+    transition: color .2s;
+    letter-spacing: .02em;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-right { display: flex; gap: 1rem; align-items: center; }
+  .btn-outline {
+    padding: .55rem 1.5rem;
+    border: 1px solid var(--bdr);
+    background: transparent;
+    color: var(--stone);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .83rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all .2s;
+  }
+  .btn-outline:hover { border-color: var(--sage-deep); color: var(--sage-deep); }
+  .btn-sage {
+    padding: .6rem 1.6rem;
+    background: var(--sage-deep);
+    color: white;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .83rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 100px;
+    transition: all .2s;
+    letter-spacing: .02em;
+  }
+  .btn-sage:hover { background: var(--ink); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 92vh;
+    overflow: hidden;
+  }
+  .hero-left {
+    background: var(--blush);
+    padding: 5rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .hero-title-wrap { }
+  .h-eyebrow {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+  .h-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--sage-dark); }
+  .hero-title {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -.01em;
+    margin-bottom: 2rem;
+  }
+  .hero-title em { color: var(--sage-deep); font-style: italic; }
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--stone);
+    max-width: 44ch;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+  .hero-btns { display: flex; gap: 1rem; }
+  .btn-sage-lg {
+    padding: .9rem 2.4rem;
+    background: var(--sage-deep);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .25s;
+  }
+  .btn-sage-lg:hover { background: var(--ink); box-shadow: 0 8px 24px rgba(74,122,92,.25); }
+  .btn-outline-lg {
+    padding: .9rem 2.2rem;
+    background: transparent;
+    color: var(--stone);
+    border: 1px solid var(--bdr);
+    border-radius: 100px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .25s;
+  }
+  .btn-outline-lg:hover { border-color: var(--sage-deep); color: var(--sage-deep); }
+  .hero-bottom { }
+  .hero-stats { display: flex; gap: 3rem; padding-top: 2.5rem; border-top: 1px solid var(--bdr); }
+  .hstat .num {
+    font-family: 'Crimson Pro', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--sage-deep);
+    line-height: 1;
+  }
+  .hstat .lbl { font-size: .72rem; color: var(--stone); letter-spacing: .1em; text-transform: uppercase; margin-top: .3rem; }
+
+  /* HERO RIGHT — listing mosaic */
+  .hero-right { display: grid; grid-template-rows: 1fr auto; }
+  .hero-mosaic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 2px;
+    background: var(--bdr);
+  }
+  .mosaic-cell {
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all .3s;
+    cursor: pointer;
+  }
+  .mosaic-cell:hover { filter: brightness(.96); }
+  .mosaic-cell:nth-child(2) { background: var(--rose); }
+  .mosaic-cell:nth-child(3) { background: var(--sage); }
+  .mosaic-cell:nth-child(4) { background: var(--blush); font-size: 3rem; }
+  .mc-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.5rem;
+    background: linear-gradient(to top, rgba(44,36,32,.5), transparent);
+    color: white;
+    transform: translateY(10px);
+    opacity: 0;
+    transition: all .3s;
+  }
+  .mosaic-cell:hover .mc-info { transform: translateY(0); opacity: 1; }
+  .mc-price { font-family: 'Crimson Pro', serif; font-size: 1.5rem; font-weight: 400; }
+  .mc-name { font-size: .78rem; font-weight: 500; margin-top: .2rem; }
+  .search-bar {
+    background: var(--white);
+    border-top: 1px solid var(--bdr);
+    padding: 1.5rem 2rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .sb-field { flex: 1; display: flex; flex-direction: column; gap: .3rem; }
+  .sb-field label { font-size: .65rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--stone); }
+  .sb-field input, .sb-field select {
+    border: none;
+    background: var(--blush);
+    padding: .6rem .9rem;
+    border-radius: 8px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .85rem;
+    color: var(--ink);
+    outline: none;
+  }
+  .btn-search-sm {
+    padding: .8rem 1.5rem;
+    background: var(--sage-deep);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .83rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    align-self: flex-end;
+    transition: all .2s;
+  }
+  .btn-search-sm:hover { background: var(--ink); }
+
+  /* LISTINGS */
+  .listings { padding: 5rem 3.5rem; }
+  .listings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+  .section-eyebrow {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--sage-dark);
+    margin-bottom: .6rem;
+  }
+  .section-h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300;
+    line-height: 1.1;
+  }
+  .section-h2 em { color: var(--sage-deep); }
+  .listings-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+  .listing-card {
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--bdr);
+    transition: all .3s;
+  }
+  .listing-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(44,36,32,.08); }
+  .listing-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+  }
+  .li-bg1 { background: linear-gradient(135deg, var(--rose), var(--blush)); }
+  .li-bg2 { background: linear-gradient(135deg, var(--sage), #d8e8dc); }
+  .li-bg3 { background: linear-gradient(135deg, var(--warm), #f0ddd4); }
+  .listing-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: .25rem .8rem;
+    border-radius: 100px;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  .tag-sale { background: var(--sage-deep); color: white; }
+  .tag-rent { background: white; color: var(--sage-deep); }
+  .listing-body { padding: 1.5rem; }
+  .listing-price {
+    font-family: 'Crimson Pro', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: .4rem;
+  }
+  .listing-name { font-size: 1rem; font-weight: 600; margin-bottom: .3rem; }
+  .listing-loc { font-size: .8rem; color: var(--stone); margin-bottom: 1rem; }
+  .listing-specs { display: flex; gap: 1rem; padding-top: .8rem; border-top: 1px solid var(--bdr); }
+  .spec { font-size: .75rem; color: var(--stone); }
+
+  /* AGENTS */
+  .agents { padding: 5rem 3.5rem; background: var(--blush); }
+  .agents-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+  .agent-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--bdr);
+    transition: all .3s;
+  }
+  .agent-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(44,36,32,.07); }
+  .agent-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--sage);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .agent-name { font-family: 'Crimson Pro', serif; font-size: 1.15rem; font-weight: 400; margin-bottom: .2rem; }
+  .agent-role { font-size: .75rem; color: var(--stone); margin-bottom: 1rem; }
+  .agent-btn {
+    padding: .5rem 1.2rem;
+    border: 1px solid var(--bdr);
+    background: transparent;
+    color: var(--sage-deep);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .75rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all .2s;
+  }
+  .agent-btn:hover { background: var(--sage-deep); color: white; border-color: var(--sage-deep); }
+
+  /* CTA */
+  .cta {
+    background: var(--ink);
+    padding: 5rem 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4rem;
+  }
+  .cta h2 {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 300;
+    color: var(--blush);
+    line-height: 1.1;
+  }
+  .cta h2 em { color: var(--sage-dark); }
+  .cta p { font-size: .95rem; color: var(--stone); margin-top: .8rem; }
+  .btn-cta {
+    padding: 1rem 2.8rem;
+    background: var(--sage-deep);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all .25s;
+    white-space: nowrap;
+  }
+  .btn-cta:hover { background: var(--sage-dark); box-shadow: 0 8px 24px rgba(143,175,152,.3); }
+
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,.06);
+    padding: 2rem 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Crimson Pro', serif; font-size: 1.5rem; font-weight: 300; color: var(--blush); font-style: italic; }
+  .footer-copy { font-size: .75rem; color: rgba(255,255,255,.25); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">hemma<span class="dot">.</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Buy</a></li>
+    <li><a href="#">Rent</a></li>
+    <li><a href="#">Sell</a></li>
+    <li><a href="#">New Builds</a></li>
+    <li><a href="#">Agents</a></li>
+    <li><a href="#">Guides</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-outline">Sign In</button>
+    <button class="btn-sage">List a Property</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-title-wrap">
+      <div class="h-eyebrow">Real Estate — Simplified</div>
+      <h1 class="hero-title">
+        Find the Home<br>You <em>Actually</em><br>Want
+      </h1>
+      <p class="hero-desc">Hemma takes the stress out of property. Browse curated listings, connect with trusted agents, and move at your own pace.</p>
+      <div class="hero-btns">
+        <button class="btn-sage-lg">Browse Listings</button>
+        <button class="btn-outline-lg">Sell My Home</button>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-stats">
+        <div class="hstat"><div class="num">4,200</div><div class="lbl">Active Listings</div></div>
+        <div class="hstat"><div class="num">320</div><div class="lbl">Local Agents</div></div>
+        <div class="hstat"><div class="num">98%</div><div class="lbl">Satisfaction</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-mosaic">
+      <div class="mosaic-cell">🏡<div class="mc-info"><div class="mc-price">$890,000</div><div class="mc-name">Northside Cottage</div></div></div>
+      <div class="mosaic-cell">🏙<div class="mc-info"><div class="mc-price">$1,250,000</div><div class="mc-name">City Penthouse</div></div></div>
+      <div class="mosaic-cell">🏡<div class="mc-info"><div class="mc-price">$620,000</div><div class="mc-name">Garden Townhouse</div></div></div>
+      <div class="mosaic-cell">🌿 New builds from $480K</div>
+    </div>
+    <div class="search-bar">
+      <div class="sb-field">
+        <label>Location</label>
+        <input type="text" placeholder="Suburb or postcode">
+      </div>
+      <div class="sb-field">
+        <label>Type</label>
+        <select><option>All Types</option><option>House</option><option>Apartment</option><option>Townhouse</option></select>
+      </div>
+      <div class="sb-field">
+        <label>Budget</label>
+        <select><option>Any Price</option><option>Under $500K</option><option>$500K–$1M</option><option>$1M+</option></select>
+      </div>
+      <button class="btn-search-sm">Search</button>
+    </div>
+  </div>
+</section>
+
+<section class="listings">
+  <div class="listings-header">
+    <div>
+      <div class="section-eyebrow">Curated for You</div>
+      <h2 class="section-h2">Featured <em>Listings</em></h2>
+    </div>
+    <button class="btn-outline">View All Listings →</button>
+  </div>
+  <div class="listings-grid">
+    <div class="listing-card">
+      <div class="listing-img li-bg1">🏡<span class="listing-tag tag-sale">For Sale</span></div>
+      <div class="listing-body">
+        <div class="listing-price">$890,000</div>
+        <div class="listing-name">The Northside Cottage</div>
+        <div class="listing-loc">📍 Paddington, NSW</div>
+        <div class="listing-specs">
+          <div class="spec">🛏 3 bed</div>
+          <div class="spec">🚿 2 bath</div>
+          <div class="spec">📐 185m²</div>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-img li-bg2">🏙<span class="listing-tag tag-sale">For Sale</span></div>
+      <div class="listing-body">
+        <div class="listing-price">$1,250,000</div>
+        <div class="listing-name">City Light Penthouse</div>
+        <div class="listing-loc">📍 South Yarra, VIC</div>
+        <div class="listing-specs">
+          <div class="spec">🛏 2 bed</div>
+          <div class="spec">🚿 2 bath</div>
+          <div class="spec">📐 110m²</div>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-img li-bg3">🏡<span class="listing-tag tag-rent">For Rent</span></div>
+      <div class="listing-body">
+        <div class="listing-price">$620/week</div>
+        <div class="listing-name">Garden Townhouse</div>
+        <div class="listing-loc">📍 New Farm, QLD</div>
+        <div class="listing-specs">
+          <div class="spec">🛏 3 bed</div>
+          <div class="spec">🚿 2 bath</div>
+          <div class="spec">📐 160m²</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="agents">
+  <div class="section-eyebrow">Our Team</div>
+  <h2 class="section-h2">Meet Your Local <em>Agents</em></h2>
+  <div class="agents-grid">
+    <div class="agent-card"><div class="agent-avatar">👩</div><div class="agent-name">Clara Bennett</div><div class="agent-role">Senior Property Advisor</div><button class="agent-btn">View Profile</button></div>
+    <div class="agent-card"><div class="agent-avatar">👨</div><div class="agent-name">James Liu</div><div class="agent-role">Buyers Agent</div><button class="agent-btn">View Profile</button></div>
+    <div class="agent-card"><div class="agent-avatar">👩</div><div class="agent-name">Nadia Osei</div><div class="agent-role">Rental Specialist</div><button class="agent-btn">View Profile</button></div>
+    <div class="agent-card"><div class="agent-avatar">👨</div><div class="agent-name">Tom Walsh</div><div class="agent-role">Commercial Property</div><button class="agent-btn">View Profile</button></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div>
+    <h2>Ready to Find<br>Your <em>Perfect Home?</em></h2>
+    <p>Let us match you with properties and agents that fit your life.</p>
+  </div>
+  <button class="btn-cta">Start Your Search Today →</button>
+</section>
+
+<footer>
+  <div class="footer-logo">hemma.</div>
+  <div class="footer-copy">© 2026 Hemma Property. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

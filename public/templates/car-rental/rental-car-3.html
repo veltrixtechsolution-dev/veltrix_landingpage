@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VeloRent — Luxury Auto Rental</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#c9a84c;--bg:#0a0906;--bg2:#120f0b;--lt:#f2ede4;--dim:rgba(242,237,228,0.5);--bdr:rgba(201,168,76,0.2);}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--lt);}
+  nav{height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 72px;border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:100;background:rgba(10,9,6,0.92);backdrop-filter:blur(20px);}
+  .logo{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;letter-spacing:0.08em;color:var(--lt);}
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:44px;list-style:none;}
+  .nav-links a{font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.2s;}
+  .nav-links a:hover{color:var(--gold);}
+  .btn-gold{padding:10px 28px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+  .btn-gold:hover{background:var(--gold);color:var(--bg);}
+
+  #hero{min-height:100vh;display:flex;align-items:flex-end;padding:0 72px 80px;position:relative;overflow:hidden;}
+  .hero-bg-text{position:absolute;bottom:-40px;left:-20px;font-family:'Cormorant Garamond',serif;font-size:260px;font-weight:600;color:rgba(201,168,76,0.04);line-height:1;pointer-events:none;white-space:nowrap;}
+  .hero-glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,0.05) 0%,transparent 60%);top:0;right:-200px;}
+  .hero-content{position:relative;z-index:2;max-width:700px;}
+  .h-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+  .h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(60px,7vw,96px);font-weight:600;line-height:0.95;letter-spacing:-0.01em;margin-bottom:28px;}
+  .h-title em{color:var(--gold);font-style:italic;}
+  .h-desc{font-size:15px;font-weight:300;line-height:1.8;color:var(--dim);max-width:480px;margin-bottom:44px;}
+  .h-btns{display:flex;gap:16px;}
+  .btn-gold-fill{padding:14px 40px;background:var(--gold);color:var(--bg);font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+  .btn-gold-fill:hover{filter:brightness(1.1);}
+
+  .search-strip{background:var(--bg2);border-top:1px solid var(--bdr);border-bottom:1px solid var(--bdr);padding:32px 72px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;gap:24px;align-items:end;}
+  .sf label{display:block;font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .sf input,.sf select{width:100%;background:transparent;border:none;border-bottom:1px solid var(--bdr);color:var(--lt);font-family:'Jost',sans-serif;font-size:14px;padding:8px 0;outline:none;}
+  .sf select option{background:var(--bg2);}
+  .btn-search{padding:14px 32px;background:var(--gold);color:var(--bg);font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;}
+
+  #fleet{padding:100px 72px;}
+  .s-eyebrow{font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+  .s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,56px);font-weight:600;margin-bottom:56px;line-height:1.1;}
+  .fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--bdr);}
+  .cc{background:var(--bg);padding:40px 36px;transition:background 0.3s;}
+  .cc:hover{background:var(--bg2);}
+  .cc-car{font-size:80px;margin-bottom:24px;text-align:center;}
+  .cc-tier{font-size:10px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .cc-name{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;margin-bottom:16px;}
+  .cc-specs{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
+  .cc-spec{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:8px;}
+  .cc-spec::before{content:'—';color:var(--gold);}
+  .cc-footer{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--bdr);}
+  .cc-price{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--gold);}
+  .cc-price small{font-size:14px;font-weight:400;color:var(--dim);}
+  .btn-reserve{padding:9px 22px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-size:11px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
+  .btn-reserve:hover{background:var(--gold);color:var(--bg);}
+
+  #experience{padding:80px 72px;background:var(--bg2);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+  .exp-right{display:flex;flex-direction:column;gap:28px;}
+  .exp-item{display:flex;gap:20px;padding-bottom:28px;border-bottom:1px solid var(--bdr);}
+  .exp-item:last-child{border-bottom:none;padding-bottom:0;}
+  .exp-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--gold);line-height:1;flex-shrink:0;width:80px;}
+  .exp-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;margin-bottom:8px;}
+  .exp-desc{font-size:13px;font-weight:300;line-height:1.7;color:var(--dim);}
+
+  footer{padding:40px 72px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+  .footer-copy{font-size:12px;color:var(--dim);}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">Velo<span>Rent</span></div>
+  <ul class="nav-links"><li><a href="#">Collection</a></li><li><a href="#">Locations</a></li><li><a href="#">Concierge</a></li><li><a href="#">About</a></li></ul>
+  <a href="#" class="btn-gold">Reserve Now</a>
+</nav>
+<section id="hero">
+  <div class="hero-bg-text">DRIVE</div>
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="h-eyebrow">Premium Automotive Experience</div>
+    <h1 class="h-title">Drive the Cars<br>You <em>Deserve</em></h1>
+    <p class="h-desc">VeloRent curates the finest automotive collection for discerning clients. Luxury, performance and exotic vehicles delivered to your door.</p>
+    <div class="h-btns">
+      <a href="#fleet" class="btn-gold-fill">Explore Collection</a>
+      <a href="#" class="btn-gold">Concierge Service</a>
+    </div>
+  </div>
+</section>
+<div class="search-strip">
+  <div class="sf"><label>Location</label><input type="text" placeholder="City or hotel"></div>
+  <div class="sf"><label>Vehicle Class</label><select><option>All Classes</option><option>Luxury Sedan</option><option>Sports</option><option>Exotic</option><option>SUV</option></select></div>
+  <div class="sf"><label>From</label><input type="date"></div>
+  <div class="sf"><label>Until</label><input type="date"></div>
+  <button class="btn-search">Find Your Car</button>
+</div>
+<section id="fleet">
+  <div class="s-eyebrow">The Collection</div>
+  <h2 class="s-title">Curated Fleet</h2>
+  <div class="fleet-grid">
+    <div class="cc"><div class="cc-car">🚗</div><div class="cc-tier">Luxury Sedan</div><div class="cc-name">Mercedes-Benz S-Class</div><div class="cc-specs"><div class="cc-spec">5 passengers</div><div class="cc-spec">Chauffeur available</div><div class="cc-spec">Complimentary Wi-Fi</div></div><div class="cc-footer"><div class="cc-price">$180 <small>/day</small></div><a href="#" class="btn-reserve">Reserve</a></div></div>
+    <div class="cc"><div class="cc-car">🏎</div><div class="cc-tier">Sports</div><div class="cc-name">Porsche 911 Carrera</div><div class="cc-specs"><div class="cc-spec">2 passengers</div><div class="cc-spec">450 hp</div><div class="cc-spec">Manual & PDK</div></div><div class="cc-footer"><div class="cc-price">$350 <small>/day</small></div><a href="#" class="btn-reserve">Reserve</a></div></div>
+    <div class="cc"><div class="cc-car">🚙</div><div class="cc-tier">Luxury SUV</div><div class="cc-name">Range Rover Vogue</div><div class="cc-specs"><div class="cc-spec">7 passengers</div><div class="cc-spec">Off-road capable</div><div class="cc-spec">Panoramic roof</div></div><div class="cc-footer"><div class="cc-price">$220 <small>/day</small></div><a href="#" class="btn-reserve">Reserve</a></div></div>
+  </div>
+</section>
+<section id="experience">
+  <div><div class="s-eyebrow">White-Glove Service</div><h2 class="s-title">The VeloRent Experience</h2><p style="font-size:15px;font-weight:300;line-height:1.8;color:var(--dim);">More than a rental — a complete luxury mobility experience tailored to your itinerary and preferences.</p></div>
+  <div class="exp-right">
+    <div class="exp-item"><div class="exp-num">01</div><div><div class="exp-title">Vehicle Delivery</div><div class="exp-desc">Your chosen vehicle delivered to your hotel, airport or address of choice.</div></div></div>
+    <div class="exp-item"><div class="exp-num">02</div><div><div class="exp-title">Personal Concierge</div><div class="exp-desc">Dedicated concierge for custom itineraries, routes and assistance.</div></div></div>
+    <div class="exp-item"><div class="exp-num">03</div><div><div class="exp-title">Full Coverage</div><div class="exp-desc">Comprehensive insurance included with every reservation.</div></div></div>
+  </div>
+</section>
+<footer><div class="logo" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--lt);">Velo<span style="color:var(--gold)">Rent</span></div><div class="footer-copy">© 2026 VeloRent Automotive. All rights reserved.</div></footer>
+</body>
+</html>

@@ -18,6 +18,37 @@
           "id": "aircon-3",
           "name": "Aircon 3",
           "file": "aircon-3.html"
+        },
+        {
+          "id": "aircon-4",
+          "name": "Aircon 4",
+          "file": "aircon-4.html"
+        }
+      ]
+    },
+    {
+      "id": "car-rental",
+      "name": "Car Rental",
+      "templates": [
+        {
+          "id": "rental-car-1",
+          "name": "Rental Car 1",
+          "file": "rental-car-1.html"
+        },
+        {
+          "id": "rental-car-2",
+          "name": "Rental Car 2",
+          "file": "rental-car-2.html"
+        },
+        {
+          "id": "rental-car-3",
+          "name": "Rental Car 3",
+          "file": "rental-car-3.html"
+        },
+        {
+          "id": "rental-car-4",
+          "name": "Rental Car 4",
+          "file": "rental-car-4.html"
         }
       ]
     },
@@ -39,6 +70,11 @@
           "id": "construction-3",
           "name": "Construction 3",
           "file": "construction-3.html"
+        },
+        {
+          "id": "construction-4",
+          "name": "Construction 4",
+          "file": "construction-4.html"
         }
       ]
     },
@@ -60,6 +96,11 @@
           "id": "event-organizer-3",
           "name": "Event Organizer 3",
           "file": "event-organizer-3.html"
+        },
+        {
+          "id": "event-organizer-4",
+          "name": "Event Organizer 4",
+          "file": "event-organizer-4.html"
         }
       ]
     },
@@ -102,6 +143,11 @@
           "id": "hotel-3",
           "name": "Hotel 3",
           "file": "hotel-3.html"
+        },
+        {
+          "id": "hotel-4",
+          "name": "Hotel 4",
+          "file": "hotel-4.html"
         }
       ]
     },
@@ -123,6 +169,11 @@
           "id": "plumbing-3",
           "name": "Plumbing 3",
           "file": "plumbing-3.html"
+        },
+        {
+          "id": "plumbing-4",
+          "name": "Plumbing 4",
+          "file": "plumbing-4.html"
         }
       ]
     },
@@ -130,6 +181,11 @@
       "id": "real-estate",
       "name": "Real Estate",
       "templates": [
+        {
+          "id": "realestate-1",
+          "name": "Realestate 1",
+          "file": "realestate-1.html"
+        },
         {
           "id": "realestate-2",
           "name": "Realestate 2",
@@ -139,6 +195,11 @@
           "id": "realestate-3",
           "name": "Realestate 3",
           "file": "realestate-3.html"
+        },
+        {
+          "id": "realestate-4",
+          "name": "Realestate 4",
+          "file": "realestate-4.html"
         }
       ]
     },

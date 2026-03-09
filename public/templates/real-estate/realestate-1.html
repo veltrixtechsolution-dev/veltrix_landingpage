@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prestige Realty</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a84c;--bg:#0c0c0c;--bg2:#141414;--lt:#f5f0e8;--dim:rgba(245,240,232,0.5);--bdr:rgba(201,168,76,0.2);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--lt);}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 72px;border-bottom:1px solid var(--bdr);position:sticky;top:0;z-index:100;background:rgba(12,12,12,0.95);backdrop-filter:blur(16px);}
+.logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;letter-spacing:0.08em;}
+.logo span{color:var(--gold);}
+.nav-links{display:flex;gap:44px;list-style:none;}
+.nav-links a{font-size:12px;font-weight:400;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.btn-gold{padding:10px 28px;border:1px solid var(--gold);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.2s;background:transparent;}
+.btn-gold:hover{background:var(--gold);color:var(--bg);}
+#hero{min-height:92vh;display:grid;grid-template-columns:1fr 1fr;position:relative;}
+.hero-l{padding:100px 72px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--bdr);}
+.h-eyebrow{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.h-title{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,5.5vw,76px);font-weight:700;line-height:1.0;margin-bottom:24px;}
+.h-title em{color:var(--gold);font-style:italic;}
+.h-desc{font-size:15px;font-weight:300;line-height:1.8;color:var(--dim);max-width:420px;margin-bottom:40px;}
+.h-btns{display:flex;gap:16px;}
+.btn-fill{padding:13px 32px;background:var(--gold);color:var(--bg);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;}
+.h-stats{display:flex;gap:40px;margin-top:56px;padding-top:40px;border-top:1px solid var(--bdr);}
+.hs-n{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:700;color:var(--gold);line-height:1;}
+.hs-l{font-size:11px;color:var(--dim);margin-top:6px;letter-spacing:0.08em;}
+.hero-r{background:var(--bg2);display:flex;flex-direction:column;padding:56px;}
+.search-box{background:rgba(201,168,76,0.06);border:1px solid var(--bdr);padding:32px;margin-bottom:24px;}
+.sb-title{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;margin-bottom:20px;color:var(--lt);}
+.search-fields{display:flex;flex-direction:column;gap:14px;}
+.sf{display:flex;flex-direction:column;gap:8px;}
+.sf label{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);}
+.sf input,.sf select{background:transparent;border:none;border-bottom:1px solid var(--bdr);color:var(--lt);font-family:'Lato',sans-serif;font-size:14px;padding:8px 0;outline:none;}
+.sf select option{background:var(--bg2);}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.btn-search-full{width:100%;margin-top:16px;padding:15px;background:var(--gold);color:var(--bg);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;}
+.listings-preview{flex:1;}
+.lp-title{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;}
+.lp-card{display:flex;gap:16px;padding:16px;background:var(--bg);border:1px solid var(--bdr);margin-bottom:12px;transition:border-color 0.2s;}
+.lp-card:hover{border-color:var(--gold);}
+.lp-img{width:80px;height:64px;background:rgba(201,168,76,0.08);display:grid;place-items:center;font-size:28px;flex-shrink:0;}
+.lp-info .lp-price{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:var(--gold);}
+.lp-info .lp-name{font-size:13px;color:var(--lt);margin:2px 0;}
+.lp-info .lp-detail{font-size:12px;color:var(--dim);}
+#listings{padding:100px 72px;background:var(--bg2);}
+.s-eyebrow{font-size:11px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.s-title{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:700;margin-bottom:48px;line-height:1.1;}
+.listings-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.listing-card{background:var(--bg);border:1px solid var(--bdr);overflow:hidden;transition:all 0.3s;}
+.listing-card:hover{border-color:var(--gold);transform:translateY(-4px);}
+.listing-img{height:200px;background:rgba(201,168,76,0.05);display:flex;align-items:center;justify-content:center;font-size:80px;position:relative;border-bottom:1px solid var(--bdr);}
+.listing-badge{position:absolute;top:16px;left:16px;padding:4px 12px;background:var(--gold);color:var(--bg);font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;}
+.listing-body{padding:24px;}
+.listing-price{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--gold);margin-bottom:8px;}
+.listing-name{font-size:16px;font-weight:700;margin-bottom:6px;}
+.listing-loc{font-size:13px;color:var(--dim);margin-bottom:16px;}
+.listing-specs{display:flex;gap:16px;}
+.spec{font-size:12px;color:var(--dim);display:flex;align-items:center;gap:4px;}
+.cta{padding:80px 72px;background:var(--gold);display:flex;justify-content:space-between;align-items:center;}
+.cta-t{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,56px);font-weight:700;color:var(--bg);line-height:1.1;}
+.btn-dark{padding:15px 40px;background:var(--bg);color:var(--gold);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;}
+footer{padding:32px 72px;border-top:1px solid var(--bdr);display:flex;justify-content:space-between;align-items:center;}
+.footer-copy{font-size:12px;color:var(--dim);}
+</style></head><body>
+<nav><div class="logo">Prestige<span> Realty</span></div><ul class="nav-links"><li><a href="#">Buy</a></li><li><a href="#">Sell</a></li><li><a href="#">Rent</a></li><li><a href="#">Agents</a></li></ul><a href="#" class="btn-gold">List Property</a></nav>
+<section id="hero">
+<div class="hero-l"><div class="h-eyebrow">✦ Premium Properties</div><h1 class="h-title">Find Your <em>Perfect</em> Home</h1><p class="h-desc">Curated luxury properties across the country's most sought-after locations. Expert agents, seamless process.</p><div class="h-btns"><a href="#listings" class="btn-fill">Browse Properties</a><a href="#" class="btn-gold">Meet Our Agents</a></div><div class="h-stats"><div><div class="hs-n">2,400+</div><div class="hs-l">Active Listings</div></div><div><div class="hs-n">98%</div><div class="hs-l">Client Satisfaction</div></div><div><div class="hs-n">B+</div><div class="hs-l">Deals Closed</div></div></div></div>
+<div class="hero-r"><div class="search-box"><div class="sb-title">Search Properties</div><div class="search-fields"><div class="sf"><label>Location</label><input type="text" placeholder="City, neighbourhood..."></div><div class="row2"><div class="sf"><label>Type</label><select><option>All Types</option><option>House</option><option>Condo</option><option>Villa</option></select></div><div class="sf"><label>Budget</label><select><option>Any Price</option><option>Under 00K</option><option>00K–M</option><option>M+</option></select></div></div><button class="btn-search-full">Search Properties</button></div></div><div class="listings-preview"><div class="lp-title">Recent Listings</div><div class="lp-card"><div class="lp-img">🏡</div><div class="lp-info"><div class="lp-price">,250,000</div><div class="lp-name">4BR Villa — Beverly Hills</div><div class="lp-detail">4 bed · 3 bath · 3,200 sqft</div></div></div><div class="lp-card"><div class="lp-img">🏢</div><div class="lp-info"><div class="lp-price">80,000</div><div class="lp-name">2BR Penthouse — Manhattan</div><div class="lp-detail">2 bed · 2 bath · 1,400 sqft</div></div></div></div></div>
+</section>
+<section id="listings"><div class="s-eyebrow">Featured Properties</div><h2 class="s-title">Exclusive Listings</h2><div class="listings-grid"><div class="listing-card"><div class="listing-img">🏡<span class="listing-badge">For Sale</span></div><div class="listing-body"><div class="listing-price">,400,000</div><div class="listing-name">Hillcrest Manor</div><div class="listing-loc">📍 Beverly Hills, CA</div><div class="listing-specs"><span class="spec">🛏 5 bed</span><span class="spec">🚿 4 bath</span><span class="spec">📐 4,500 sqft</span></div></div></div><div class="listing-card"><div class="listing-img">🏙<span class="listing-badge">For Rent</span></div><div class="listing-body"><div class="listing-price">,500/mo</div><div class="listing-name">The Meridian Penthouse</div><div class="listing-loc">📍 Manhattan, NY</div><div class="listing-specs"><span class="spec">🛏 3 bed</span><span class="spec">🚿 2 bath</span><span class="spec">📐 2,200 sqft</span></div></div></div><div class="listing-card"><div class="listing-img">🏖<span class="listing-badge">New</span></div><div class="listing-body"><div class="listing-price">,800,000</div><div class="listing-name">Oceanview Estate</div><div class="listing-loc">📍 Malibu, CA</div><div class="listing-specs"><span class="spec">🛏 4 bed</span><span class="spec">🚿 3 bath</span><span class="spec">📐 3,800 sqft</span></div></div></div></div></section>
+<div class="cta"><h2 class="cta-t">Ready to Find<br>Your Dream Home?</h2><a href="#" class="btn-dark">Talk to an Agent</a></div>
+<footer><div class="logo" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;">Prestige<span style="color:var(--gold)"> Realty</span></div><div class="footer-copy">© 2026 Prestige Realty. All rights reserved.</div></footer>
+</body></html>

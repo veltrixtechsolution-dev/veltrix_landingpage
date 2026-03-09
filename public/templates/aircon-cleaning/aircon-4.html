@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BreezeClean — Pure Air, Healthy Home</title>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --mint: #D4F0E8;
+    --mint-dark: #A8DFD0;
+    --teal: #2A9D8F;
+    --teal-deep: #1B6B60;
+    --white: #FAFCFB;
+    --off: #F0F7F5;
+    --ink: #1C2E2A;
+    --mid: #6B8C85;
+    --bdr: #C8E8E0;
+    --yellow: #E8C547;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--bdr);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Gilda Display', serif;
+    font-size: 1.6rem;
+    color: var(--teal-deep);
+    letter-spacing: .04em;
+  }
+  .logo .dot { color: var(--yellow); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-right { display: flex; gap: 1rem; align-items: center; }
+  .phone-pill {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .55rem 1.2rem;
+    background: var(--mint);
+    border-radius: 100px;
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--teal-deep);
+  }
+  .btn-teal {
+    padding: .65rem 1.8rem;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .25s;
+  }
+  .btn-teal:hover { background: var(--teal-deep); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,157,143,.25); }
+
+  /* HERO */
+  .hero {
+    min-height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 0;
+    background: var(--off);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Organic blob background */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: 30%;
+    width: 70%;
+    height: 130%;
+    background: radial-gradient(ellipse 70% 80% at 60% 40%, var(--mint) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-left {
+    padding: 5rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .trust-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .45rem 1rem;
+    background: white;
+    border: 1px solid var(--bdr);
+    border-radius: 100px;
+    font-size: .76rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 2rem;
+    width: fit-content;
+    box-shadow: 0 2px 12px rgba(42,157,143,.1);
+  }
+  .trust-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #2ECC71; }
+  .hero-title {
+    font-family: 'Gilda Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+    letter-spacing: -.01em;
+  }
+  .hero-title .teal { color: var(--teal); }
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--mid);
+    max-width: 46ch;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; margin-bottom: 3.5rem; }
+  .btn-outline-teal {
+    padding: .75rem 2rem;
+    border: 2px solid var(--teal);
+    color: var(--teal);
+    background: transparent;
+    border-radius: 100px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .25s;
+  }
+  .btn-outline-teal:hover { background: var(--mint); }
+  .perks { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .perk {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--mid);
+  }
+  .perk-icon { font-size: 1rem; }
+
+  /* BOOKING PANEL */
+  .hero-book {
+    background: white;
+    border-left: 1px solid var(--bdr);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2.5rem;
+    justify-content: center;
+    gap: 1.5rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: -12px 0 40px rgba(0,0,0,.06);
+  }
+  .book-heading {
+    font-family: 'Gilda Display', serif;
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: .3rem;
+  }
+  .book-sub { font-size: .82rem; color: var(--mid); }
+  .form-group { display: flex; flex-direction: column; gap: .5rem; }
+  .form-group label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--teal-deep);
+  }
+  .form-group input, .form-group select {
+    padding: .85rem 1.1rem;
+    border: 1.5px solid var(--bdr);
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .9rem;
+    color: var(--ink);
+    background: var(--off);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .form-group input:focus, .form-group select:focus { border-color: var(--teal); background: white; }
+  .form-group select option { background: white; }
+  .btn-book {
+    padding: 1rem;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all .25s;
+    margin-top: .5rem;
+  }
+  .btn-book:hover { background: var(--teal-deep); box-shadow: 0 8px 24px rgba(42,157,143,.3); }
+  .book-note {
+    font-size: .75rem;
+    color: var(--mid);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+  }
+
+  /* HOW IT WORKS */
+  .how {
+    padding: 6rem 4rem;
+    background: var(--white);
+  }
+  .section-label {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: .8rem;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 2px; background: var(--teal); }
+  .section-title {
+    font-family: 'Gilda Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: var(--ink);
+    margin-bottom: 3.5rem;
+    line-height: 1.15;
+  }
+  .section-title span { color: var(--teal); }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(12.5% + 16px);
+    right: calc(12.5% + 16px);
+    height: 2px;
+    background: linear-gradient(to right, var(--teal), var(--mint-dark));
+    z-index: 0;
+  }
+  .step { text-align: center; padding: 0 1.5rem; position: relative; z-index: 1; }
+  .step-num {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    box-shadow: 0 4px 20px rgba(42,157,143,.3);
+    transition: transform .25s;
+  }
+  .step:hover .step-num { transform: scale(1.1); }
+  .step-title { font-family: 'Gilda Display', serif; font-size: 1.1rem; margin-bottom: .6rem; }
+  .step-desc { font-size: .83rem; color: var(--mid); line-height: 1.7; }
+
+  /* SERVICES */
+  .services {
+    padding: 6rem 4rem;
+    background: var(--off);
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .svc-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 1px solid var(--bdr);
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--teal), var(--mint-dark));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .3s;
+  }
+  .svc-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(42,157,143,.12); }
+  .svc-card:hover::before { transform: scaleX(1); }
+  .svc-icon-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    background: var(--mint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .svc-title { font-family: 'Gilda Display', serif; font-size: 1.25rem; margin-bottom: .7rem; }
+  .svc-desc { font-size: .85rem; color: var(--mid); line-height: 1.75; margin-bottom: 1.5rem; }
+  .svc-price { font-size: 1.4rem; font-weight: 800; color: var(--teal); }
+  .svc-price span { font-size: .8rem; font-weight: 400; color: var(--mid); }
+
+  /* REVIEWS */
+  .reviews {
+    padding: 6rem 4rem;
+    background: var(--white);
+  }
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3.5rem;
+  }
+  .review-card {
+    background: var(--off);
+    border-radius: 20px;
+    padding: 2rem 2.2rem;
+    border: 1px solid var(--bdr);
+  }
+  .stars { color: var(--yellow); font-size: 1rem; letter-spacing: .1em; margin-bottom: 1rem; }
+  .review-text { font-size: .88rem; line-height: 1.75; color: var(--ink); margin-bottom: 1.5rem; }
+  .reviewer { display: flex; align-items: center; gap: .8rem; }
+  .reviewer-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    font-weight: 800;
+    font-size: .9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .reviewer-name { font-size: .88rem; font-weight: 700; }
+  .reviewer-loc { font-size: .75rem; color: var(--mid); }
+
+  /* CTA */
+  .cta {
+    background: var(--teal-deep);
+    padding: 5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+  .cta-content .label { font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--mint); margin-bottom: 1rem; }
+  .cta-content h2 {
+    font-family: 'Gilda Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: white;
+    line-height: 1.1;
+  }
+  .cta-content h2 em { color: var(--mint-dark); }
+  .cta-btns { display: flex; flex-direction: column; gap: .8rem; flex-shrink: 0; }
+  .btn-white {
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--teal-deep);
+    border: none;
+    border-radius: 100px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .95rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all .25s;
+    white-space: nowrap;
+  }
+  .btn-white:hover { background: var(--mint); }
+  .btn-ghost-white {
+    padding: .8rem 2.5rem;
+    background: transparent;
+    color: rgba(255,255,255,.7);
+    border: 1px solid rgba(255,255,255,.3);
+    border-radius: 100px;
+    font-family: 'Nunito', sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all .25s;
+  }
+  .btn-ghost-white:hover { background: rgba(255,255,255,.1); color: white; }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Gilda Display', serif; font-size: 1.4rem; color: var(--mint); }
+  .footer-copy { font-size: .78rem; color: rgba(255,255,255,.35); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Breeze<span class="dot">.</span>Clean</div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">How It Works</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="phone-pill">📞 1800-BREEZE</div>
+    <button class="btn-teal">Book a Clean</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="trust-badge"><span class="dot"></span> Available Today · Same-Day Booking</div>
+    <h1 class="hero-title">
+      Breathe <span class="teal">Cleaner</span><br>Air Every Day
+    </h1>
+    <p class="hero-desc">Professional aircon cleaning that removes hidden mould, bacteria and dust — making your home healthier and your energy bills smaller.</p>
+    <div class="hero-actions">
+      <button class="btn-teal" style="border-radius:100px;padding:.85rem 2.2rem;font-size:.95rem">Book a Clean Today</button>
+      <button class="btn-outline-teal">See Our Prices</button>
+    </div>
+    <div class="perks">
+      <div class="perk"><span class="perk-icon">✅</span> Licensed Technicians</div>
+      <div class="perk"><span class="perk-icon">⚡</span> Same-Day Service</div>
+      <div class="perk"><span class="perk-icon">🛡</span> Satisfaction Guarantee</div>
+    </div>
+  </div>
+  <div class="hero-book">
+    <div>
+      <div class="book-heading">Book Your Clean</div>
+      <div class="book-sub">Free inspection included with every service</div>
+    </div>
+    <div class="form-group">
+      <label>Your Suburb</label>
+      <input type="text" placeholder="e.g. Bondi Beach, NSW">
+    </div>
+    <div class="form-group">
+      <label>Unit Type</label>
+      <select>
+        <option>Split System (1 unit)</option>
+        <option>Ducted System</option>
+        <option>Multi-head System</option>
+        <option>Cassette Unit</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Preferred Date</label>
+      <input type="date">
+    </div>
+    <button class="btn-book">Get Instant Quote →</button>
+    <div class="book-note">🔒 No payment needed to book</div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="section-label">How It Works</div>
+  <h2 class="section-title">Clean Air in <span>4 Easy Steps</span></h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Book Online</div>
+      <div class="step-desc">Choose your service, pick a date and confirm in under 2 minutes.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">We Arrive</div>
+      <div class="step-desc">Our certified technician arrives on time with all equipment.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Deep Clean</div>
+      <div class="step-desc">Full dismantle, anti-bacterial wash and coil treatment.</div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Breathe Easy</div>
+      <div class="step-desc">You get a full report and performance check before we leave.</div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-label">Our Services</div>
+  <h2 class="section-title">Everything Your Aircon <span>Needs</span></h2>
+  <div class="services-grid">
+    <div class="svc-card">
+      <div class="svc-icon-wrap">🌬</div>
+      <div class="svc-title">Split System Clean</div>
+      <div class="svc-desc">Complete dismantling, coil wash, filter clean and anti-bacterial treatment for split system units.</div>
+      <div class="svc-price">$89 <span>per unit</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">🏠</div>
+      <div class="svc-title">Ducted System Service</div>
+      <div class="svc-desc">Full ducted system inspection, duct cleaning, filter replacement and airflow balancing.</div>
+      <div class="svc-price">$220 <span>full home</span></div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-icon-wrap">🦠</div>
+      <div class="svc-title">Sanitisation Package</div>
+      <div class="svc-desc">Hospital-grade anti-bacterial and anti-mould treatment for families with allergies or asthma.</div>
+      <div class="svc-price">$110 <span>per unit</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews">
+  <div class="section-label">Reviews</div>
+  <h2 class="section-title">Customers Who <span>Breathe Better</span></h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"The difference in air quality was immediate. My kids' allergies have improved dramatically since the clean. Absolutely worth every cent."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SK</div>
+        <div><div class="reviewer-name">Sarah K.</div><div class="reviewer-loc">North Sydney, NSW</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Showed up on time, explained everything they were doing and left the unit spotless. Energy bill dropped by 18% the following month."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">MR</div>
+        <div><div class="reviewer-name">Marcus R.</div><div class="reviewer-loc">Melbourne, VIC</div></div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Friendly, professional and thorough. Took before and after photos showing the mould they removed. Would not use anyone else."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JT</div>
+        <div><div class="reviewer-name">Jessica T.</div><div class="reviewer-loc">Brisbane, QLD</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-content">
+    <div class="label">🌿 Start Today</div>
+    <h2>Your Family Deserves<br><em>Cleaner Air</em></h2>
+  </div>
+  <div class="cta-btns">
+    <button class="btn-white">Book a Clean Now</button>
+    <button class="btn-ghost-white">Call 1800-BREEZE</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">BreezeClean</div>
+  <div class="footer-copy">© 2026 BreezeClean Pty Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

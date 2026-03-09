@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OPEN ROAD — Car Rentals</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --amber: #D97706;
+    --amber-lt: #FBBF24;
+    --brown: #78350F;
+    --cream: #FFFBF0;
+    --sand: #FEF3C7;
+    --rust: #C2410C;
+    --sage: #4D7C5F;
+    --ink: #1C0A00;
+    --mid: #92400E;
+    --bdr: #FDE68A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* Retro dot pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(var(--bdr) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: .4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3.5rem;
+    height: 72px;
+    background: var(--brown);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 3px solid var(--amber);
+  }
+  .logo {
+    font-family: 'Righteous', cursive;
+    font-size: 1.7rem;
+    letter-spacing: .08em;
+    color: var(--amber-lt);
+  }
+  .logo span { color: white; }
+  .nav-links { display: flex; gap: 0; list-style: none; }
+  .nav-links li { border-left: 1px solid rgba(255,255,255,.08); }
+  .nav-links a {
+    display: block;
+    padding: 0 1.6rem;
+    line-height: 72px;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.55);
+    text-decoration: none;
+    transition: color .2s, background .2s;
+  }
+  .nav-links a:hover { color: var(--amber-lt); background: rgba(255,255,255,.04); }
+  .btn-amber {
+    padding: .6rem 1.8rem;
+    background: var(--amber);
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: .82rem;
+    font-weight: 900;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .2s;
+  }
+  .btn-amber:hover { background: var(--amber-lt); color: var(--ink); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    background: var(--brown);
+    color: white;
+    padding: 5rem 3.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--amber), var(--amber-lt), var(--amber));
+  }
+  /* Retro circle decorations */
+  .hero-circles {
+    position: absolute;
+    top: -60px; right: 40%;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 40px solid rgba(251,191,36,.06);
+    pointer-events: none;
+  }
+  .hero-circles::before {
+    content: '';
+    position: absolute;
+    top: 60px; left: 60px;
+    right: 60px; bottom: 60px;
+    border-radius: 50%;
+    border: 20px solid rgba(251,191,36,.05);
+  }
+  .hero-left {
+    padding-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+  }
+  .h-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .35rem 1rem;
+    background: rgba(251,191,36,.15);
+    border: 1px solid rgba(251,191,36,.3);
+    border-radius: 4px;
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--amber-lt);
+    margin-bottom: 2rem;
+  }
+  .hero-title {
+    font-family: 'Righteous', cursive;
+    font-size: clamp(3.5rem, 6.5vw, 7rem);
+    line-height: .95;
+    letter-spacing: .02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .amber { color: var(--amber-lt); }
+  .hero-title .outline {
+    -webkit-text-stroke: 2px rgba(255,255,255,.4);
+    color: transparent;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(255,255,255,.6);
+    max-width: 44ch;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; align-items: center; margin-bottom: 3rem; }
+  .btn-hero {
+    padding: .9rem 2.4rem;
+    background: var(--amber);
+    color: white;
+    font-weight: 900;
+    font-size: .95rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-hero:hover { background: var(--amber-lt); color: var(--ink); }
+  .btn-text { color: rgba(255,255,255,.5); font-size: .85rem; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,.25); padding-bottom: 2px; }
+  .hero-stats { display: flex; gap: 2.5rem; }
+  .hs { }
+  .hs-n { font-family: 'Righteous', cursive; font-size: 2.2rem; color: var(--amber-lt); line-height: 1; }
+  .hs-l { font-size: .7rem; color: rgba(255,255,255,.4); letter-spacing: .12em; text-transform: uppercase; margin-top: .2rem; }
+
+  /* SEARCH BAR */
+  .hero-right {
+    position: relative;
+    z-index: 2;
+  }
+  .search-panel {
+    background: var(--cream);
+    border-radius: 12px 12px 0 0;
+    padding: 2.2rem;
+    color: var(--ink);
+  }
+  .sp-title {
+    font-family: 'Righteous', cursive;
+    font-size: 1.3rem;
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .search-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.2rem; }
+  .sg-full { grid-column: 1 / -1; }
+  .sf-group { display: flex; flex-direction: column; gap: .4rem; }
+  .sf-group label { font-size: .7rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; color: var(--amber); }
+  .sf-group input, .sf-group select {
+    padding: .75rem 1rem;
+    border: 1.5px solid var(--bdr);
+    border-radius: 8px;
+    font-family: 'Lato', sans-serif;
+    font-size: .9rem;
+    color: var(--ink);
+    background: var(--sand);
+    outline: none;
+    transition: border-color .2s;
+  }
+  .sf-group input:focus, .sf-group select:focus { border-color: var(--amber); background: white; }
+  .btn-search {
+    width: 100%;
+    padding: 1rem;
+    background: var(--rust);
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-search:hover { background: var(--brown); }
+
+  /* FLEET */
+  .fleet {
+    padding: 5rem 3.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  .fleet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+  .section-eyebrow {
+    font-size: .72rem;
+    font-weight: 900;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: .6rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .section-eyebrow::before { content: '〜'; color: var(--amber-lt); }
+  .section-h2 {
+    font-family: 'Righteous', cursive;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: var(--brown);
+    line-height: 1.1;
+  }
+  .view-all {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-bottom: 1.5px solid var(--bdr);
+    padding-bottom: 2px;
+  }
+  .fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .car-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid var(--bdr);
+    transition: all .3s;
+  }
+  .car-card:hover { border-color: var(--amber); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(217,119,6,.15); }
+  .car-visual {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+  }
+  .cv-economy { background: linear-gradient(135deg, var(--sand), #fef9e7); }
+  .cv-suv { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+  .cv-luxury { background: linear-gradient(135deg, #fce4ec, #f8bbd0); }
+  .car-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: .25rem .7rem;
+    border-radius: 4px;
+    font-size: .65rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .badge-pop { background: var(--rust); color: white; }
+  .badge-new { background: var(--sage); color: white; }
+  .badge-hot { background: var(--amber); color: white; }
+  .car-body { padding: 1.5rem; }
+  .car-category { font-size: .7rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; color: var(--amber); margin-bottom: .4rem; }
+  .car-name { font-family: 'Righteous', cursive; font-size: 1.3rem; color: var(--brown); margin-bottom: .3rem; }
+  .car-desc { font-size: .8rem; color: var(--mid); margin-bottom: 1rem; }
+  .car-features { display: flex; gap: 1rem; margin-bottom: 1.2rem; }
+  .cf { font-size: .75rem; color: var(--mid); display: flex; align-items: center; gap: .3rem; }
+  .car-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--bdr); }
+  .car-price { font-family: 'Righteous', cursive; font-size: 1.6rem; color: var(--rust); }
+  .car-price span { font-family: 'Lato', sans-serif; font-size: .75rem; font-weight: 400; color: var(--mid); }
+  .btn-rent {
+    padding: .55rem 1.4rem;
+    background: var(--amber);
+    color: white;
+    font-weight: 900;
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-rent:hover { background: var(--rust); }
+
+  /* WHY US */
+  .why {
+    background: var(--brown);
+    padding: 5rem 3.5rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .why::before {
+    content: '〜 〜 〜';
+    position: absolute;
+    font-size: 8rem;
+    opacity: .04;
+    right: -2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    letter-spacing: 2rem;
+    font-family: 'Righteous', cursive;
+    color: var(--amber-lt);
+    pointer-events: none;
+  }
+  .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; }
+  .why-item {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,.08);
+    text-align: center;
+    transition: background .2s;
+  }
+  .why-item:last-child { border-right: none; }
+  .why-item:hover { background: rgba(255,255,255,.03); }
+  .why-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+  .why-title { font-family: 'Righteous', cursive; font-size: 1.1rem; color: var(--amber-lt); margin-bottom: .6rem; }
+  .why-desc { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.7; }
+
+  /* CTA */
+  .cta {
+    background: var(--sand);
+    padding: 5rem 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 3px solid var(--amber);
+    position: relative;
+    z-index: 1;
+  }
+  .cta h2 {
+    font-family: 'Righteous', cursive;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    color: var(--brown);
+    line-height: 1.05;
+  }
+  .cta h2 span { color: var(--rust); }
+  .cta p { font-size: .95rem; color: var(--mid); margin-top: .8rem; }
+  .btn-cta {
+    padding: 1.1rem 3rem;
+    background: var(--rust);
+    color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all .2s;
+  }
+  .btn-cta:hover { background: var(--brown); transform: translateY(-2px); }
+
+  footer {
+    background: var(--ink);
+    padding: 2rem 3.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Righteous', cursive; font-size: 1.4rem; color: var(--amber-lt); }
+  .footer-copy { font-size: .75rem; color: rgba(255,255,255,.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Open<span> Road</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Fleet</a></li>
+    <li><a href="#">Locations</a></li>
+    <li><a href="#">One-Way Trips</a></li>
+    <li><a href="#">Long Term</a></li>
+    <li><a href="#">Business</a></li>
+  </ul>
+  <button class="btn-amber">Reserve Now</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-circles"></div>
+  <div class="hero-left">
+    <div class="h-tag">🚗 No Hidden Fees · Free Cancellation</div>
+    <h1 class="hero-title">
+      Hit The<br>
+      <span class="amber">Open</span><br>
+      <span class="outline">Road</span>
+    </h1>
+    <p class="hero-desc">Rent a car on your terms. Pickup anywhere, drop off everywhere. Over 200 locations across the country — with real human support.</p>
+    <div class="hero-btns">
+      <button class="btn-hero">Find a Car</button>
+      <span class="btn-text">See all locations →</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">200+</div><div class="hs-l">Locations</div></div>
+      <div class="hs"><div class="hs-n">15K</div><div class="hs-l">Vehicles</div></div>
+      <div class="hs"><div class="hs-n">4.8★</div><div class="hs-l">Avg. Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="search-panel">
+      <div class="sp-title">🗺 Plan Your Trip</div>
+      <div class="search-grid">
+        <div class="sf-group sg-full">
+          <label>Pickup Location</label>
+          <input type="text" placeholder="City, airport or address...">
+        </div>
+        <div class="sf-group">
+          <label>Pickup Date</label>
+          <input type="date">
+        </div>
+        <div class="sf-group">
+          <label>Return Date</label>
+          <input type="date">
+        </div>
+        <div class="sf-group sg-full">
+          <label>Car Type</label>
+          <select>
+            <option>Any Type</option>
+            <option>Economy</option>
+            <option>SUV / 4WD</option>
+            <option>Luxury</option>
+            <option>Van / People Mover</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-search">Search Available Cars →</button>
+    </div>
+  </div>
+</section>
+
+<section class="fleet">
+  <div class="fleet-header">
+    <div>
+      <div class="section-eyebrow">Our Fleet</div>
+      <h2 class="section-h2">Pick Your Ride</h2>
+    </div>
+    <span class="view-all">View All Cars →</span>
+  </div>
+  <div class="fleet-grid">
+    <div class="car-card">
+      <div class="car-visual cv-economy">🚗<span class="car-badge badge-pop">Most Popular</span></div>
+      <div class="car-body">
+        <div class="car-category">Economy</div>
+        <div class="car-name">Toyota Corolla</div>
+        <div class="car-desc">Fuel-efficient, easy to park, great for city trips.</div>
+        <div class="car-features">
+          <div class="cf">👤 5 seats</div>
+          <div class="cf">🧳 2 bags</div>
+          <div class="cf">⛽ Auto</div>
+        </div>
+        <div class="car-bottom">
+          <div class="car-price">$49 <span>/ day</span></div>
+          <button class="btn-rent">Rent Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="car-card">
+      <div class="car-visual cv-suv">🚙<span class="car-badge badge-new">New Fleet</span></div>
+      <div class="car-body">
+        <div class="car-category">SUV / 4WD</div>
+        <div class="car-name">Ford Everest</div>
+        <div class="car-desc">Perfect for road trips, families and off-road adventures.</div>
+        <div class="car-features">
+          <div class="cf">👤 7 seats</div>
+          <div class="cf">🧳 5 bags</div>
+          <div class="cf">⛽ 4WD</div>
+        </div>
+        <div class="car-bottom">
+          <div class="car-price">$89 <span>/ day</span></div>
+          <button class="btn-rent">Rent Now</button>
+        </div>
+      </div>
+    </div>
+    <div class="car-card">
+      <div class="car-visual cv-luxury">🏎<span class="car-badge badge-hot">Premium</span></div>
+      <div class="car-body">
+        <div class="car-category">Luxury</div>
+        <div class="car-name">Mercedes E-Class</div>
+        <div class="car-desc">Arrive in style. Leather interior, full tech package.</div>
+        <div class="car-features">
+          <div class="cf">👤 5 seats</div>
+          <div class="cf">🧳 3 bags</div>
+          <div class="cf">⛽ Auto</div>
+        </div>
+        <div class="car-bottom">
+          <div class="car-price">$149 <span>/ day</span></div>
+          <button class="btn-rent">Rent Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="section-eyebrow" style="color:var(--amber-lt)">Why Open Road</div>
+  <h2 class="section-h2" style="color:white;font-family:'Righteous',cursive;font-size:clamp(1.8rem,3vw,2.8rem)">The Smarter Way to Drive</h2>
+  <div class="why-grid">
+    <div class="why-item"><div class="why-icon">💰</div><div class="why-title">No Hidden Fees</div><div class="why-desc">The price you see is the price you pay. No surprise charges at pickup.</div></div>
+    <div class="why-item"><div class="why-icon">🔄</div><div class="why-title">Free Cancellation</div><div class="why-desc">Plans change. Cancel for free up to 24 hours before pickup — no questions asked.</div></div>
+    <div class="why-item"><div class="why-icon">📍</div><div class="why-title">200+ Locations</div><div class="why-desc">Pickup and drop at airports, hotels and city centres nationwide.</div></div>
+    <div class="why-item"><div class="why-icon">📞</div><div class="why-title">24/7 Roadside Help</div><div class="why-desc">Real human support any time you need it, wherever the road takes you.</div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div>
+    <h2>Ready for Your Next<br><span>Adventure?</span></h2>
+    <p>Hundreds of cars available across 200+ locations — book in 2 minutes.</p>
+  </div>
+  <button class="btn-cta">Find My Car →</button>
+</section>
+
+<footer>
+  <div class="footer-logo">Open Road</div>
+  <div class="footer-copy">© 2026 Open Road Rentals. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

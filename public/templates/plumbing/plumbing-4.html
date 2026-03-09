@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaFix — Smart Plumbing Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1E8449;
+    --green-lt: #27AE60;
+    --green-bg: #EAF7EF;
+    --blue: #1565C0;
+    --blue-lt: #E8F0FE;
+    --white: #FFFFFF;
+    --off: #F8FFFE;
+    --ink: #0D1F1A;
+    --mid: #5A7A6A;
+    --bdr: #C8E8D8;
+    --yellow: #F39C12;
+    --warm: #FFF8F0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* TOP ANNOUNCEMENT BAR */
+  .topbar {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: .55rem;
+    font-size: .8rem;
+    font-weight: 500;
+    letter-spacing: .04em;
+  }
+  .topbar strong { font-weight: 700; }
+
+  /* NAV */
+  nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 4rem;
+    background: var(--white);
+    border-bottom: 1px solid var(--bdr);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem;
+    color: var(--green);
+    letter-spacing: .02em;
+  }
+  .logo span { color: var(--blue); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: .88rem;
+    font-weight: 500;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .nav-right { display: flex; gap: 1rem; align-items: center; }
+  .emergency-btn {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .6rem 1.2rem;
+    background: #FEF2E7;
+    border: 1.5px solid var(--yellow);
+    border-radius: 8px;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--yellow);
+    cursor: pointer;
+    transition: all .2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .emergency-btn:hover { background: var(--yellow); color: white; }
+  .btn-green {
+    padding: .6rem 1.8rem;
+    background: var(--green);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .88rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .btn-green:hover { background: var(--green-lt); transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 88vh;
+    overflow: hidden;
+    background: var(--off);
+  }
+  .hero-left {
+    padding: 5rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--bdr);
+  }
+  .h-chips { display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .3rem .9rem;
+    background: var(--green-bg);
+    border: 1px solid var(--bdr);
+    border-radius: 100px;
+    font-size: .72rem;
+    font-weight: 600;
+    color: var(--green);
+  }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 5.5vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -.01em;
+  }
+  .hero-title em { color: var(--green); font-style: italic; }
+  .hero-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--mid);
+    max-width: 48ch;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .btn-lg {
+    padding: .9rem 2.2rem;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all .25s;
+    border: none;
+  }
+  .btn-green-lg { background: var(--green); color: white; }
+  .btn-green-lg:hover { background: var(--green-lt); box-shadow: 0 8px 24px rgba(30,132,73,.25); }
+  .btn-blue-lg { background: var(--blue-lt); color: var(--blue); }
+  .btn-blue-lg:hover { background: var(--blue); color: white; }
+  .guarantee-strip { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .guarantee {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--mid);
+  }
+  .g-icon { width: 24px; height: 24px; border-radius: 50%; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: .75rem; flex-shrink: 0; }
+
+  /* HERO RIGHT */
+  .hero-right { display: flex; flex-direction: column; }
+  .pricing-panel { flex: 1; padding: 3rem; display: flex; flex-direction: column; gap: 1rem; justify-content: center; }
+  .pricing-panel h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: .4rem;
+  }
+  .pricing-panel p { font-size: .82rem; color: var(--mid); margin-bottom: 1rem; }
+  .price-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 1.4rem;
+    background: white;
+    border: 1.5px solid var(--bdr);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all .25s;
+  }
+  .price-item:hover { border-color: var(--green); box-shadow: 0 4px 16px rgba(30,132,73,.1); }
+  .pi-left { display: flex; align-items: center; gap: 1rem; }
+  .pi-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--green-bg); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+  .pi-name { font-size: .95rem; font-weight: 600; }
+  .pi-desc { font-size: .76rem; color: var(--mid); margin-top: .1rem; }
+  .pi-price { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--green); font-weight: 400; }
+  .pi-price small { font-family: 'DM Sans', sans-serif; font-size: .65rem; color: var(--mid); font-weight: 400; }
+
+  .quote-box {
+    background: var(--green);
+    color: white;
+    padding: 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .quote-box p { font-size: .85rem; opacity: .8; margin-top: .3rem; }
+  .quote-box h4 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 400; }
+  .btn-quote {
+    padding: .7rem 1.8rem;
+    background: white;
+    color: var(--green);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all .2s;
+    flex-shrink: 0;
+  }
+  .btn-quote:hover { background: var(--green-bg); }
+
+  /* STATS */
+  .stats-row {
+    background: var(--ink);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .stat-cell {
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,.06);
+  }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--green-lt); line-height: 1; }
+  .stat-lbl { font-size: .72rem; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-top: .4rem; }
+
+  /* SERVICES */
+  .services { padding: 5rem 4rem; }
+  .sh { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+  .s-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--green); margin-bottom: .5rem; display: flex; align-items: center; gap: .6rem; }
+  .s-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--green); }
+  .s-h2 { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); line-height: 1.1; }
+  .s-h2 em { color: var(--green); }
+  .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .svc-card {
+    background: var(--off);
+    border: 1px solid var(--bdr);
+    border-radius: 16px;
+    padding: 2.2rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .svc-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 0;
+    background: var(--green-bg);
+    transition: height .3s;
+    z-index: 0;
+  }
+  .svc-card:hover { border-color: var(--green); }
+  .svc-card:hover::after { height: 100%; }
+  .svc-card > * { position: relative; z-index: 1; }
+  .svc-wrap {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--green-bg);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.5rem;
+  }
+  .svc-title { font-family: 'DM Serif Display', serif; font-size: 1.2rem; margin-bottom: .6rem; }
+  .svc-desc { font-size: .83rem; color: var(--mid); line-height: 1.75; margin-bottom: 1.2rem; }
+  .svc-from { font-size: 1.1rem; font-weight: 700; color: var(--green); }
+
+  /* PROCESS */
+  .process { padding: 5rem 4rem; background: var(--green-bg); }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+  .step-card { text-align: center; }
+  .step-n {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: white; border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400;
+    color: var(--green); margin: 0 auto 1.2rem;
+    box-shadow: 0 4px 16px rgba(30,132,73,.12);
+    transition: all .25s;
+  }
+  .step-card:hover .step-n { background: var(--green); color: white; transform: scale(1.08); }
+  .step-title { font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: .5rem; }
+  .step-desc { font-size: .8rem; color: var(--mid); line-height: 1.7; }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(135deg, var(--green), var(--blue));
+    padding: 5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+  }
+  .cta-text h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    color: white;
+    line-height: 1.1;
+  }
+  .cta-text h2 em { color: var(--green-bg); }
+  .cta-text p { font-size: .95rem; color: rgba(255,255,255,.7); margin-top: .8rem; }
+  .btn-white {
+    padding: 1rem 2.8rem;
+    background: white;
+    color: var(--green);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all .2s;
+    white-space: nowrap;
+  }
+  .btn-white:hover { background: var(--green-bg); }
+
+  footer {
+    background: var(--ink);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--green-lt); }
+  .footer-copy { font-size: .75rem; color: rgba(255,255,255,.3); }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <strong>🚨 24/7 Emergency Plumbing Available</strong> — Same-day service · Licensed · Insured · Call 1800-AQUAFIX
+</div>
+
+<nav>
+  <div class="logo">Aqua<span>Fix</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">How It Works</a></li>
+    <li><a href="#">Reviews</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="emergency-btn">⚡ Emergency</button>
+    <button class="btn-green">Book Online</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="h-chips">
+      <div class="chip">✅ Licensed</div>
+      <div class="chip">⭐ 4.9 Rating</div>
+      <div class="chip">⚡ Same-Day</div>
+      <div class="chip">🌿 Eco-Friendly</div>
+    </div>
+    <h1 class="hero-title">
+      Plumbing That's<br><em>Fast, Fair &</em><br>Reliable
+    </h1>
+    <p class="hero-desc">AquaFix brings skilled, eco-conscious plumbers to your door — with upfront pricing, no hidden fees and a guarantee on every job.</p>
+    <div class="hero-btns">
+      <button class="btn-lg btn-green-lg">Book a Plumber →</button>
+      <button class="btn-lg btn-blue-lg">View Pricing</button>
+    </div>
+    <div class="guarantee-strip">
+      <div class="guarantee"><div class="g-icon">🛡</div>Satisfaction Guaranteed</div>
+      <div class="guarantee"><div class="g-icon">💰</div>Upfront Fixed Pricing</div>
+      <div class="guarantee"><div class="g-icon">🔒</div>Fully Insured</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="pricing-panel">
+      <h3>Common Services</h3>
+      <p>Fixed price — no hidden extras, ever.</p>
+      <div class="price-item">
+        <div class="pi-left"><div class="pi-icon">💧</div><div><div class="pi-name">Leak Detection & Repair</div><div class="pi-desc">Same-day service available</div></div></div>
+        <div class="pi-price">$95 <small>from</small></div>
+      </div>
+      <div class="price-item">
+        <div class="pi-left"><div class="pi-icon">🚿</div><div><div class="pi-name">Drain Unblocking</div><div class="pi-desc">High-pressure jetting</div></div></div>
+        <div class="pi-price">$110 <small>from</small></div>
+      </div>
+      <div class="price-item">
+        <div class="pi-left"><div class="pi-icon">🔥</div><div><div class="pi-name">Hot Water System</div><div class="pi-desc">Install, service or replace</div></div></div>
+        <div class="pi-price">$185 <small>from</small></div>
+      </div>
+      <div class="price-item">
+        <div class="pi-left"><div class="pi-icon">🚽</div><div><div class="pi-name">Toilet Repair</div><div class="pi-desc">Any make, any model</div></div></div>
+        <div class="pi-price">$80 <small>from</small></div>
+      </div>
+    </div>
+    <div class="quote-box">
+      <div>
+        <h4>Need a custom quote?</h4>
+        <p>We'll give you a firm price before we start.</p>
+      </div>
+      <button class="btn-quote">Get Free Quote</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-row">
+  <div class="stat-cell"><div class="stat-num">18K+</div><div class="stat-lbl">Jobs Completed</div></div>
+  <div class="stat-cell"><div class="stat-num">4.9★</div><div class="stat-lbl">Avg. Rating</div></div>
+  <div class="stat-cell"><div class="stat-num">60min</div><div class="stat-lbl">Emergency Response</div></div>
+  <div class="stat-cell"><div class="stat-num">100%</div><div class="stat-lbl">Satisfaction Rate</div></div>
+</div>
+
+<section class="services">
+  <div class="sh">
+    <div>
+      <div class="s-eyebrow">What We Fix</div>
+      <h2 class="s-h2">All Plumbing <em>Services</em></h2>
+    </div>
+    <button class="btn-green" style="font-size:.82rem">View All Services</button>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-wrap">💧</div><div class="svc-title">Leak Detection</div><div class="svc-desc">Advanced acoustic leak detection for visible and hidden pipe leaks in walls and under slabs.</div><div class="svc-from">From $95</div></div>
+    <div class="svc-card"><div class="svc-wrap">🚿</div><div class="svc-title">Drain Cleaning</div><div class="svc-desc">High-pressure water jetting to clear all blocked drains — kitchen, bathroom, stormwater.</div><div class="svc-from">From $110</div></div>
+    <div class="svc-card"><div class="svc-wrap">🔥</div><div class="svc-title">Hot Water Systems</div><div class="svc-desc">Solar, heat pump, electric and gas systems installed, serviced or replaced same-day.</div><div class="svc-from">From $185</div></div>
+    <div class="svc-card"><div class="svc-wrap">🚽</div><div class="svc-title">Toilet & Fixtures</div><div class="svc-desc">Toilet installation, repair and replacement. Tapware, showers and bathroom fixtures.</div><div class="svc-from">From $80</div></div>
+    <div class="svc-card"><div class="svc-wrap">🏗</div><div class="svc-title">Pipe Replacement</div><div class="svc-desc">Trenchless pipe relining and full replacement using premium materials with a 25-year guarantee.</div><div class="svc-from">From $350</div></div>
+    <div class="svc-card"><div class="svc-wrap">🏢</div><div class="svc-title">Commercial Plumbing</div><div class="svc-desc">Full commercial plumbing services, maintenance contracts and compliance inspections.</div><div class="svc-from">Quote Required</div></div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="s-eyebrow">How It Works</div>
+  <h2 class="s-h2" style="margin-bottom:0">Fixed in <em>4 Steps</em></h2>
+  <div class="steps">
+    <div class="step-card"><div class="step-n">1</div><div class="step-title">Book Online or Call</div><div class="step-desc">Book in 2 minutes online or phone us anytime — 24/7.</div></div>
+    <div class="step-card"><div class="step-n">2</div><div class="step-title">We Arrive On Time</div><div class="step-desc">Your licensed plumber arrives at the agreed time with all tools ready.</div></div>
+    <div class="step-card"><div class="step-n">3</div><div class="step-title">Fixed Price Quote</div><div class="step-desc">You get a firm, upfront quote before any work begins. No surprises.</div></div>
+    <div class="step-card"><div class="step-n">4</div><div class="step-title">Fixed & Guaranteed</div><div class="step-desc">Job done right, fully cleaned up, with a written guarantee.</div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-text">
+    <h2>Plumbing Problem?<br><em>We'll Fix It Today.</em></h2>
+    <p>Same-day bookings available. Emergency response within 60 minutes.</p>
+  </div>
+  <button class="btn-white">Book a Plumber Now →</button>
+</section>
+
+<footer>
+  <div class="footer-logo">AquaFix</div>
+  <div class="footer-copy">© 2026 AquaFix Plumbing. Licensed & Insured. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

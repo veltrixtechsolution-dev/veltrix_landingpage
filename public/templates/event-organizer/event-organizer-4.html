@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONFETTI — Event Makers</title>
+<link href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600;700;800;900&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --ink: #141414;
+    --pink: #FF4D8D;
+    --blue: #2D5BE3;
+    --yellow: #FFE135;
+    --orange: #FF6B35;
+    --mint: #00C9A7;
+    --lilac: #C084FC;
+    --bdr: #E0E0DA;
+    --off: #F2F2EC;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Darker Grotesque', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3rem;
+    border-bottom: 2px solid var(--ink);
+    background: var(--yellow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-family: 'Young Serif', serif;
+    font-size: 1.8rem;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+  .logo span { color: var(--pink); }
+  .nav-links { display: flex; gap: 0; list-style: none; }
+  .nav-links li { border-left: 2px solid var(--ink); }
+  .nav-links a {
+    display: block;
+    padding: 0 1.5rem;
+    line-height: 68px;
+    font-size: .85rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: none;
+    transition: background .15s;
+  }
+  .nav-links a:hover { background: rgba(0,0,0,.06); }
+  .btn-ink {
+    padding: .6rem 1.8rem;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: .88rem;
+    font-weight: 800;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .02em;
+  }
+  .btn-ink:hover { background: var(--pink); border-color: var(--pink); color: white; }
+
+  /* HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 2px solid var(--ink);
+    min-height: 88vh;
+  }
+  .hero-left {
+    padding: 4rem 3rem;
+    border-right: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--off);
+  }
+  .h-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem .9rem;
+    background: var(--pink);
+    color: white;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    width: fit-content;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(3.5rem, 7vw, 7.5rem);
+    line-height: .9;
+    letter-spacing: -.03em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .pink { color: var(--pink); }
+  .hero-title .blue { color: var(--blue); }
+  .hero-title .orange { color: var(--orange); }
+  .hero-desc {
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.65;
+    color: #444;
+    max-width: 44ch;
+    margin-bottom: 2rem;
+  }
+  .hero-btns { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 3rem; }
+  .btn-pink {
+    padding: .9rem 2.2rem;
+    background: var(--pink);
+    color: white;
+    border: 2px solid var(--ink);
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all .15s;
+  }
+  .btn-pink:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn-blue {
+    padding: .9rem 2.2rem;
+    background: var(--blue);
+    color: white;
+    border: 2px solid var(--ink);
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all .15s;
+  }
+  .btn-blue:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .hero-nums { display: flex; gap: 2.5rem; }
+  .hn .num { font-family: 'Young Serif', serif; font-size: 3rem; line-height: 1; }
+  .hn .num.pink { color: var(--pink); }
+  .hn .num.blue { color: var(--blue); }
+  .hn .lbl { font-size: .78rem; font-weight: 600; color: #666; margin-top: .2rem; }
+
+  /* HERO RIGHT — mosaic grid */
+  .hero-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0;
+  }
+  .mosaic {
+    border-bottom: 2px solid var(--ink);
+    border-right: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: filter .2s;
+  }
+  .mosaic:hover { filter: brightness(.95); }
+  .mosaic:nth-child(2n) { border-right: none; }
+  .mosaic:nth-child(5), .mosaic:nth-child(6) { border-bottom: none; }
+  .m1 { background: var(--pink); }
+  .m2 { background: var(--blue); }
+  .m3 { background: var(--yellow); border: none; border-bottom: 2px solid var(--ink); border-right: 2px solid var(--ink); }
+  .m4 { background: var(--orange); }
+  .m5 { background: var(--mint); }
+  .m6 { background: var(--lilac); border-right: none; }
+  .mosaic-label {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    font-size: .78rem;
+    font-weight: 800;
+    color: rgba(0,0,0,.6);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .mosaic-label.white { color: rgba(255,255,255,.8); }
+
+  /* SERVICES */
+  .services {
+    padding: 5rem 3rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .section-tag {
+    display: inline-block;
+    padding: .3rem .8rem;
+    background: var(--yellow);
+    border: 2px solid var(--ink);
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .section-h2 {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(2.2rem, 4vw, 4rem);
+    line-height: 1.0;
+    letter-spacing: -.02em;
+    margin-bottom: 3rem;
+  }
+  .section-h2 span { color: var(--pink); }
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 2px solid var(--ink);
+  }
+  .svc-card {
+    padding: 2.5rem 2.2rem;
+    border-right: 2px solid var(--ink);
+    position: relative;
+    transition: background .2s;
+    cursor: pointer;
+  }
+  .svc-card:last-child { border-right: none; }
+  .svc-card:hover { background: var(--yellow); }
+  .svc-num { font-family: 'Young Serif', serif; font-size: 3rem; color: var(--bdr); line-height: 1; margin-bottom: 1rem; }
+  .svc-icon { font-size: 2.5rem; margin-bottom: 1.2rem; }
+  .svc-title { font-family: 'Young Serif', serif; font-size: 1.4rem; margin-bottom: .6rem; }
+  .svc-desc { font-size: .88rem; font-weight: 500; line-height: 1.7; color: #555; }
+  .svc-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-size: .82rem;
+    font-weight: 800;
+    color: var(--pink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* HOW */
+  .how {
+    background: var(--ink);
+    color: white;
+    padding: 5rem 3rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3rem; }
+  .how-step {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(255,255,255,.08);
+    position: relative;
+  }
+  .how-step:last-child { border-right: none; }
+  .step-circle {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Young Serif', serif; font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid;
+  }
+  .sc-1 { border-color: var(--pink); color: var(--pink); }
+  .sc-2 { border-color: var(--yellow); color: var(--yellow); }
+  .sc-3 { border-color: var(--mint); color: var(--mint); }
+  .sc-4 { border-color: var(--orange); color: var(--orange); }
+  .step-title { font-family: 'Young Serif', serif; font-size: 1.2rem; margin-bottom: .6rem; }
+  .step-desc { font-size: .85rem; font-weight: 400; color: rgba(255,255,255,.5); line-height: 1.7; }
+
+  /* PACKAGES */
+  .packages { padding: 5rem 3rem; background: var(--off); border-bottom: 2px solid var(--ink); }
+  .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .pkg-card {
+    border: 2px solid var(--ink);
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    transition: transform .2s;
+  }
+  .pkg-card:hover { transform: translateY(-4px); }
+  .pkg-card.featured { border-color: var(--pink); box-shadow: 6px 6px 0 var(--pink); }
+  .pkg-header { padding: 2rem 2rem 1.5rem; border-bottom: 2px solid var(--ink); }
+  .pkg-card.featured .pkg-header { background: var(--pink); }
+  .pkg-badge {
+    display: inline-block;
+    padding: .2rem .7rem;
+    background: var(--yellow);
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-bottom: .8rem;
+    border: 1.5px solid var(--ink);
+  }
+  .pkg-card.featured .pkg-badge { background: white; }
+  .pkg-name { font-family: 'Young Serif', serif; font-size: 1.6rem; line-height: 1.1; }
+  .pkg-card.featured .pkg-name { color: white; }
+  .pkg-price { font-family: 'Young Serif', serif; font-size: 2.5rem; line-height: 1; margin-top: .5rem; }
+  .pkg-card.featured .pkg-price { color: white; }
+  .pkg-body { padding: 2rem; }
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: .7rem; margin-bottom: 2rem; }
+  .pkg-features li {
+    font-size: .9rem;
+    font-weight: 500;
+    display: flex;
+    gap: .6rem;
+    align-items: flex-start;
+  }
+  .pkg-features li::before { content: '✓'; font-weight: 800; color: var(--mint); flex-shrink: 0; margin-top: .05rem; }
+  .pkg-btn {
+    width: 100%;
+    padding: .9rem;
+    background: var(--ink);
+    color: var(--yellow);
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: .95rem;
+    font-weight: 800;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    transition: all .2s;
+    letter-spacing: .04em;
+  }
+  .pkg-btn:hover { background: var(--pink); border-color: var(--pink); color: white; }
+  .pkg-card.featured .pkg-btn { background: var(--pink); border-color: var(--pink); color: white; }
+  .pkg-card.featured .pkg-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--yellow); }
+
+  /* CTA */
+  .cta {
+    background: var(--pink);
+    padding: 5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--ink);
+  }
+  .cta h2 {
+    font-family: 'Young Serif', serif;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    color: white;
+    line-height: .95;
+    letter-spacing: -.02em;
+  }
+  .cta h2 .ink { color: var(--ink); }
+  .cta h2 .yellow { color: var(--yellow); }
+  .cta-side { display: flex; flex-direction: column; gap: 1rem; flex-shrink: 0; }
+  .btn-white {
+    padding: 1rem 2.5rem;
+    background: white;
+    color: var(--pink);
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: 1rem;
+    font-weight: 800;
+    border: 2px solid var(--ink);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: all .15s;
+    white-space: nowrap;
+  }
+  .btn-white:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--ink); }
+  .btn-outline-dark {
+    padding: .9rem 2.5rem;
+    background: transparent;
+    color: white;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    border: 2px solid white;
+    cursor: pointer;
+    text-align: center;
+    transition: all .2s;
+  }
+  .btn-outline-dark:hover { background: white; color: var(--pink); }
+
+  footer {
+    background: var(--ink);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo { font-family: 'Young Serif', serif; font-size: 1.5rem; color: var(--yellow); }
+  .footer-logo span { color: var(--pink); }
+  .footer-copy { font-size: .78rem; color: rgba(255,255,255,.3); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">confetti<span>!</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Packages</a></li>
+    <li><a href="#">Portfolio</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <button class="btn-ink">Plan My Event →</button>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div>
+      <div class="h-tag">🎉 Event Planning & Production</div>
+      <h1 class="hero-title">
+        We<br>
+        <span class="pink">Make</span><br>
+        <span class="blue">Events</span><br>
+        <span class="orange">Pop!</span>
+      </h1>
+      <p class="hero-desc">Confetti handles every detail — from grand corporate galas to intimate birthday celebrations. Bold ideas, flawless execution, memories that last.</p>
+      <div class="hero-btns">
+        <button class="btn-pink">Plan My Event</button>
+        <button class="btn-blue">See Our Work</button>
+      </div>
+    </div>
+    <div class="hero-nums">
+      <div class="hn"><div class="num pink">600+</div><div class="lbl">Events Produced</div></div>
+      <div class="hn"><div class="num blue">8yr</div><div class="lbl">In Business</div></div>
+      <div class="hn"><div class="num pink">4.9★</div><div class="lbl">Avg. Rating</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="mosaic m1"><span>💍</span><span class="mosaic-label white">Weddings</span></div>
+    <div class="mosaic m2"><span>🏢</span><span class="mosaic-label white">Corporate</span></div>
+    <div class="mosaic m3"><span>🎂</span><span class="mosaic-label">Birthdays</span></div>
+    <div class="mosaic m4"><span>🎵</span><span class="mosaic-label white">Concerts</span></div>
+    <div class="mosaic m5"><span>🌸</span><span class="mosaic-label">Garden Parties</span></div>
+    <div class="mosaic m6"><span>🎓</span><span class="mosaic-label white">Graduations</span></div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="section-tag">What We Do</div>
+  <h2 class="section-h2">Every Kind of <span>Event</span></h2>
+  <div class="svc-grid">
+    <div class="svc-card">
+      <div class="svc-num">01</div>
+      <div class="svc-icon">💍</div>
+      <div class="svc-title">Weddings</div>
+      <div class="svc-desc">Your dream wedding, perfectly planned and stress-free. From intimate micro-weddings to 500-guest extravaganzas.</div>
+      <div class="svc-link">Learn more →</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">02</div>
+      <div class="svc-icon">🏢</div>
+      <div class="svc-title">Corporate Events</div>
+      <div class="svc-desc">Product launches, team conferences and award nights that your employees and clients will actually remember.</div>
+      <div class="svc-link">Learn more →</div>
+    </div>
+    <div class="svc-card">
+      <div class="svc-num">03</div>
+      <div class="svc-icon">🎉</div>
+      <div class="svc-title">Private Parties</div>
+      <div class="svc-desc">Birthdays, anniversaries and milestones transformed into incredible celebrations with maximum fun.</div>
+      <div class="svc-link">Learn more →</div>
+    </div>
+  </div>
+</section>
+
+<section class="how">
+  <div class="section-tag" style="background:var(--pink);color:white;border-color:rgba(255,255,255,.3)">How It Works</div>
+  <h2 class="section-h2" style="color:white;margin-bottom:0">4 Steps to <span style="color:var(--yellow)">Party</span></h2>
+  <div class="how-grid">
+    <div class="how-step"><div class="step-circle sc-1">1</div><div class="step-title">Tell Us Your Vision</div><div class="step-desc">Fill out our quick brief or book a 30-min call. We love big ideas and no-budget daydreams.</div></div>
+    <div class="how-step"><div class="step-circle sc-2">2</div><div class="step-title">We Build Your Plan</div><div class="step-desc">Within 48 hours you receive a full concept, timeline and detailed budget proposal.</div></div>
+    <div class="how-step"><div class="step-circle sc-3">3</div><div class="step-title">We Handle Everything</div><div class="step-desc">Vendors, décor, logistics, entertainment — every single detail managed by our team.</div></div>
+    <div class="how-step"><div class="step-circle sc-4">4</div><div class="step-title">You Just Show Up!</div><div class="step-desc">Arrive as a guest. We'll be working behind the scenes to make everything perfect.</div></div>
+  </div>
+</section>
+
+<section class="packages">
+  <div class="section-tag">Packages</div>
+  <h2 class="section-h2">Pick Your <span>Plan</span></h2>
+  <div class="pkg-grid">
+    <div class="pkg-card">
+      <div class="pkg-header">
+        <div class="pkg-badge">Starter</div>
+        <div class="pkg-name">The Essentials</div>
+        <div class="pkg-price">From $1,200</div>
+      </div>
+      <div class="pkg-body">
+        <ul class="pkg-features">
+          <li>Initial consultation & brief</li>
+          <li>Event concept & mood board</li>
+          <li>Vendor sourcing & recommendations</li>
+          <li>Day-of coordination (6hrs)</li>
+          <li>Post-event wrap-up</li>
+        </ul>
+        <button class="pkg-btn">Get Started</button>
+      </div>
+    </div>
+    <div class="pkg-card featured">
+      <div class="pkg-header">
+        <div class="pkg-badge">⭐ Most Popular</div>
+        <div class="pkg-name">Full Service</div>
+        <div class="pkg-price">From $3,800</div>
+      </div>
+      <div class="pkg-body">
+        <ul class="pkg-features">
+          <li>Full event planning & coordination</li>
+          <li>Custom décor & floral design</li>
+          <li>Vendor negotiation & booking</li>
+          <li>Full-day on-site team</li>
+          <li>Entertainment curation</li>
+          <li>Post-event report</li>
+        </ul>
+        <button class="pkg-btn">Get Started</button>
+      </div>
+    </div>
+    <div class="pkg-card">
+      <div class="pkg-header">
+        <div class="pkg-badge">Premium</div>
+        <div class="pkg-name">The Grand Affair</div>
+        <div class="pkg-price">From $8,000</div>
+      </div>
+      <div class="pkg-body">
+        <ul class="pkg-features">
+          <li>Everything in Full Service</li>
+          <li>Dedicated senior planner</li>
+          <li>Premium venue sourcing</li>
+          <li>Bespoke guest experience design</li>
+          <li>Photography & videography</li>
+          <li>Unlimited revisions</li>
+        </ul>
+        <button class="pkg-btn">Get Started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>Let's Make<br>Your Event <span class="yellow">Unforgettable<span class="ink">!</span></span></h2>
+  <div class="cta-side">
+    <button class="btn-white">Plan My Event Now →</button>
+    <button class="btn-outline-dark">Browse Our Portfolio</button>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">confetti<span>!</span></div>
+  <div class="footer-copy">© 2026 Confetti Events. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

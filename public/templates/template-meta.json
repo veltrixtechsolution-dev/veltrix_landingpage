@@ -1,0 +1,387 @@
+{
+  "ticketing-1": {
+    "displayName": "TicketVault",
+    "description": "Cyberpunk-inspired dark ticketing platform with neon cyan & hot pink accents, animated scrolling ticker and scanline overlay. Built for high-energy live event brands.",
+    "styleLabel": "Dark Neon",
+    "tags": [
+      "Dark",
+      "Neon",
+      "Bebas Neue",
+      "Event Cards"
+    ]
+  },
+  "ticketing-2": {
+    "displayName": "Passline",
+    "description": "Refined editorial aesthetic with cream parchment tones, Playfair Display serif typography and rust-red accents. Positioned for classical theatre, opera and prestige events.",
+    "styleLabel": "Editorial Light",
+    "tags": [
+      "Light",
+      "Serif",
+      "Playfair",
+      "Editorial"
+    ]
+  },
+  "ticketing-3": {
+    "displayName": "RSVP.GO",
+    "description": "Raw brutalist design in stark yellow & black with Space Mono monospace typography. Hard borders, numbered event listings and zero decorative softness — pure attitude.",
+    "styleLabel": "Brutalist",
+    "tags": [
+      "Brutalist",
+      "Yellow/Black",
+      "Space Mono",
+      "Bold"
+    ]
+  },
+  "ticketing-4": {
+    "displayName": "Grand Stage",
+    "description": "Opulent Art Deco design with gold borders, sunburst motifs and Playfair serif typography on rich dark parchment. Designed for premium theatre, opera and classical venues.",
+    "styleLabel": "Art Deco Gold",
+    "tags": [
+      "Art Deco",
+      "Gold/Dark",
+      "Luxury",
+      "Serif"
+    ]
+  },
+  "construction-1": {
+    "displayName": "IronForge Construction",
+    "description": "Heavy industrial dark steel aesthetic with diagonal stripe patterns, orange impact accents and bold Oswald typography. Signals raw strength and reliability for large-scale builders.",
+    "styleLabel": "Industrial Dark",
+    "tags": [
+      "Dark",
+      "Industrial",
+      "Orange",
+      "Oswald"
+    ]
+  },
+  "construction-2": {
+    "displayName": "Meridian Build Co.",
+    "description": "Restrained luxury aesthetic with warm cream tones, Cormorant Garamond serif and antique gold accents. Split-screen layout and Roman numerals signal a refined, high-end construction firm.",
+    "styleLabel": "Luxury Minimal",
+    "tags": [
+      "Luxury",
+      "Cream/Gold",
+      "Cormorant",
+      "Minimal"
+    ]
+  },
+  "construction-3": {
+    "displayName": "Apex Built",
+    "description": "Bold high-visibility safety yellow & black palette inspired by construction site signage. Anton display font, scrolling ticker band and 2×2 stats grid create unmissable impact.",
+    "styleLabel": "Safety Yellow",
+    "tags": [
+      "Yellow/Black",
+      "Anton",
+      "Safety",
+      "Bold"
+    ]
+  },
+  "construction-4": {
+    "displayName": "STRUCTA",
+    "description": "Clean Swiss-modernist grid system with DM Mono and Fraunces typefaces. Stark red & white palette, ruled grid nav and systematic layout hierarchy communicate precision engineering.",
+    "styleLabel": "Swiss Grid",
+    "tags": [
+      "Swiss Grid",
+      "Red/White",
+      "DM Mono",
+      "Systematic"
+    ]
+  },
+  "aircon-1": {
+    "displayName": "FrostClean",
+    "description": "High-tech dark blue interface with cyan accents and a glowing radial atmosphere. Pricing cards in the hero highlight service tiers. Builds technical trust for professional HVAC services.",
+    "styleLabel": "Tech Blue",
+    "tags": [
+      "Dark",
+      "Cyan/Navy",
+      "Rajdhani",
+      "Pricing Cards"
+    ]
+  },
+  "aircon-2": {
+    "displayName": "CoolBreeze",
+    "description": "Clean wellness-inspired teal and white design with rounded corners and a prominent booking form. Friendly and approachable, perfect for residential aircon cleaning targeting homeowners.",
+    "styleLabel": "Fresh Teal",
+    "tags": [
+      "Light",
+      "Teal/White",
+      "Booking Form",
+      "Friendly"
+    ]
+  },
+  "aircon-3": {
+    "displayName": "AirMax Pro",
+    "description": "Dark industrial aesthetic with vivid orange accents and Exo 2 geometric typeface. Horizontal service row and numbered process steps communicate professionalism for commercial clients.",
+    "styleLabel": "Industrial Orange",
+    "tags": [
+      "Dark",
+      "Orange",
+      "Industrial",
+      "Exo 2"
+    ]
+  },
+  "aircon-4": {
+    "displayName": "BreezeClean",
+    "description": "Soft organic wellness aesthetic with mint-green palette, Gilda Display serif and rounded UI elements. Health-focused messaging targets allergy-conscious families. Booking form in hero.",
+    "styleLabel": "Organic Mint",
+    "tags": [
+      "Organic",
+      "Mint/White",
+      "Gilda",
+      "Wellness"
+    ]
+  },
+  "rental-car-1": {
+    "displayName": "Drivo",
+    "description": "Cinematic dark red and black palette with Montserrat typography. Large car emoji hero, inline search bar and fleet grid. Premium feel with a focus on speed and no-fuss booking.",
+    "styleLabel": "Cinematic Dark",
+    "tags": [
+      "Dark",
+      "Red/Black",
+      "Montserrat",
+      "Cinematic"
+    ]
+  },
+  "rental-car-2": {
+    "displayName": "GoRide",
+    "description": "Fresh eco-green brand identity with a split hero and integrated booking form. Poppins typography and nature-inspired tones position this rental service as sustainable and family-friendly.",
+    "styleLabel": "Eco Green",
+    "tags": [
+      "Light",
+      "Eco Green",
+      "Poppins",
+      "Split Hero"
+    ]
+  },
+  "rental-car-3": {
+    "displayName": "VeloRent",
+    "description": "Ultra-luxury dark gold aesthetic with ghost watermark \"DRIVE\" lettering, Cormorant Garamond serif and Jost body text. Subtle and sophisticated — positioned for premium vehicle hire.",
+    "styleLabel": "Dark Luxury",
+    "tags": [
+      "Luxury",
+      "Dark Gold",
+      "Cormorant",
+      "Premium"
+    ]
+  },
+  "rental-car-4": {
+    "displayName": "Open Road",
+    "description": "Warm retro 70s road-trip aesthetic with amber & brown tones, Righteous display font and polka-dot background texture. Vintage travel poster energy with a modern booking experience.",
+    "styleLabel": "Retro Road Trip",
+    "tags": [
+      "Retro",
+      "Amber/Brown",
+      "Righteous",
+      "Road Trip"
+    ]
+  },
+  "realestate-1": {
+    "displayName": "Prestige Realty",
+    "description": "High-end real estate brand with near-black background, antique gold accents and Cormorant Garamond serif typography. Split-screen hero with property search panel targets luxury buyers.",
+    "styleLabel": "Dark Luxury",
+    "tags": [
+      "Dark",
+      "Gold/Black",
+      "Cormorant",
+      "Luxury"
+    ]
+  },
+  "realestate-2": {
+    "displayName": "NestFind",
+    "description": "Bright modern blue real estate portal with tabbed search (Buy / Rent / New Builds) and property card grid. Nunito rounded sans-serif creates a friendly, approachable property search experience.",
+    "styleLabel": "Modern Blue",
+    "tags": [
+      "Light",
+      "Blue/White",
+      "Nunito",
+      "Tabbed Search"
+    ]
+  },
+  "realestate-3": {
+    "displayName": "ARCH",
+    "description": "Bold brutalist real estate brand with massive B&W typography, red accent line and Bebas Neue display. Raw, architectural energy with a strong editorial grid of property listings below the hero.",
+    "styleLabel": "Brutalist B&W",
+    "tags": [
+      "Brutalist",
+      "B&W/Red",
+      "Bebas Neue",
+      "Bold"
+    ]
+  },
+  "realestate-4": {
+    "displayName": "hemma.",
+    "description": "Soft Scandinavian-inspired real estate platform with blush pinks, sage greens and Crimson Pro serif typography. Warm property mosaic hero and an agent directory give a boutique, personal feel.",
+    "styleLabel": "Scandi Pastel",
+    "tags": [
+      "Scandi",
+      "Pastel/Sage",
+      "Crimson Pro",
+      "Boutique"
+    ]
+  },
+  "hotel-1": {
+    "displayName": "Lumara Resort & Spa",
+    "description": "Opulent dark luxury resort with radial gold glow, ghost watermark branding and Cormorant Garamond serif. Full-width booking strip, room cards and amenity grid create a complete resort experience.",
+    "styleLabel": "Dark Luxury",
+    "tags": [
+      "Dark",
+      "Gold/Black",
+      "Cormorant",
+      "Resort"
+    ]
+  },
+  "hotel-2": {
+    "displayName": "Canopy Hotel",
+    "description": "Warm boutique hotel with vibrant coral/terracotta palette and DM Serif Display typography. Animated room cards with hover-lift and a prominent seasonal promo card communicate personality and warmth.",
+    "styleLabel": "Boutique Coral",
+    "tags": [
+      "Light",
+      "Coral/Warm",
+      "DM Serif",
+      "Boutique"
+    ]
+  },
+  "hotel-3": {
+    "displayName": "APEX Hotels",
+    "description": "Dark business hotel aesthetic with teal accents, Syne + Inter type pairing and structured booking panel. Grid-based room cards and multi-city stats bar — purpose-built for corporate travellers.",
+    "styleLabel": "Business Teal",
+    "tags": [
+      "Dark",
+      "Teal/Navy",
+      "Syne",
+      "Business"
+    ]
+  },
+  "hotel-4": {
+    "displayName": "PALMA Resort",
+    "description": "Bold maximalist tropical resort design with vivid yellow & terracotta accents, Unbounded display font and organic blob shapes. Prominent booking widget in hero. Perfect for Bali or island luxury resorts.",
+    "styleLabel": "Tropical Bold",
+    "tags": [
+      "Tropical",
+      "Yellow/Green",
+      "Unbounded",
+      "Maximalist"
+    ]
+  },
+  "plumbing-1": {
+    "displayName": "FlowPro",
+    "description": "Trust-building dark navy design with a bold red emergency sidebar panel and Exo 2 geometric sans. 6-service grid and 4-step process with connector line communicates speed and reliability.",
+    "styleLabel": "Bold Navy",
+    "tags": [
+      "Dark",
+      "Blue/Red",
+      "Exo 2",
+      "Emergency"
+    ]
+  },
+  "plumbing-2": {
+    "displayName": "FixRight",
+    "description": "Warm orange and cream palette with Poppins rounded sans-serif. Pricing card embedded in the hero alongside a service pricing list — removes friction and builds trust immediately for homeowners.",
+    "styleLabel": "Friendly Orange",
+    "tags": [
+      "Light",
+      "Orange/Cream",
+      "Poppins",
+      "Pricing Hero"
+    ]
+  },
+  "plumbing-3": {
+    "displayName": "PipeKing",
+    "description": "Dark industrial yellow & black with Barlow Condensed, diagonal texture and an announcement topbar. Numbered service rows slide on hover — authoritative and no-nonsense plumbing branding.",
+    "styleLabel": "Dark Industrial",
+    "tags": [
+      "Dark",
+      "Yellow/Black",
+      "Barlow",
+      "Industrial"
+    ]
+  },
+  "plumbing-4": {
+    "displayName": "AquaFix",
+    "description": "Clean green + blue gradient branding with DM Serif Display and trust-chip row. Pricing panel in the hero eliminates price anxiety. Eco-conscious messaging targets modern homeowners.",
+    "styleLabel": "Eco Green",
+    "tags": [
+      "Light",
+      "Green/Blue",
+      "DM Serif",
+      "Eco"
+    ]
+  },
+  "event-organizer-1": {
+    "displayName": "Soirée Events",
+    "description": "Opulent dark event studio with concentric circle hero, antique gold accents and Cormorant Garamond serif. 6-service grid, testimonials and gallery mosaic position this as a premium, high-end planner.",
+    "styleLabel": "Dark Luxury",
+    "tags": [
+      "Dark",
+      "Gold/Black",
+      "Cormorant",
+      "Luxury"
+    ]
+  },
+  "event-organizer-2": {
+    "displayName": "Spark Events",
+    "description": "Vibrant purple-to-pink gradient design with Syne display font and a colourful event mosaic hero. Dark background with glowing service chips and 3-tier packages. Energetic, modern and eye-catching.",
+    "styleLabel": "Vibrant Purple",
+    "tags": [
+      "Dark",
+      "Purple/Pink",
+      "Syne",
+      "Gradient"
+    ]
+  },
+  "event-organizer-3": {
+    "displayName": "VIVE Events",
+    "description": "Editorial black and white split-screen design with red accent and Bebas Neue + Playfair Display pairing. Enquiry form built into the dark right half reduces conversion steps instantly.",
+    "styleLabel": "Editorial B&W",
+    "tags": [
+      "Editorial",
+      "B&W/Red",
+      "Bebas Neue",
+      "Split Screen"
+    ]
+  },
+  "event-organizer-4": {
+    "displayName": "Confetti!",
+    "description": "Bold Memphis-inspired playful design with Young Serif, vibrant multi-colour palette and a colourful mosaic hero. Neo-brutalist buttons with box-shadows — full of energy and personality for modern event brands.",
+    "styleLabel": "Memphis Playful",
+    "tags": [
+      "Playful",
+      "Memphis",
+      "Young Serif",
+      "Multi-colour"
+    ]
+  },
+  "franchising-1": {
+    "displayName": "SCALEX",
+    "description": "Sleek tech-startup dark aesthetic with blue glow orbs, grid texture and Space Mono monospace branding. Live performance dashboard widget, ROI-tagged brand cards and data-driven copy targets sophisticated investors.",
+    "styleLabel": "Tech Dark",
+    "tags": [
+      "Dark",
+      "Blue/Tech",
+      "Space Mono",
+      "Dashboard"
+    ]
+  },
+  "franchising-2": {
+    "displayName": "OwnIt",
+    "description": "Warm orange and cream franchise marketplace targeting first-time buyers. Plus Jakarta Sans typography, industry category tabs and a split enquiry form create a welcoming, accessible onboarding experience.",
+    "styleLabel": "Warm Orange",
+    "tags": [
+      "Light",
+      "Orange/Cream",
+      "Jakarta",
+      "Approachable"
+    ]
+  },
+  "franchising-3": {
+    "displayName": "GrowthVault",
+    "description": "Deep forest green dark theme with Manrope typeface and announcement topbar. Trending franchise sidebar with live ROI data, 8-industry grid and 5-step process signal a sophisticated, data-forward marketplace.",
+    "styleLabel": "Growth Green",
+    "tags": [
+      "Dark",
+      "Green",
+      "Manrope",
+      "Data-driven"
+    ]
+  }
+}
