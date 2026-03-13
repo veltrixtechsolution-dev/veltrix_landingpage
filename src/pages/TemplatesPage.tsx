@@ -115,7 +115,10 @@ export function TemplatesPage() {
     return (
       <div className="templates-page">
         <div className="templates-page__inner">
-          <p className="templates-page__loading">Loading templates…</p>
+          <div className="templates-loader">
+            <div className="templates-loader__spinner" aria-hidden />
+            <p className="templates-page__loading">Loading templates…</p>
+          </div>
         </div>
       </div>
     )

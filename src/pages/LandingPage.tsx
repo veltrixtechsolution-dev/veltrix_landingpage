@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Navbar } from '../components/Navbar'
 import { Hero } from '../components/Hero'
+import { CustomCursor } from '../components/CustomCursor'
 import { ServiceMarquee } from '../components/ServiceMarquee'
 import { AboutSection } from '../components/AboutSection'
 import { PackagesSection } from '../components/PackagesSection'
@@ -80,6 +81,7 @@ export function LandingPage() {
 
   return (
     <>
+      <CustomCursor />
       <Navbar />
       <main>
         <Hero />
