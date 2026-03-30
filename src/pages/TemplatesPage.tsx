@@ -1,5 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { ChooseTemplateIcon } from '../components/ChooseTemplateIcon'
+import {
+  StartProjectModal,
+  type StartProjectTemplateContext,
+} from '../components/StartProjectModal'
 
 export type TemplateItem = { id: string; name: string; file: string }
 export type CategoryItem = { id: string; name: string; templates: TemplateItem[] }
@@ -60,6 +65,7 @@ export function TemplatesPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [businessTypeFilter, setBusinessTypeFilter] = useState<string>('')
+  const [startProjectCtx, setStartProjectCtx] = useState<StartProjectTemplateContext | null>(null)
 
   useEffect(() => {
     Promise.all([
@@ -177,50 +183,73 @@ export function TemplatesPage() {
             const tags = meta?.tags ?? [template.categoryName, 'Landing']
             const sanitizedSvg = svgInner ? sanitizeSvgIds(svgInner, template.id) : null
 
+            const demoPath = `/demo/${template.categoryId}/${template.id}`
+
             return (
-              <Link
-                key={`${template.categoryId}-${template.id}`}
-                to={`/demo/${template.categoryId}/${template.id}`}
-                className="tpl-card"
-              >
-                <div className="tpl-card__thumb">
-                  {sanitizedSvg ? (
-                    <svg
-                      viewBox="0 0 400 190"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="tpl-card__thumb-svg"
-                      dangerouslySetInnerHTML={{ __html: sanitizedSvg }}
-                    />
-                  ) : (
-                    <div
-                      className={`tpl-card__thumb-placeholder tpl-card__thumb--${template.categoryId}`}
-                    />
-                  )}
-                </div>
-                <div className="tpl-card__body">
-                  <div className="tpl-card__meta">
-                    <span className={`tpl-card__style tpl-card__style--${template.categoryId}`}>
-                      {styleLabel}
-                    </span>
+              <article key={`${template.categoryId}-${template.id}`} className="tpl-card">
+                <Link to={demoPath} className="tpl-card__preview">
+                  <div className="tpl-card__thumb">
+                    {sanitizedSvg ? (
+                      <svg
+                        viewBox="0 0 400 190"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="tpl-card__thumb-svg"
+                        dangerouslySetInnerHTML={{ __html: sanitizedSvg }}
+                      />
+                    ) : (
+                      <div
+                        className={`tpl-card__thumb-placeholder tpl-card__thumb--${template.categoryId}`}
+                      />
+                    )}
                   </div>
-                  <h3 className="tpl-card__name">{displayName}</h3>
-                  <p className="tpl-card__desc">{description}</p>
-                  <div className="tpl-card__tags">
-                    {tags.map((tag) => (
-                      <span key={tag} className="tpl-card__tag">
-                        {tag}
+                  <div className="tpl-card__body">
+                    <div className="tpl-card__meta">
+                      <span className={`tpl-card__style tpl-card__style--${template.categoryId}`}>
+                        {styleLabel}
                       </span>
-                    ))}
+                    </div>
+                    <h3 className="tpl-card__name">{displayName}</h3>
+                    <p className="tpl-card__desc">{description}</p>
+                    <div className="tpl-card__tags">
+                      {tags.map((tag) => (
+                        <span key={tag} className="tpl-card__tag">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="tpl-card__cta">
-                    <span className="tpl-card__open">Open →</span>
-                  </div>
+                </Link>
+                <div className="tpl-card__cta">
+                  <button
+                    type="button"
+                    className="btn btn--primary btn--compact"
+                    onClick={() =>
+                      setStartProjectCtx({
+                        categoryId: template.categoryId,
+                        categoryName: template.categoryName,
+                        templateId: template.id,
+                        templateName: displayName,
+                      })
+                    }
+                  >
+                    <ChooseTemplateIcon />
+                    Choose this template
+                  </button>
+                  <Link to={demoPath} className="tpl-card__open">
+                    Open →
+                  </Link>
                 </div>
-              </Link>
+              </article>
             )
           })}
         </div>
       </div>
+
+      <StartProjectModal
+        isOpen={startProjectCtx !== null}
+        onClose={() => setStartProjectCtx(null)}
+        template={startProjectCtx}
+      />
     </div>
   )
 }

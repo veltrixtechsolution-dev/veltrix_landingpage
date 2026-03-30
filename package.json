@@ -12,6 +12,7 @@
     "templates:sync": "node scripts/sync-templates.js && node scripts/generate-templates-manifest.js"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.100.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.13.1"
