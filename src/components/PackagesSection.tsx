@@ -1,70 +1,87 @@
 import { Link } from 'react-router-dom'
 
+type PackageCard = {
+  id: string
+  tier: string
+  name: string
+  bestFor: string
+  pricePhp: number
+  featured: boolean
+  badge?: string
+  includes: string[]
+}
+
 export function PackagesSection() {
-  const packages = [
+  const packages: PackageCard[] = [
     {
-      tier: 'Tier 01',
-      name: 'Starter Website',
-      bestFor: 'Best for: Personal brands, small businesses & startups',
-      priceFrom: 300,
-      priceTo: 500,
-      delivery: '7–10 Days',
+      id: 'basic-starter-1',
+      tier: 'Package 01',
+      name: 'Basic Starter',
+      bestFor: '1-page business website — perfect for a simple, high-impact presence.',
+      pricePhp: 5999,
       featured: false,
+      badge: 'Limited offer',
       includes: [
-        'Up to 5 pages (Home, About, Services, Blog, Contact)',
-        'Mobile responsive design',
-        'Basic UI/UX layout',
-        'Contact form integration',
-        'Basic SEO setup',
-        'Speed optimization',
-        'Social media integration',
-        '2 revisions',
-        'Website training / basic guide',
+        'Basic 1-page business website',
+        'FREE 1-year domain name',
+        'FREE 1-year hosting with SSL',
+        'CMS — manage your site easily (content management system)',
+        '3 business email accounts',
+        'User-friendly page builder',
+        'Phone / tablet flexible (responsive) design',
       ],
     },
     {
-      tier: 'Tier 02',
-      name: 'Professional Business Website',
-      bestFor: 'Best for: Growing businesses and service companies',
-      priceFrom: 600,
-      priceTo: 1000,
-      delivery: '10–14 Days',
+      id: 'basic-starter-2-4',
+      tier: 'Package 02',
+      name: 'Starter Plus',
+      bestFor: '2–4 pages — room to grow with core pages for your business.',
+      pricePhp: 7999,
+      featured: false,
+      includes: [
+        '2–4 website pages',
+        'FREE 1-year domain name',
+        'FREE 1-year hosting with SSL',
+        'CMS — manage your site easily (content management system)',
+        '3 business email accounts',
+        'User-friendly page builder',
+        'Phone / tablet flexible (responsive) design',
+      ],
+    },
+    {
+      id: 'standard-5-8',
+      tier: 'Package 03',
+      name: 'Standard',
+      bestFor: '5–8 pages — ideal when you need richer content and more sections.',
+      pricePhp: 10000,
       featured: true,
-      badge: 'Most Popular',
+      badge: 'Most popular',
       includes: [
-        'Up to 10 pages',
-        'Custom website design',
-        'Mobile & tablet responsive',
-        'Blog setup',
-        'Lead capture forms',
-        'Google Analytics integration',
-        'Basic on-page SEO',
-        'Image optimization',
-        'Social media integration',
-        '3 revisions',
-        'Basic security setup',
+        '5–8 website pages',
+        'FREE 1-year domain name',
+        'FREE 1-year hosting with SSL',
+        'CMS — manage your site easily (content management system)',
+        'Unlimited email accounts',
+        'User-friendly page builder',
+        'Phone / tablet flexible (responsive) design',
       ],
     },
     {
-      tier: 'Tier 03',
-      name: 'Advanced Business Website',
-      bestFor: 'Best for: Businesses that need advanced features & integrations',
-      priceFrom: 1200,
-      priceTo: 2000,
-      priceToLabel: '$2,000+',
-      delivery: '14–21 Days',
+      id: 'standard-unlimited',
+      tier: 'Package 04',
+      name: 'Premium',
+      bestFor: 'Unlimited pages — full brochure or content-heavy sites without page caps.',
+      pricePhp: 15000,
       featured: false,
+      badge: 'Unlimited pages',
       includes: [
-        'Up to 15+ pages',
-        'Fully custom design',
-        'Advanced UI/UX structure',
-        'CRM / Email marketing integration',
-        'Advanced SEO setup',
-        'Speed optimization',
-        'Analytics & tracking setup',
-        'Lead generation system',
-        'Security optimization',
-        'Unlimited revisions (within scope)',
+        'Unlimited-page website',
+        'FREE 1-year domain name',
+        'FREE 1-year hosting with SSL',
+        'CMS — manage your site easily (content management system)',
+        'Unlimited email accounts',
+        'User-friendly page builder',
+        'Phone / tablet flexible (responsive) design',
       ],
     },
   ]
@@ -76,14 +93,14 @@ export function PackagesSection() {
           <p className="section__eyebrow">What We Offer</p>
           <h2 className="section__title">Our Packages</h2>
           <p className="packages-subtitle">
-            Transparent pricing for every stage of your business. Pick the plan that fits and let's get building.
+            Professional websites for your business — transparent PHP pricing with everything you need to launch.
           </p>
         </div>
 
         <div className="packages-grid">
           {packages.map((pkg) => (
             <article
-              key={pkg.tier}
+              key={pkg.id}
               className={`pkg-card reveal ${pkg.featured ? 'pkg-card--featured' : ''}`}
             >
               {pkg.badge && <span className="pkg-badge">{pkg.badge}</span>}
@@ -92,18 +109,11 @@ export function PackagesSection() {
                 <h3 className="pkg-name">{pkg.name}</h3>
                 <p className="pkg-best-for">{pkg.bestFor}</p>
               </div>
-              <div className="pkg-pricing">
+              <div className="pkg-pricing pkg-pricing--solo">
                 <div className="pkg-price">
-                  <span className="price-currency">$</span>
-                  <span className="price-amount">{pkg.priceFrom.toLocaleString()}</span>
-                  <span className="price-range">
-                    {' – '}
-                    {pkg.priceToLabel ?? `$${pkg.priceTo.toLocaleString()}`}
-                  </span>
-                </div>
-                <div className="pkg-delivery">
-                  <span className="delivery-icon" aria-hidden>⏱</span>
-                  {pkg.delivery}
+                  <span className="price-currency">₱</span>
+                  <span className="price-amount">{pkg.pricePhp.toLocaleString('en-PH')}</span>
+                  <span className="price-suffix">PHP</span>
                 </div>
               </div>
               <div className="pkg-includes">
@@ -122,6 +132,10 @@ export function PackagesSection() {
             </article>
           ))}
         </div>
+
+        <p className="packages-renewal-note">
+          After the included first year, hosting and domain renewal is <strong>$60 USD</strong> per year.
+        </p>
       </div>
     </section>
   )

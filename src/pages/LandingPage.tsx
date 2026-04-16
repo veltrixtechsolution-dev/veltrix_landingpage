@@ -8,6 +8,7 @@ import { PackagesSection } from '../components/PackagesSection'
 import { ProcessSection } from '../components/ProcessSection'
 import { CtaSection } from '../components/CtaSection'
 import { TestimonialsSection } from '../components/TestimonialsSection'
+import { FaqSection } from '../components/FaqSection'
 import { ContactSection } from '../components/ContactSection'
 import { Footer } from '../components/Footer'
 
@@ -91,6 +92,7 @@ export function LandingPage() {
         <ProcessSection />
         <CtaSection />
         <TestimonialsSection />
+        <FaqSection />
         <ContactSection />
       </main>
       <Footer />

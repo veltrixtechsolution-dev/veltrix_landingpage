@@ -1,4 +1,72 @@
+import { useState } from 'react'
+import type { FormEvent } from 'react'
+
+type ContactFormState = {
+  firstName: string
+  lastName: string
+  email: string
+  service: string
+  message: string
+}
+
+const INITIAL_FORM: ContactFormState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  service: '',
+  message: '',
+}
+
 export function ContactSection() {
+  const [form, setForm] = useState<ContactFormState>(INITIAL_FORM)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    setStatus(null)
+    setIsSubmitting(true)
+
+    const payload = {
+      name: `${form.firstName} ${form.lastName}`.trim(),
+      email: form.email,
+      service: form.service,
+      message: form.message,
+      _subject: `New Let’s Talk inquiry: ${form.service || 'General inquiry'}`,
+      _template: 'table',
+      _captcha: 'false',
+      _honey: '',
+    }
+
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/veltrixtechsolution@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (!response.ok) {
+        throw new Error('Unable to send message')
+      }
+
+      setStatus({
+        type: 'success',
+        text: "Thanks! Your message was sent. We'll get back to you within 24 hours.",
+      })
+      setForm(INITIAL_FORM)
+    } catch {
+      setStatus({
+        type: 'error',
+        text: 'Message could not be sent right now. Please try again or email us directly.',
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="contact" className="section section--contact">
       <div className="section__inner contact">
@@ -52,26 +120,57 @@ export function ContactSection() {
           </div>
         </div>
 
-        <form className="contact__form" action="#" method="post">
+        <form className="contact__form" onSubmit={handleSubmit}>
+          <input type="text" name="_honey" defaultValue="" tabIndex={-1} autoComplete="off" className="contact__trap" />
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="first-name">First Name</label>
-              <input id="first-name" name="first-name" type="text" placeholder="John" />
+              <input
+                id="first-name"
+                name="first-name"
+                type="text"
+                placeholder="John"
+                value={form.firstName}
+                onChange={(e) => setForm((prev) => ({ ...prev, firstName: e.target.value }))}
+                required
+              />
             </div>
             <div className="form-group">
               <label htmlFor="last-name">Last Name</label>
-              <input id="last-name" name="last-name" type="text" placeholder="Doe" />
+              <input
+                id="last-name"
+                name="last-name"
+                type="text"
+                placeholder="Doe"
+                value={form.lastName}
+                onChange={(e) => setForm((prev) => ({ ...prev, lastName: e.target.value }))}
+                required
+              />
             </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input id="email" name="email" type="email" placeholder="john@company.com" />
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="john@company.com"
+              value={form.email}
+              onChange={(e) => setForm((prev) => ({ ...prev, email: e.target.value }))}
+              required
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="service">Service Needed</label>
-            <select id="service" name="service" defaultValue="">
+            <select
+              id="service"
+              name="service"
+              value={form.service}
+              onChange={(e) => setForm((prev) => ({ ...prev, service: e.target.value }))}
+              required
+            >
               <option value="">Select a service...</option>
               <option>Web Development</option>
               <option>Web Designing</option>
@@ -84,11 +183,25 @@ export function ContactSection() {
 
           <div className="form-group">
             <label htmlFor="message">Message</label>
-            <textarea id="message" name="message" rows={4} placeholder="Tell us about your project..." />
+            <textarea
+              id="message"
+              name="message"
+              rows={4}
+              placeholder="Tell us about your project..."
+              value={form.message}
+              onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
+              required
+            />
           </div>
 
-          <button type="submit" className="btn btn--primary btn--full">
-            Send Message →
+          {status && (
+            <p className={`contact__status contact__status--${status.type}`} role="status">
+              {status.text}
+            </p>
+          )}
+
+          <button type="submit" className="btn btn--primary btn--full" disabled={isSubmitting}>
+            {isSubmitting ? 'Sending...' : 'Send Message →'}
           </button>
         </form>
       </div>

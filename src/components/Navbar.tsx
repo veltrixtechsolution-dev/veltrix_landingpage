@@ -35,6 +35,9 @@ export function Navbar() {
             <a href={isHome ? '#process' : '/#process'}>Process</a>
           </li>
           <li>
+            <a href={isHome ? '#faq' : '/#faq'}>FAQ</a>
+          </li>
+          <li>
             <a href={isHome ? '#contact' : '/#contact'}>Contact</a>
           </li>
         </ul>
