@@ -23,7 +23,6 @@ export type ProjectRequestInsert = {
   clientName: string
   clientEmail: string
   businessType: string
-  budgetRange: string | null
   timeline: string | null
   projectDescription: string
   questionnaireAnswers: TemplateQuestionnaireAnswers
@@ -38,7 +37,7 @@ export async function insertProjectRequest(input: ProjectRequestInsert) {
     client_name: input.clientName,
     client_email: input.clientEmail,
     business_type: input.businessType,
-    budget_range: input.budgetRange,
+    budget_range: null,
     timeline: input.timeline,
     project_description: input.projectDescription,
     questionnaire_answers: input.questionnaireAnswers,

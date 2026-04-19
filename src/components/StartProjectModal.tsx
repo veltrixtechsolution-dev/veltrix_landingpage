@@ -43,15 +43,6 @@ function FieldIconBriefcase() {
   )
 }
 
-function FieldIconDollar() {
-  return (
-    <svg className="project-modal__label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
-      <line x1="12" y1="1" x2="12" y2="23" />
-      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-    </svg>
-  )
-}
-
 function FieldIconFlag() {
   return (
     <svg className="project-modal__label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
@@ -87,7 +78,6 @@ export function StartProjectModal({ isOpen, onClose, template }: Props) {
   const [briefBusinessDescription, setBriefBusinessDescription] = useState('')
   const [referenceWebsites, setReferenceWebsites] = useState('')
   const [additionalRequests, setAdditionalRequests] = useState('')
-  const [budget, setBudget] = useState('')
   const [timeline, setTimeline] = useState('')
   const [currentStep, setCurrentStep] = useState(1)
   const [stepError, setStepError] = useState<string | null>(null)
@@ -123,7 +113,6 @@ export function StartProjectModal({ isOpen, onClose, template }: Props) {
       setBriefBusinessDescription('')
       setReferenceWebsites('')
       setAdditionalRequests('')
-      setBudget('')
       setTimeline('')
       setCurrentStep(1)
       setStepError(null)
@@ -220,7 +209,6 @@ export function StartProjectModal({ isOpen, onClose, template }: Props) {
         clientName: name,
         clientEmail: email,
         businessType,
-        budgetRange: budget ? budget : null,
         timeline: timeline ? timeline : null,
         projectDescription: briefBusinessDescription,
         questionnaireAnswers: {
@@ -637,43 +625,20 @@ export function StartProjectModal({ isOpen, onClose, template }: Props) {
                     />
                   </div>
 
-                  <div className="project-modal__row">
-                    <div className="project-modal__field">
-                      <label className="project-modal__label" htmlFor={`${titleId}-reference-websites`}>
-                        <FieldIconBriefcase />
-                        <span>Reference websites (optional)</span>
-                      </label>
-                      <input
-                        id={`${titleId}-reference-websites`}
-                        name="project-reference-websites"
-                        type="text"
-                        className="project-modal__input"
-                        placeholder="web1.com, web2.com"
-                        value={referenceWebsites}
-                        onChange={(e) => setReferenceWebsites(e.target.value)}
-                      />
-                    </div>
-                    <div className="project-modal__field">
-                      <label className="project-modal__label" htmlFor={`${titleId}-budget`}>
-                        <FieldIconDollar />
-                        <span>Budget (optional)</span>
-                      </label>
-                      <div className="project-modal__select-wrap">
-                        <select
-                          id={`${titleId}-budget`}
-                          name="project-budget"
-                          className="project-modal__input project-modal__select"
-                          value={budget}
-                          onChange={(e) => setBudget(e.target.value)}
-                        >
-                          <option value="">Select range</option>
-                          <option value="under-2k">Under $2,000</option>
-                          <option value="2k-5k">$2,000 - $5,000</option>
-                          <option value="5k-10k">$5,000 - $10,000</option>
-                          <option value="10k-plus">$10,000+</option>
-                        </select>
-                      </div>
-                    </div>
+                  <div className="project-modal__field">
+                    <label className="project-modal__label" htmlFor={`${titleId}-reference-websites`}>
+                      <FieldIconBriefcase />
+                      <span>Reference websites (optional)</span>
+                    </label>
+                    <input
+                      id={`${titleId}-reference-websites`}
+                      name="project-reference-websites"
+                      type="text"
+                      className="project-modal__input"
+                      placeholder="web1.com, web2.com"
+                      value={referenceWebsites}
+                      onChange={(e) => setReferenceWebsites(e.target.value)}
+                    />
                   </div>
                 </>
               ) : null}

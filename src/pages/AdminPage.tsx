@@ -55,17 +55,6 @@ function formatLogoBranding(v: TemplateQuestionnaireAnswers['logoBrandingReady']
   return '—'
 }
 
-function formatBudgetRange(code: string | null): string {
-  if (!code) return '—'
-  const map: Record<string, string> = {
-    'under-2k': 'Under $2,000',
-    '2k-5k': '$2,000 – $5,000',
-    '5k-10k': '$5,000 – $10,000',
-    '10k-plus': '$10,000+',
-  }
-  return map[code] ?? code
-}
-
 function formatTimeline(code: string | null): string {
   if (!code) return '—'
   const map: Record<string, string> = {
@@ -147,7 +136,6 @@ export function AdminPage() {
         r.business_type,
         r.template_name,
         r.category_name,
-        r.budget_range ?? '',
         r.timeline ?? '',
         r.project_description,
         r.questionnaire_answers?.contactNumber ?? '',
@@ -320,7 +308,7 @@ export function AdminPage() {
             className="admin-search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search by name, email, template, budget…"
+            placeholder="Search by name, email, template…"
           />
 
           <button
@@ -464,7 +452,6 @@ export function AdminPage() {
                                       value={formatPackageInterest(q?.packageInterest)}
                                     />
                                     <DetailLine label="Timeline" value={formatTimeline(r.timeline)} />
-                                    <DetailLine label="Budget (optional)" value={formatBudgetRange(r.budget_range)} />
                                   </dl>
                                 </section>
 
